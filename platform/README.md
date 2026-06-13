@@ -64,7 +64,12 @@ platform/
 │   ├── app/                 # pages + API routes
 │   ├── components/
 │   └── lib/                 # content loader, tiers/gating, auth, stripe
-├── scripts/                 # pipeline: new-topic, draft-topic, publish-due, check-content
-├── .github/workflows/       # CI + automated draft/publish
-└── docs/                    # ARCHITECTURE, CONTENT-OPS, ROADMAP
+├── scripts/                 # pipeline: propose, draft, publish-due, check-content, setup-stripe, seed
+└── docs/                    # ARCHITECTURE, CONTENT-OPS, COACHING, ROADMAP, STRIPE
+
+# Note: GitHub Actions live at the REPO ROOT (../.github/workflows/) — GitHub only
+# runs workflows from there, not from a subdirectory. They build/test the app in platform/.
 ```
+
+CI + the content pipeline (propose → draft → publish) run from `../.github/workflows/`:
+`ci.yml`, `content-propose.yml`, `content-draft.yml`, `content-publish.yml`.

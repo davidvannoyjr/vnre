@@ -1,10 +1,11 @@
 name: CI
 
 on:
+  workflow_dispatch: {}
   push:
-    paths: ["platform/**"]
+    paths: ["platform/**", ".github/workflows/ci.yml"]
   pull_request:
-    paths: ["platform/**"]
+    paths: ["platform/**", ".github/workflows/ci.yml"]
 
 defaults:
   run:
