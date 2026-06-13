@@ -47,7 +47,7 @@ Three numbers tell the story:
 | 22 | Real Estate Radio Show | (host credit, multiple mentions) | 🟠 Underexploited | Strong authority signal — needs a home page + schema. |
 
 **Likely MISSING / unclaimed (high-value gaps):**
-- 🔴 **Google Business Profile** — not confirmed claimed. This is the #1 source for local AI answers and Maps. If unclaimed, claim today.
+- 🟠 **Google Business Profile** — EXISTS and verified (4.8★/65 reviews, address correct) but owned by another Google account. As of 2026-06-13 DVN sent an ownership-transfer request (deadline Jun 16). #1 source for local AI answers/Maps — regain control fast (check other Google accounts / ask team first).
 - 🔴 **Realtor.com agent profile** — no profile surfaced. Realtor.com is heavily scraped by AI engines.
 - 🔴 **Wikidata entity** — no structured knowledge-graph node. This is how you become a "known entity" to AI.
 - 🔴 **DVN Coaching** — essentially invisible. Externally mislabeled "Van Noy Coaching Method." No dedicated, discoverable presence.

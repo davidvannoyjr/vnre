@@ -47,7 +47,7 @@ Legend: ☐ not started · ◐ in progress · ☑ done · ⏭ skipped
 ### P0 — Stop the bleeding
 | # | Task | Owner | Status | Date done | Notes |
 |---|------|-------|--------|-----------|-------|
-| 1 | Claim/verify Google Business Profile, complete all fields | DVN | ☐ | | #1 source for local AI answers |
+| 1 | Claim/verify Google Business Profile, complete all fields | DVN | ◐ | | 2026-06-13: GBP EXISTS & verified, owned by another Google account. Sent claim request (deadline Jun 16). Address already correct (8700 State Line Rd Ste 180). Shows 4.8★/65 reviews. NEXT: check other Google accounts / ask team before waiting on transfer. |
 | 2 | Merge duplicate Zillow profiles (VanNoyGroup → VanNoyRE) | DVN | ☐ | | Open Zillow support ticket |
 | 3 | 301-redirect kchomelistings.com → vannoyre.com | Dev | ☐ | | Remove ReeceNichols language |
 | 4 | 301-redirect thevannoygroup.com → vannoyre.com | Dev | ☐ | | |
@@ -80,7 +80,7 @@ Legend: ☐ not started · ◐ in progress · ☑ done · ⏭ skipped
 | 23 | Radio Show page + transcripts + schema | Claude/Dev | ◐ | | Page copy + schema drafted (`Radio Show Page.md`); needs episode source |
 | 24 | Publish llms.txt at vannoyre.com/llms.txt | Dev | ☐ | | Block ready |
 | 25 | Caption all YouTube videos | DVN | ☐ | | AI reads transcripts |
-| 26 | Reviews → AggregateRating/Review schema | Dev | ☐ | | From 80+ reviews |
+| 26 | Reviews → AggregateRating/Review schema | Dev | ◐ | | Real data confirmed: Google 4.8★/65. Plugged into Schema file. (FastExpert ~82 separate.) |
 
 ---
 
@@ -94,6 +94,7 @@ Legend: ☐ not started · ◐ in progress · ☑ done · ⏭ skipped
 | 2026-06-13 | — | Drafted FAQ content, Wikidata entity, and outreach/fix scripts (Zillow, Yelp, Agent Pronto, Homes.com, dev brief) | Claude | ✅ |
 | 2026-06-13 | — | Built Profile Copy Pack (per-platform paste-ready copy), DVN Coaching page, Radio Show page, Execution Checklist, folder README | Claude | ✅ |
 | 2026-06-13 | — | Added Review Request Templates and the Market Update → FAQ repurposing SOP | Claude | ✅ |
+| 2026-06-13 | Google Business Profile | DVN began claim — GBP already exists/verified under another account; sent ownership request (deadline Jun 16). Address correct. Captured real rating 4.8★/65 → into schema | DVN/Claude | ✅ |
 | | | _next change here…_ | | |
 
 ---

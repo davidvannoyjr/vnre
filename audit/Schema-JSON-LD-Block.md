@@ -4,6 +4,10 @@
 > Bing, ChatGPT, Perplexity, Gemini. This is the single highest-leverage AI move.
 > **Replace every ⚠️ placeholder with the confirmed canonical value first.**
 > Validate at https://validator.schema.org and https://search.google.com/test/rich-results
+> **AggregateRating** below uses real Google data (4.8★ / 65 reviews as of 2026-06-13).
+> Note: Google can flag *self-serving* review markup on your own LocalBusiness — Google
+> already shows these stars natively from your Business Profile. Keep this block, but if the
+> Rich Results test warns, it's safe to remove the aggregateRating and rely on the GBP stars.
 
 ---
 
@@ -84,8 +88,8 @@
   ],
   "aggregateRating": {
     "@type": "AggregateRating",
-    "ratingValue": "⚠️5.0",
-    "reviewCount": "⚠️82"
+    "ratingValue": "4.8",
+    "reviewCount": "65"
   }
 }
 </script>
