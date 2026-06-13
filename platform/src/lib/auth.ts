@@ -40,6 +40,26 @@ if (process.env.AUTH_EMAIL_SERVER && process.env.AUTH_EMAIL_FROM && dbEnabled) {
   );
 }
 
+// Dev-only: a magic-link provider that prints the sign-in URL to the server
+// console instead of sending email — so you can log in locally without SMTP.
+// Never active in production, and only when no real SMTP is configured.
+if (
+  process.env.AUTH_DEV_LOGIN === "true" &&
+  dbEnabled &&
+  !process.env.AUTH_EMAIL_SERVER &&
+  process.env.NODE_ENV !== "production"
+) {
+  providers.push(
+    Nodemailer({
+      server: { host: "localhost", port: 1025, auth: { user: "dev", pass: "dev" } },
+      from: "dev@localhost",
+      async sendVerificationRequest({ identifier, url }) {
+        console.log(`\n🔑  DEV login link for ${identifier}:\n${url}\n`);
+      }
+    })
+  );
+}
+
 if (process.env.AUTH_GOOGLE_ID && process.env.AUTH_GOOGLE_SECRET) {
   providers.push(
     Google({

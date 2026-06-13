@@ -57,10 +57,13 @@ STRIPE_WEBHOOK_SECRET=whsec_...
 ```
 
 ## 4. Login (so you have a session to subscribe with)
-Easiest for local: add Google OAuth creds, **or** set an SMTP server for the magic link.
-For a no-email quick path, use [Mailtrap](https://mailtrap.io) or a Gmail app password as
-`AUTH_EMAIL_SERVER` + `AUTH_EMAIL_FROM`. (The magic-link provider needs the database, which
-you set up in step 1.)
+Easiest for local: set `AUTH_DEV_LOGIN=true` (already in `.env.example`). The magic-link is
+**printed to the terminal running `npm run dev`** instead of emailed — paste it into your
+browser to log in. No SMTP needed. (Dev login is ignored in production and whenever a real
+`AUTH_EMAIL_SERVER` is set.)
+
+For real email instead, set `AUTH_EMAIL_SERVER` + `AUTH_EMAIL_FROM` (e.g. Mailtrap), or add
+Google OAuth creds.
 
 ## 5. Run it
 ```bash
@@ -97,8 +100,9 @@ stripe trigger customer.subscription.deleted   # exercises the downgrade path
 ```
 
 ## Going to production
-Same envs on your host (Vercel), but **live** keys, a managed Postgres (`npm run db:push` or
-a migration), and a real webhook endpoint registered at
+Same envs on your host (Vercel), but **live** keys, a managed Postgres (run
+`npm run db:migrate` — `prisma migrate deploy` applies the committed migrations), and a real
+webhook endpoint registered at
 `https://yourdomain.com/api/stripe/webhook` (copy that endpoint's signing secret into
 `STRIPE_WEBHOOK_SECRET`). Run `npm run stripe:setup` once with your **live** key to create the
 live prices.
