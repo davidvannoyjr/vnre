@@ -74,8 +74,8 @@ Legend: ☐ not started · ◐ in progress · ☑ done · ⏭ skipped
 ### P2 — Build new discoverability assets
 | # | Task | Owner | Status | Date done | Notes |
 |---|------|-------|--------|-----------|-------|
-| 20 | Create Wikidata entity | Claude/DVN | ☐ | | Cite RealTrends + Real Producers + radio |
-| 21 | Add FAQPage content to top 5 pages | Claude/Dev | ☐ | | Draft in DVN voice |
+| 20 | Create Wikidata entity | Claude/DVN | ◐ | | Draft ready (`Wikidata Entity Draft.md`); DVN to submit |
+| 21 | Add FAQPage content to top 5 pages | Claude/Dev | ◐ | | Copy drafted (`FAQ Content.md`); Dev to publish + schema |
 | 22 | DVN Coaching dedicated page + schema | Claude/Dev | ☐ | | |
 | 23 | Radio Show page + transcripts + schema | Claude/Dev | ☐ | | |
 | 24 | Publish llms.txt at vannoyre.com/llms.txt | Dev | ☐ | | Block ready |
@@ -91,6 +91,7 @@ Legend: ☐ not started · ◐ in progress · ☑ done · ⏭ skipped
 | 2026-06-13 | — | Audit opened; full footprint researched; 22 profiles inventoried | Claude | ✅ |
 | 2026-06-13 | — | Canonical record locked (phone/address/email confirmed by DVN) | Claude/DVN | ✅ |
 | 2026-06-13 | — | Assets drafted: canonical block, JSON-LD schema, llms.txt, profile tracker | Claude | ✅ |
+| 2026-06-13 | — | Drafted FAQ content, Wikidata entity, and outreach/fix scripts (Zillow, Yelp, Agent Pronto, Homes.com, dev brief) | Claude | ✅ |
 | | | _next change here…_ | | |
 
 ---
@@ -125,4 +126,4 @@ Pass = answer matches canonical record (Van Noy Real Estate, 23+ yrs, $500M+, 1,
 - [ ] **Cell phone decision** — keep the 816 number public, or strip from LinkedIn?
 - [ ] Headshot file — confirm the one canonical image to use everywhere.
 - [ ] Review count/rating for schema AggregateRating (currently ~82 on FastExpert — confirm number to publish).
-- [ ] Approve Claude to draft: FAQ content, Wikidata entity, Zillow-merge + Yelp-fix outreach copy.
+- [x] ~~Approve Claude to draft: FAQ content, Wikidata entity, Zillow-merge + Yelp-fix outreach copy.~~ Done 2026-06-13 — see `FAQ Content.md`, `Wikidata Entity Draft.md`, `Outreach & Fix Scripts.md`.
