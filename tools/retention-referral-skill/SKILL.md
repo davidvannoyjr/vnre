@@ -92,15 +92,22 @@ Read the draft brief. Spot-check before anything is presented:
 
 Edit the brief `.md` directly with corrections.
 
-### 4. Deliver
-1. The brief `.md` is in the project folder — present it.
-2. **Gmail drafts** (connector drafts, does not send): for the contacts DVN greenlights,
-   `create_draft` to the contact's email, subject per moment ("Quick question about
-   {address}", "{N} years in the {city} house"), body = the approved draft as simple HTML.
-   They land in Drafts as one-tap sends.
-3. Optionally log a planned-touch note back to FUB so the team sees it.
-4. Housekeeping: delete `_data/retention-pull-*.json` older than 30 days.
-5. Chat summary: counts by moment, anything you overruled, anyone high-value you suppressed.
+### 4. Deliver (stage it — don't just list it)
+1. Present the brief `.md`.
+2. **Stage the actions:** `python3 scripts/build_delivery.py --in _data/retention-brief.json
+   --out-md "<home>/<today> Retention Delivery Plan.md" --out-json _data/delivery.json`.
+   It splits the surfaced touches into **Gmail drafts** (emailable, non-text contacts),
+   **Canva equity one-pagers** (every Equity Update), and a **manual queue** (text-preferred
+   or no-email). Nothing sends — it only plans.
+3. **Execute the plan on DVN's approval:**
+   - For each `gmailDrafts` item → Gmail MCP `create_draft` (to, subject, htmlBody). Lands in
+     Drafts as a one-tap send.
+   - For each `canvaOnePagers` item → Canva MCP `generate-design` with the item's `query`
+     (the equity value/gain visual), then attach/link it to that contact's email draft.
+   - `manualQueue` items → present as a call/text list (the connector can't send texts).
+4. Log a planned-touch note back to FUB so the team sees it (and feeds loop-closure).
+5. Housekeeping: delete `_data/retention-pull-*.json` older than 30 days.
+6. Chat summary: counts by moment + by channel, anything overruled, anyone high-value suppressed.
 
 ## Cadence
 Weekly (Monday AM) via Cowork scheduled task `retention-referral`; manual trigger:

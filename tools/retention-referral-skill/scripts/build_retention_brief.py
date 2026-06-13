@@ -244,7 +244,7 @@ def main():
             "id": cid,
             "name": (c.get("firstName", "") + " " + c.get("lastName", "")).strip() or c.get("name", "?"),
             "address": c.get("address", ""), "city": c.get("city", ""),
-            "channel": c.get("preferredChannel", ""), "clv": clv, "tier": tier,
+            "email": c.get("email", ""), "channel": c.get("preferredChannel", ""), "clv": clv, "tier": tier,
             "primary": top[0], "score": round(top[1] * TIER_WEIGHT.get(tier, 1) * clv_mult, 1),
             "moments": [{"type": m[0], "detail": m[2], "draft": m[3]} for m in moments],
         })

@@ -62,7 +62,9 @@ retention; retention + active-hunter refill the funnel; the CEO dashboard watche
 ## Open items before full live operation
 1. **3 FUB facts** (retention + CLV): segment labels, where close-date/price live, whether the
    sold JSON carries price/commission.
-2. **`Lifetime Value` custom field** exists in FUB.
+2. **`Lifetime Value` custom field** — run `clv-sync-skill/scripts/fub_field_setup.py --create`
+   to create/verify it (and the other suite fields); falls back to admin-UI steps if the API
+   doesn't permit field creation.
 3. **Compliance checklist** (Stage 01 voice): DNC/TCPA/two-party consent (KS one-party, MO all-party).
 4. **Voice vendor** decision (Vapi/Twilio) for autonomous dialing + Upfirst inbound integration.
 
@@ -70,4 +72,6 @@ retention; retention + active-hunter refill the funnel; the CEO dashboard watche
 - **Stage 02 Attraction** — content-chop engine (1 listing video → multichannel posts; Canva).
 - **Stage 06 Compliance** — file auditor (missing-signature/PDF checks).
 - **Stage 09 Scale** — AI call-coach (Granola transcripts → script feedback).
-- **Connector delivery** for retention (auto Gmail drafts + Canva equity one-pagers).
+
+Recently added: **retention delivery layer** (`build_delivery.py` → Gmail drafts + Canva equity
+one-pagers + manual queue) and **FUB field setup** (`fub_field_setup.py`) — both built.

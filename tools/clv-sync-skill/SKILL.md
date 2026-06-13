@@ -35,6 +35,17 @@ clv-sync-skill/
 
 ## Steps
 
+### Step 0. One-time — set up the FUB field (do this first)
+There's no `Lifetime Value` field in FUB yet, so set it up before any sync:
+```bash
+python3 scripts/fub_field_setup.py --config config.json            # check what exists
+python3 scripts/fub_field_setup.py --config config.json --create   # create the missing fields
+```
+It creates/verifies `Lifetime Value` (number) plus the other fields the suite uses
+(`Mortgage Rate`, `Preferred Channel`, `Opt-Out`), and reports each field's API key
+(e.g. `customLifetimeValue`). If your FUB plan only allows custom fields via the admin UI,
+it prints the exact click-path instead. Set `config.json → customFieldName = "Lifetime Value"`.
+
 ### A. Client CLV
 1. **Source the closings.** Use `vnre_sold_history.json` as `--sold`. If it lacks commission,
    the engine derives it: explicit `commission`/`gci` → else `price × rate` → else avg GCI by
