@@ -21,6 +21,7 @@ writes automatically), and secrets/financials kept out of git.
 | `ceo-dashboard-skill` | 07 Finance | Weekly QuickBooks actuals vs 2026 plan + 50% margin guard + A/R flag | ✅ built | nothing (QBO connected) |
 | `retention-referral-skill` | 08 Retention | 8-moment retention/referral brief (equity, anniversary, move, refi, birthday, referral…) | ✅ built | 3 FUB facts |
 | `clv-sync-skill` | (cross) | Client Lifetime Value from closings → FUB; QBO partner-value brief | ✅ built | `Lifetime Value` field |
+| `call-coach-skill` | 09 Scale | Granola transcript → script-adherence self-coaching (phases, objections, talk ratio, drills) | ✅ built | Granola transcripts |
 | `scheduled-tasks` | — | Standing Cowork task definitions for the above | ✅ defined | create in Cowork |
 
 Pre-existing skills (in Drive `04 Tools/`, referenced by the master manual): `plp-build`,
@@ -37,8 +38,11 @@ Pre-existing skills (in Drive `04 Tools/`, referenced by the master manual): `pl
 06 Compliance  ✅ compliance-auditor  (checklist-driven; broker signs off)
 07 Finance     ✅ ceo-dashboard
 08 Retention   ✅ retention-referral  (+ clv-sync profit-weighting)
-09 Scale       ⬜ AI call-coach — not yet built
+09 Scale       ✅ call-coach  (self mode; client/agent modes ready)
 ```
+
+**All 9 stages built or scoped.** (01 voice overlay is the one scoped-not-built piece, gated on
+a vendor + compliance sign-off.)
 
 ## How it connects
 
@@ -70,8 +74,10 @@ retention; retention + active-hunter refill the funnel; the CEO dashboard watche
 3. **Compliance checklist** (Stage 01 voice): DNC/TCPA/two-party consent (KS one-party, MO all-party).
 4. **Voice vendor** decision (Vapi/Twilio) for autonomous dialing + Upfirst inbound integration.
 
-## Not yet built (next candidates)
-- **Stage 09 Scale** — AI call-coach (Granola transcripts → script feedback).
+## Next candidates (enhancements, not gaps)
+- **Stage 01 voice overlay** — Vapi/Twilio outbound + Upfirst inbound (gated on compliance sign-off).
+- **Call-coach client/agent modes** — turn Stage 09 into a DVN Coaching / new-agent product.
+- **Deeper compliance** — PDF AcroForm signature-field parsing.
 
 Recently added: **retention delivery layer** (`build_delivery.py` → Gmail drafts + Canva equity
 one-pagers + manual queue) and **FUB field setup** (`fub_field_setup.py`) — both built.
