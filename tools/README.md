@@ -17,6 +17,7 @@ writes automatically), and secrets/financials kept out of git.
 | `stage01-prospecting` (book-appointment) | 01 Prospect | Booking → `LA:` calendar event → PLP pipeline (the keystone) | ✅ built | confirm-gate live |
 | `stage01-prospecting/SCOPE.md` | 01 Prospect | Voice overlay (Vapi/Twilio) + Upfirst inbound + compliance | 📋 scoped | vendor + compliance sign-off |
 | `content-engine-skill` | 02 Attraction | Listing → multichannel launch package (captions, schedule, FUB blast, graphics spec) | ✅ built | photo selection per listing |
+| `compliance-auditor-skill` | 06 Compliance | Transaction-file completeness vs per-stage checklist (missing / verify-sig / deadlines) | ✅ built | confirm form set w/ broker |
 | `ceo-dashboard-skill` | 07 Finance | Weekly QuickBooks actuals vs 2026 plan + 50% margin guard + A/R flag | ✅ built | nothing (QBO connected) |
 | `retention-referral-skill` | 08 Retention | 8-moment retention/referral brief (equity, anniversary, move, refi, birthday, referral…) | ✅ built | 3 FUB facts |
 | `clv-sync-skill` | (cross) | Client Lifetime Value from closings → FUB; QBO partner-value brief | ✅ built | `Lifetime Value` field |
@@ -33,7 +34,7 @@ Pre-existing skills (in Drive `04 Tools/`, referenced by the master manual): `pl
 03 Prep        ✅ plp-build + plp-presentation (pre-existing)
 04 Closing     ✅ offer-to-spreadsheet (pre-existing)
 05 Operations  ✅ send-ers-agreement (pre-existing)   (full milestone automation = later)
-06 Compliance  ⬜ file auditor — not yet built
+06 Compliance  ✅ compliance-auditor  (checklist-driven; broker signs off)
 07 Finance     ✅ ceo-dashboard
 08 Retention   ✅ retention-referral  (+ clv-sync profit-weighting)
 09 Scale       ⬜ AI call-coach — not yet built
@@ -70,7 +71,6 @@ retention; retention + active-hunter refill the funnel; the CEO dashboard watche
 4. **Voice vendor** decision (Vapi/Twilio) for autonomous dialing + Upfirst inbound integration.
 
 ## Not yet built (next candidates)
-- **Stage 06 Compliance** — file auditor (missing-signature/PDF checks).
 - **Stage 09 Scale** — AI call-coach (Granola transcripts → script feedback).
 
 Recently added: **retention delivery layer** (`build_delivery.py` → Gmail drafts + Canva equity

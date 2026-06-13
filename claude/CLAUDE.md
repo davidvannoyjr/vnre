@@ -128,6 +128,7 @@ Reject anything theoretical, complex without payoff, or dependent on motivation 
 | `vnre-book-appointment` | "book the LA for {name}", "add this listing appointment" | `04 Tools/stage01-prospecting/SKILL.md` (aiDrVN Stage 01 booking → LA: event → PLP pipeline; source in repo `tools/stage01-prospecting/`) |
 | `vnre-active-hunter` | "build my call list", "who do I prospect today" | `04 Tools/active-hunter-skill/SKILL.md` (aiDrVN Stage 01 daily targeting + DVN-voice script library; source in repo `tools/active-hunter-skill/`) |
 | `vnre-content-engine` | "build the social plan for {address}", "launch content for this listing" | `04 Tools/content-engine-skill/SKILL.md` (aiDrVN Stage 02; listing → multichannel launch package; source in repo `tools/content-engine-skill/`) |
+| `vnre-compliance-auditor` | "compliance check {client}", "audit the file", "what's missing on {transaction}" | `04 Tools/compliance-auditor-skill/SKILL.md` (aiDrVN Stage 06; transaction-file completeness vs checklist; source in repo `tools/compliance-auditor-skill/`) |
 | `vnre-html-branding` | branded HTML deliverables | `02 Reference/SOPs/vnre-html-branding.skill` |
 | `dvn-voice` | all outbound copy | brand voice skill (see `02 Reference/Brand/`) |
 
