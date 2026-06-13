@@ -1,0 +1,14 @@
+# Secrets — never commit
+*.local.md
+**/fub-api-key*.md
+**/fub-key*.md
+
+# Tool / dependency noise
+node_modules/
+
+# Binaries that belong in Drive, not git
+*.dmg
+*.png
+*.jpg
+*.jpeg
+*.skill
