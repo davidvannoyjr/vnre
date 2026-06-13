@@ -1,9 +1,12 @@
 # Claude brain — GitHub mirror
 
-This `claude/` folder is a **synced copy** of the markdown "brain" from David Van
-Noy Jr.'s Google Drive working root. Drive stays the day-to-day workspace; this
-mirror exists so Claude Code on the web (which clones a GitHub repo as its working
-directory) can read the operating manual directly.
+This `claude/` folder is the **source of truth** for David Van Noy Jr.'s markdown
+Claude "brain." Edit it here — it's versioned, diffable, and structurally can't
+spawn the duplicate-`CLAUDE.md` problem that hand-editing Drive can. Claude Code on
+the web reads it directly (it clones this repo). Google Drive holds a downstream
+**copy** of `CLAUDE.md` so the desktop Claude app and Drive-connected sessions read
+the same manual — that copy is overwritten in place after changes here, never
+duplicated.
 
 ## The one file that matters
 
@@ -42,10 +45,14 @@ claude/
 
 ## Source of truth & sync
 
-- **Canonical:** Google Drive `Claude md/` (VNRE shared drive). If the two disagree, Drive wins — **except** for the one GitHub-canonical file below.
-- **Refresh this mirror** after Drive edits: ask "re-sync the Claude brain to GitHub."
+- **Source of truth = this GitHub repo `claude/`.** Edit the brain here. Version-controlled, diffable, and it structurally can't produce the duplicate-`CLAUDE.md` problem that hand-editing Drive can.
+- **Drive holds one downstream copy: `Claude md/CLAUDE.md`** — so the desktop Claude app and Drive-connected sessions read the same manual. After editing here, push it down by **overwriting that single Drive file in place. Never create a new file** — that is what spawns duplicates.
+- **[`DVN-Coaching-Framework.md`](DVN-Coaching-Framework.md) lives only in GitHub** — Drive holds no copy, nothing to sync. `CLAUDE.md` §5 is a derived summary; the framework doc wins on conflict.
+- Drive remains the home for what GitHub doesn't hold: skills (`*.skill`), tool source (`04 Tools/`), FUB keys / secrets, binaries, and the two oversized reference docs.
 
-### GitHub-canonical exception — the DVN Coaching Framework
+### How to update the brain
 
-- **[`DVN-Coaching-Framework.md`](DVN-Coaching-Framework.md) is GitHub-canonical, single source of truth.** It is static reference content — no skills, no Follow Up Boss, no live artifacts, no MCP dependency — so it lives and is edited in this repo. **Drive holds no copy.** Nothing to reconcile, no sync schedule.
-- `CLAUDE.md` §5 carries only a **derived pointer/summary** of the framework, not a second copy of the substance. **If §5 and the framework doc ever disagree, the doc wins.** A re-sync from Drive must preserve the §5 pointer; the framework block in Drive's `CLAUDE.md` is kept as a thin pointer to this doc for exactly that reason.
+1. **Edit the file in GitHub** (web UI or a local clone).
+2. **Changed `CLAUDE.md`?** Open Drive's single `Claude md/CLAUDE.md`, select-all, paste the new content over it, save. **Overwrite — never add a new file.** Wait for Drive to show "up to date."
+3. **Changed `DVN-Coaching-Framework.md` or anything else GitHub-only?** Nothing to do in Drive.
+4. **Invariant:** exactly one file named `CLAUDE.md` in Drive, always. If you ever see two, newest content wins — merge and delete the rest.
