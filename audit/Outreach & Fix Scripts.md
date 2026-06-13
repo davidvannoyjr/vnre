@@ -97,7 +97,7 @@
 **Update (2026-06-13):** there are **TWO** LSA accounts under the login — "Unknown Business Name" (723-297-1201, likely junk → **close** it) and "Van Noy Real Estate" Leawood (947-603-4678, the legacy one → pause/fix below). Phone numbers shown in the picker are Google **proxy/tracking** numbers, not real NAP. Do **not** create a new account. Goal: consolidate to **≤1** LSA account, paused and correct.
 
 **Steps (in order):**
-0. **Close the junk account:** open "Unknown Business Name" → if empty/not billing → Settings → Close/Cancel account.
+0. **Abandon the junk account:** "Unknown Business Name" is an incomplete NEW signup (blank business-details form, never launched). Do NOT fill it in or complete it — that would create a live duplicate. Just back out/close the tab; an unlaunched signup can't bill. (No delete button typically; ignore it, or ask LSA support to remove the empty account.)
 1. **Pause first:** in the "Van Noy Real Estate" account, top of Profile & budget, toggle the ad **OFF** so budget can't spend.
 2. **Decision:** LSA is a buyer-lead product (~$2k/mo at $500/wk). For a listing-focused business this is likely off-strategy — recommendation is to leave it **paused** unless you're deliberately building a buyer-lead channel.
 3. **Fix every field to canonical** (even while paused — it feeds Google/AI):

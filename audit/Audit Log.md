@@ -98,6 +98,7 @@ Legend: ☐ not started · ◐ in progress · ☑ done · ⏭ skipped
 | 2026-06-13 | Google Business Profile | DVN began claim — GBP already exists/verified under another account; sent ownership request (deadline Jun 16). Address correct. Captured real rating 4.8★/65 → into schema | DVN/Claude | ✅ |
 | 2026-06-13 | Google Local Services Ads | FOUND a third Google entity — legacy LSA "The Van Noy Real Estate Group" with all wrong NAP + thevannoygroup.com + $500/wk budget, pending verification. Corrective action: pause, fix to canonical, leave off (buyer-lead product, off-strategy) | DVN/Claude | ◐ |
 | 2026-06-13 | Google Local Services Ads | Account picker shows TWO LSA accounts: "Unknown Business Name" (723-297-1201, likely junk → close) + "Van Noy Real Estate" Leawood (947-603-4678, the legacy one → pause/fix/off). Consolidate to ≤1. | DVN/Claude | ◐ |
+| 2026-06-13 | Google Local Services Ads | CONFIRMED "Unknown Business Name" = an incomplete/abandoned NEW signup (blank business-details form, never launched → can't bill). Action: abandon it, do NOT complete. Real work is on the "Van Noy Real Estate" (947-603-4678) account. | DVN/Claude | ◐ |
 | | | _next change here…_ | | |
 
 ---
