@@ -1,0 +1,63 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-mono: ui-monospace, "Roboto Mono", "SFMono-Regular", monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-white text-steel antialiased;
+}
+
+/* Long-form content (MDX) */
+.prose-vnre {
+  @apply max-w-none leading-relaxed;
+}
+.prose-vnre h1 {
+  @apply text-3xl font-bold tracking-tight mt-0 mb-4;
+}
+.prose-vnre h2 {
+  @apply text-2xl font-bold tracking-tight mt-10 mb-3 border-b border-band pb-2;
+}
+.prose-vnre h3 {
+  @apply text-xl font-semibold mt-6 mb-2;
+}
+.prose-vnre p {
+  @apply my-4;
+}
+.prose-vnre ul {
+  @apply my-4 list-disc pl-6 space-y-1;
+}
+.prose-vnre ol {
+  @apply my-4 list-decimal pl-6 space-y-1;
+}
+.prose-vnre a {
+  @apply text-accent underline underline-offset-2;
+}
+.prose-vnre code {
+  @apply font-mono text-sm bg-strip px-1.5 py-0.5 rounded;
+}
+.prose-vnre pre {
+  @apply font-mono text-sm bg-steel text-white p-4 rounded-lg overflow-x-auto my-5;
+}
+.prose-vnre pre code {
+  @apply bg-transparent p-0 text-white;
+}
+.prose-vnre blockquote {
+  @apply border-l-4 border-accent pl-4 italic my-5 text-steel/80;
+}
+.prose-vnre table {
+  @apply w-full my-5 text-sm border-collapse;
+}
+.prose-vnre th {
+  @apply bg-steel text-white text-left px-3 py-2;
+}
+.prose-vnre td {
+  @apply border border-band px-3 py-2;
+}

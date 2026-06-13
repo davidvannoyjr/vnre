@@ -1,0 +1,40 @@
+name: Publish due content
+
+# Flips scheduled .mdx whose publishDate has arrived to `published` and commits
+# the change (which triggers your host's rebuild/redeploy). Runs daily.
+
+on:
+  workflow_dispatch: {}
+  schedule:
+    # Every day at 12:00 UTC.
+    - cron: "0 12 * * *"
+
+permissions:
+  contents: write
+
+defaults:
+  run:
+    working-directory: platform
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - run: npm ci || npm install
+      - name: Promote due content
+        run: npm run content:publish-due
+      - name: Commit promotions
+        run: |
+          git config user.name "content-bot"
+          git config user.email "content-bot@users.noreply.github.com"
+          if [ -n "$(git status --porcelain)" ]; then
+            git add -A
+            git commit -m "content: publish due posts"
+            git push
+          else
+            echo "Nothing due."
+          fi

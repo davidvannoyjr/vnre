@@ -1,0 +1,49 @@
+name: Propose topics
+
+# Fills the backlog: asks Claude for fresh topic ideas and commits them to
+# content/topics/queue.yaml as `proposed`. DVN approves the good ones (sets
+# status: approved); the draft workflow takes it from there. Proposing is
+# automated; approval stays manual.
+
+on:
+  workflow_dispatch:
+    inputs:
+      count:
+        description: "How many ideas to propose"
+        default: "6"
+  schedule:
+    # Sundays 13:00 UTC — a fresh batch to review before the Monday drafter.
+    - cron: "0 13 * * 0"
+
+permissions:
+  contents: write
+
+defaults:
+  run:
+    working-directory: platform
+
+jobs:
+  propose:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - run: npm ci || npm install
+      - name: Propose topics
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          CONTENT_MODEL: claude-opus-4-8
+        run: npm run topic:propose -- --count ${{ github.event.inputs.count || '6' }}
+      - name: Commit proposals
+        run: |
+          git config user.name "content-bot"
+          git config user.email "content-bot@users.noreply.github.com"
+          if [ -n "$(git status --porcelain)" ]; then
+            git add -A
+            git commit -m "content: propose new topics for review"
+            git push
+          else
+            echo "No new proposals."
+          fi
