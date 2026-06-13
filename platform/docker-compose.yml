@@ -1,0 +1,18 @@
+# Local Postgres for development. Start with: docker compose up -d
+# Then set in .env.local:
+#   DATABASE_URL=postgresql://dvn:dvn@localhost:5432/dvn_ai_lab
+services:
+  db:
+    image: postgres:16
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: dvn
+      POSTGRES_PASSWORD: dvn
+      POSTGRES_DB: dvn_ai_lab
+    ports:
+      - "5432:5432"
+    volumes:
+      - dvn_pgdata:/var/lib/postgresql/data
+
+volumes:
+  dvn_pgdata:

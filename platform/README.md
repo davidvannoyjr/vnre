@@ -29,6 +29,10 @@ The site runs with **zero secrets** — auth and billing degrade gracefully (log
 "not configured" notice; checkout returns a clear error). Add keys when you're ready to
 take payments. See `docs/ARCHITECTURE.md` for the launch checklist.
 
+**Run it end-to-end (real subscribe + coaching onboarding) in ~10 min:** `docs/STRIPE.md`.
+`docker compose up -d` for Postgres, `npm run db:push && npm run db:seed`, then
+`npm run stripe:setup` to create the test prices and `stripe listen` to forward webhooks.
+
 ## The thing that makes this run itself
 
 You approve topics. Claude drafts them in your voice. They publish on a schedule. Full
