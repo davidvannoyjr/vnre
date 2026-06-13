@@ -1,0 +1,60 @@
+{
+  "_note": "Scoring rubric per call type. 'patterns' = case-insensitive regex searched in the agent's (your) lines. Mirrors the active-hunter call scripts. Tune freely.",
+  "metrics": {"talkRatioFlag": 0.6, "minQuestions": 4},
+  "types": {
+    "fsbo": {
+      "label": "FSBO",
+      "checkpoints": [
+        {"phase": "opener", "name": "Name + brokerage", "patterns": ["van noy", "david van noy", "this is david"], "weight": 1, "coach": "Open with your name and Van Noy Real Estate."},
+        {"phase": "discovery", "name": "Reason + destination", "patterns": ["why.*sell", "what.?s got you", "where.*head", "moving to"], "weight": 1, "coach": "Ask why they're selling and where they're headed."},
+        {"phase": "discovery", "name": "Timeline", "patterns": ["timeline", "by when", "how soon", "when would you", "ideally.*move"], "weight": 1, "coach": "Pin the move timeline."},
+        {"phase": "value", "name": "Net vs FSBO / USP", "patterns": ["net", "commission", "2%", "guarant", "keep more", "offer on your home"], "weight": 2, "coach": "Show net-to-net and a USP (2% / Offer Guaranteed / Cancellation Guarantee)."},
+        {"phase": "close", "name": "Asked for the appointment", "patterns": ["20 min", "appointment", "tuesday", "wednesday", "what.*works", "set.*time", "stop by", "come by", "on the calendar"], "weight": 2, "coach": "Ask for a 20-minute appointment with a specific day/time."}
+      ],
+      "objections": [
+        {"name": "Commission", "patterns": ["don.?t want to pay", "pay.*commission", "not paying", "commission.*high"]},
+        {"name": "Try it myself", "patterns": ["try.*myself", "on my own", "do it myself", "myself first"]},
+        {"name": "Just send info", "patterns": ["send.*info", "email.*me", "just send"]}
+      ]
+    },
+    "expired": {
+      "label": "Expired",
+      "checkpoints": [
+        {"phase": "opener", "name": "Name + reference the expired", "patterns": ["van noy", "came off the market", "expired", "off the market"], "weight": 1, "coach": "Name + reference that it came off the market."},
+        {"phase": "discovery", "name": "What went wrong", "patterns": ["what.*went wrong", "what would.*differently", "why.*didn.?t.*sell"], "weight": 1, "coach": "Ask what they think went wrong last time."},
+        {"phase": "discovery", "name": "Still motivated / timeline", "patterns": ["still.*move", "still.*sell", "where.*go", "by when", "timeline"], "weight": 1, "coach": "Confirm they still plan to move + the timeline."},
+        {"phase": "value", "name": "Plan / price / marketing", "patterns": ["plan of action", "marketing", "price", "media reach", "exposure", "#1 listing"], "weight": 2, "coach": "Show the plan: price + marketing/exposure that the last agent missed."},
+        {"phase": "close", "name": "Asked for the appointment", "patterns": ["20 min", "appointment", "second opinion", "tuesday", "wednesday", "show you"], "weight": 2, "coach": "Ask for 20 minutes to show the plan."}
+      ],
+      "objections": [
+        {"name": "Re-listing already", "patterns": ["already.*list", "going with", "another agent"]},
+        {"name": "Taking a break", "patterns": ["taking a break", "off the market for now", "not right now"]}
+      ]
+    },
+    "aged_lead": {
+      "label": "Aged Lead",
+      "checkpoints": [
+        {"phase": "opener", "name": "Name + re-open", "patterns": ["van noy", "looked at homes", "cleaning up", "still in the market"], "weight": 1, "coach": "Name + low-pressure re-open."},
+        {"phase": "discovery", "name": "Status + own/rent", "patterns": ["still looking", "already bought", "renting or own", "do you own"], "weight": 1, "coach": "Qualify status; turn owners into sellers."},
+        {"phase": "value", "name": "Buyer list or value", "patterns": ["private.*list", "value", "equity", "what.?s it worth"], "weight": 1, "coach": "Offer a curated list (buyer) or a value (owner)."},
+        {"phase": "close", "name": "Next step", "patterns": ["20 min", "set.*up", "grab.*time", "appointment"], "weight": 1, "coach": "If intent, book 20 minutes; else tag the real timeline."}
+      ],
+      "objections": [{"name": "Working with someone", "patterns": ["working with", "have an agent"]}]
+    },
+    "listing_appt": {
+      "label": "Listing Appointment",
+      "checkpoints": [
+        {"phase": "opener", "name": "Rapport + agenda", "patterns": ["agenda", "here.?s how.*work", "walk you through", "by the end"], "weight": 1, "coach": "Set an agenda up front."},
+        {"phase": "discovery", "name": "Motivation + timeline", "patterns": ["why.*move", "what.?s most important", "timeline", "by when"], "weight": 1, "coach": "Confirm motivation + timeline before pricing."},
+        {"phase": "value", "name": "Pricing rationale", "patterns": ["comps", "comparable", "price.*based", "recently sold", "market"], "weight": 2, "coach": "Lead with pricing rationale, comps shown."},
+        {"phase": "value", "name": "Marketing / plan of action", "patterns": ["marketing", "plan of action", "media reach", "exposure", "timeline.*days"], "weight": 1, "coach": "Concrete marketing plan + days-based timeline."},
+        {"phase": "close", "name": "Asked for the signature", "patterns": ["sign", "agreement", "get started", "move forward", "paperwork"], "weight": 2, "coach": "Ask for the signature / next step — don't leave it open."}
+      ],
+      "objections": [
+        {"name": "Price too low", "patterns": ["worth more", "too low", "other agent.*higher"]},
+        {"name": "Think about it", "patterns": ["think about it", "talk it over", "get back to you"]},
+        {"name": "Commission", "patterns": ["commission", "your fee", "how much.*charge"]}
+      ]
+    }
+  }
+}

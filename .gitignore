@@ -6,9 +6,18 @@
 # Tool / dependency noise
 node_modules/
 
+# Local skill configs (may hold keys / X-System secrets)
+config.json
+**/config.json
+_data/
+
 # Binaries that belong in Drive, not git
 *.dmg
 *.png
 *.jpg
 *.jpeg
 *.skill
+
+# Python cache
+__pycache__/
+*.pyc

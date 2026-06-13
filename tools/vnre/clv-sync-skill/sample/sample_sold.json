@@ -1,0 +1,6 @@
+[
+  {"family": "Edwards", "address": "16408 Riggs Rd", "city": "Stilwell", "side": "listing", "salePrice": 400000},
+  {"family": "Edwards", "address": "9 Old St", "city": "Stilwell", "side": "buyer", "salePrice": 300000},
+  {"family": "Kim", "address": "123 Oak St", "city": "Overland Park", "side": "listing", "commission": 11000},
+  {"family": "Stranger", "address": "77 Far Rd", "city": "Olathe", "side": "buyer", "salePrice": 250000}
+]

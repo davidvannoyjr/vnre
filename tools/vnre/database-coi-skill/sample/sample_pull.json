@@ -1,15 +1,18 @@
 [
   {"id": "1", "firstName": "Andrew", "lastName": "Edwards", "address": "16408 Riggs Rd", "city": "Stilwell",
-   "tags": ["Past Client"], "closeDate": "2021-06-10", "salePrice": 400000, "lastContactDate": "2026-01-01"},
+   "tags": ["Past Client"], "closeDate": "2021-06-10", "salePrice": 400000, "lastContactDate": "2026-01-01",
+   "recentPropertyViewDate": "2026-06-01", "mortgageRate": 7.5, "lifetimeValue": 18500,
+   "birthday": "06-15", "preferredChannel": "text"},
 
   {"id": "2", "firstName": "Sarah", "lastName": "Kim", "address": "123 Oak St", "city": "Overland Park",
    "tags": ["Past Client"], "closeDate": "2017-09-01", "salePrice": null, "lastContactDate": "2025-06-01"},
 
   {"id": "3", "firstName": "Mike", "lastName": "Jones", "address": "55 Elm Ct", "city": "Leawood",
-   "tags": ["Past Client"], "closeDate": "2024-03-15", "salePrice": 350000, "lastContactDate": "2025-10-01"},
+   "tags": ["Past Client"], "closeDate": "2024-03-15", "salePrice": 350000, "lastContactDate": "2025-10-01",
+   "mortgageRate": 7.75},
 
-  {"id": "4", "firstName": "Lisa", "lastName": "Park", "address": "", "city": "",
-   "tags": ["COI", "Sphere"], "lastContactDate": "2025-01-01"},
+  {"id": "4", "firstName": "Lisa", "lastName": "Park", "tags": ["COI", "Sphere"],
+   "lastContactDate": "2025-01-01", "birthday": "06-10"},
 
   {"id": "5", "firstName": "Tom", "lastName": "Hill", "address": "9 Pine Dr", "city": "Olathe",
    "tags": ["Past Client"], "closeDate": "2020-06-12", "salePrice": 500000, "lastContactDate": "2026-06-01"},

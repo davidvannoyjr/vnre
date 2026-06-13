@@ -1,0 +1,30 @@
+{
+  "address": "8421 W 142nd Ter",
+  "city": "Overland Park",
+  "state": "KS",
+  "neighborhood": "Mills Farm",
+  "status": "active",
+  "price": 525000,
+  "beds": 4,
+  "baths": 3,
+  "sqft": 2650,
+  "lot": "0.25-acre",
+  "year": 2015,
+  "mls": "2620001",
+  "schools": "Blue Valley",
+  "taxes": "$6,400/yr",
+  "launchDate": "2026-06-20",
+  "hooks": [
+    "Open-concept main with a chef's kitchen — quartz, gas range, walk-in pantry",
+    "Refinished hardwoods and a main-floor office",
+    "Finished basement with a wet bar and 4th bedroom",
+    "Covered deck overlooking a level fenced backyard",
+    "Blue Valley schools, minutes to 135th St shops"
+  ],
+  "agent": {
+    "name": "David Van Noy",
+    "company": "Van Noy Real Estate",
+    "phone": "913-361-6030",
+    "email": "info@vannoyre.com"
+  }
+}

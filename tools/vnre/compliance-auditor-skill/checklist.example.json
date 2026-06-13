@@ -1,0 +1,40 @@
+{
+  "_note": "Required-documents checklist by stage. CONFIRM with your broker / Heartland MLS — form names and requirements change. 'match' = case-insensitive regex patterns tried against each filename. 'signature' = needs sig/initials/dates verified. 'conditional':'pre1978' = only required for homes built before 1978.",
+  "stages": {
+    "listing": {
+      "label": "Listing signed (pre-MLS)",
+      "required": [
+        {"name": "ERS Exclusive Right to Sell Agreement", "match": ["ers", "exclusive right", "listing agreement"], "signature": true},
+        {"name": "Seller's Disclosure & Condition of Property", "match": ["seller.?s? disclosure", "condition of property"], "signature": true},
+        {"name": "Lead-Based Paint Disclosure", "match": ["lead.?based", "lead paint", "lbp"], "signature": true, "conditional": "pre1978"},
+        {"name": "Brokerage Relationships / Agency Disclosure", "match": ["brokerage relationship", "agency disclosure", "designated agent"], "signature": true},
+        {"name": "Wire Fraud Advisory", "match": ["wire fraud", "wire advisory"], "signature": false},
+        {"name": "Sellers Homework", "match": ["seller.?s? homework"], "signature": false},
+        {"name": "MLS Profile / Data Entry Sheet", "match": ["mls profile", "data entry", "input sheet", "listing input"], "signature": false}
+      ]
+    },
+    "under_contract": {
+      "label": "Under contract",
+      "required": [
+        {"name": "Residential Real Estate Sale Contract", "match": ["sale contract", "purchase contract", "residential.*contract", "rec contract"], "signature": true},
+        {"name": "Brokerage Relationships / Agency Disclosure", "match": ["brokerage relationship", "agency disclosure"], "signature": true},
+        {"name": "Seller's Disclosure (delivered)", "match": ["seller.?s? disclosure", "condition of property"], "signature": true},
+        {"name": "Lead-Based Paint Disclosure", "match": ["lead.?based", "lead paint", "lbp"], "signature": true, "conditional": "pre1978"},
+        {"name": "Earnest Money Receipt", "match": ["earnest", "emd"], "signature": false},
+        {"name": "Inspection Notice / Resolution Addendum", "match": ["inspection", "resolution", "repair"], "signature": true},
+        {"name": "Wire Fraud Advisory", "match": ["wire fraud", "wire advisory"], "signature": false}
+      ]
+    },
+    "closing": {
+      "label": "Closing / file-to-close",
+      "required": [
+        {"name": "Fully executed Sale Contract + all addenda", "match": ["sale contract", "purchase contract", "fully executed"], "signature": true},
+        {"name": "Settlement Statement / Closing Disclosure", "match": ["settlement", "closing disclosure", "alta", " cd "], "signature": true},
+        {"name": "Commission Disbursement Authorization", "match": ["commission disbursement", "cda", "disbursement auth"], "signature": true},
+        {"name": "Seller's Disclosure", "match": ["seller.?s? disclosure"], "signature": true},
+        {"name": "Final Walkthrough", "match": ["walk.?through", "walkthru"], "signature": false}
+      ]
+    }
+  },
+  "dateChecks": ["inspectionDeadline", "financingDeadline", "appraisalDeadline", "titleDeadline", "closingDate"]
+}

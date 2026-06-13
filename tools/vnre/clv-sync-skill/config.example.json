@@ -1,0 +1,11 @@
+{
+  "_comment": "Copy to config.json (gitignored). Holds key path + commission assumptions.",
+  "apiKeyFile": "~/Library/CloudStorage/GoogleDrive-david@vannoyre.com/.../02 Reference/fub-api-key.local.md",
+  "xSystem": "VNRE-Claude",
+  "xSystemKey": "REPLACE_WITH_YOUR_X_SYSTEM_KEY",
+  "customFieldName": "Lifetime Value",
+  "listingRate": 0.025,
+  "buyerRate": 0.025,
+  "defaultRate": 0.025,
+  "avgGci": {"listing": 12000, "buyer": 5500, "default": 8500}
+}
