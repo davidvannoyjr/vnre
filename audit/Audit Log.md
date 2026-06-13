@@ -53,7 +53,7 @@ Legend: ☐ not started · ◐ in progress · ☑ done · ⏭ skipped
 | 4 | 301-redirect thevannoygroup.com → vannoyre.com | Dev | ☐ | | |
 | 5 | Kill/redirect vannoy-homes.kw.com | DVN/KW | ☐ | | Off-brand KW page |
 | 5b | Google Local Services Ads (LSA) — consolidate to ≤1, pause + fix | DVN | ◐ | | 2026-06-13 FOUND **TWO** LSA accounts under one login: (1) "Unknown Business Name" 723-297-1201 — incomplete/abandoned signup → ABANDON (don't complete); (2) "Van Noy Real Estate" Leawood 947-603-4678 = the legacy "Van Noy Real Estate Group" profile w/ wrong NAP (5000 W 135th St/66224, thevannoygroup.com) → PAUSE + fix to canonical + leave off. Phone numbers shown are Google LSA proxy/tracking numbers, not real NAP. Don't create new accounts. End state: ≤1 LSA, paused & correct. |
-| 5c | Google Ads account (1357676347) — settle balance, secure, leave dormant | DVN | ◐ | | Parent acct "David Van Noy LSA": 0 campaigns/$0 day (not spending). Settle $88.40 owed (auto-pays Jul 1, checking …638). Review 1 security alert + verify 2 payment methods. Leave dormant — do NOT close. |
+| 5c | Google Ads account (1357676347) — settle balance, secure, leave dormant | DVN | ◐ | | 0 campaigns/$0 day (not spending). ✅ 2026-06-13 $88.40 balance PAID (checking …638, acct 9476034678 = the VNRE LSA; processing 3–5 days). REMAINING: review 1 security alert + verify 2 payment methods. Leave dormant — do NOT close. |
 | 6 | Fix Yelp — name + address | DVN | ☐ | | → Van Noy Real Estate, 8700 State Line Rd |
 | 7 | Rename "Van Noy Group" on Agent Pronto | DVN | ☐ | | |
 | 8 | Add Schema.org JSON-LD to vannoyre.com | Dev | ☐ | | Block ready in Schema file |
@@ -101,6 +101,7 @@ Legend: ☐ not started · ◐ in progress · ☑ done · ⏭ skipped
 | 2026-06-13 | Google Local Services Ads | Account picker shows TWO LSA accounts: "Unknown Business Name" (723-297-1201, likely junk → close) + "Van Noy Real Estate" Leawood (947-603-4678, the legacy one → pause/fix/off). Consolidate to ≤1. | DVN/Claude | ◐ |
 | 2026-06-13 | Google Local Services Ads | CONFIRMED "Unknown Business Name" = an incomplete/abandoned NEW signup (blank business-details form, never launched → can't bill). Action: abandon it, do NOT complete. Real work is on the "Van Noy Real Estate" (947-603-4678) account. | DVN/Claude | ◐ |
 | 2026-06-13 | Google Ads account | Parent Google Ads acct "David Van Noy LSA" (ID 1357676347): 0 campaigns, $0/day — NOT actively spending. $88.40 balance owed (auto-pays Jul 1 / at $500, checking ending 638). 1 security alert + 2 payment methods to verify. 1 conversion tag recording (fine). Action: settle balance, check security alert, verify payment methods, leave dormant (don't close). | DVN/Claude | ◐ |
+| 2026-06-13 | Google Ads account | ✅ $88.40 balance PAID (checking …638, acct 9476034678; processing 3–5 days). Balance cleared. | DVN | ✅ |
 | | | _next change here…_ | | |
 
 ---
