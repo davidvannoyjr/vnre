@@ -52,7 +52,8 @@ Legend: ☐ not started · ◐ in progress · ☑ done · ⏭ skipped
 | 3 | 301-redirect kchomelistings.com → vannoyre.com | Dev | ☐ | | Remove ReeceNichols language |
 | 4 | 301-redirect thevannoygroup.com → vannoyre.com | Dev | ☐ | | |
 | 5 | Kill/redirect vannoy-homes.kw.com | DVN/KW | ☐ | | Off-brand KW page |
-| 5b | Google Local Services Ads (LSA) — consolidate to ≤1, pause + fix | DVN | ◐ | | 2026-06-13 FOUND **TWO** LSA accounts under one login: (1) "Unknown Business Name" 723-297-1201 — likely junk/incomplete → CLOSE; (2) "Van Noy Real Estate" Leawood 947-603-4678 = the legacy "Van Noy Real Estate Group" profile w/ wrong NAP (5000 W 135th St/66224, thevannoygroup.com, $500/wk) → PAUSE + fix to canonical + leave off. Phone numbers shown are Google LSA proxy/tracking numbers, not real NAP. Don't create new accounts. End state: ≤1 LSA, paused & correct. |
+| 5b | Google Local Services Ads (LSA) — consolidate to ≤1, pause + fix | DVN | ◐ | | 2026-06-13 FOUND **TWO** LSA accounts under one login: (1) "Unknown Business Name" 723-297-1201 — incomplete/abandoned signup → ABANDON (don't complete); (2) "Van Noy Real Estate" Leawood 947-603-4678 = the legacy "Van Noy Real Estate Group" profile w/ wrong NAP (5000 W 135th St/66224, thevannoygroup.com) → PAUSE + fix to canonical + leave off. Phone numbers shown are Google LSA proxy/tracking numbers, not real NAP. Don't create new accounts. End state: ≤1 LSA, paused & correct. |
+| 5c | Google Ads account (1357676347) — settle balance, secure, leave dormant | DVN | ◐ | | Parent acct "David Van Noy LSA": 0 campaigns/$0 day (not spending). Settle $88.40 owed (auto-pays Jul 1, checking …638). Review 1 security alert + verify 2 payment methods. Leave dormant — do NOT close. |
 | 6 | Fix Yelp — name + address | DVN | ☐ | | → Van Noy Real Estate, 8700 State Line Rd |
 | 7 | Rename "Van Noy Group" on Agent Pronto | DVN | ☐ | | |
 | 8 | Add Schema.org JSON-LD to vannoyre.com | Dev | ☐ | | Block ready in Schema file |
@@ -99,6 +100,7 @@ Legend: ☐ not started · ◐ in progress · ☑ done · ⏭ skipped
 | 2026-06-13 | Google Local Services Ads | FOUND a third Google entity — legacy LSA "The Van Noy Real Estate Group" with all wrong NAP + thevannoygroup.com + $500/wk budget, pending verification. Corrective action: pause, fix to canonical, leave off (buyer-lead product, off-strategy) | DVN/Claude | ◐ |
 | 2026-06-13 | Google Local Services Ads | Account picker shows TWO LSA accounts: "Unknown Business Name" (723-297-1201, likely junk → close) + "Van Noy Real Estate" Leawood (947-603-4678, the legacy one → pause/fix/off). Consolidate to ≤1. | DVN/Claude | ◐ |
 | 2026-06-13 | Google Local Services Ads | CONFIRMED "Unknown Business Name" = an incomplete/abandoned NEW signup (blank business-details form, never launched → can't bill). Action: abandon it, do NOT complete. Real work is on the "Van Noy Real Estate" (947-603-4678) account. | DVN/Claude | ◐ |
+| 2026-06-13 | Google Ads account | Parent Google Ads acct "David Van Noy LSA" (ID 1357676347): 0 campaigns, $0/day — NOT actively spending. $88.40 balance owed (auto-pays Jul 1 / at $500, checking ending 638). 1 security alert + 2 payment methods to verify. 1 conversion tag recording (fine). Action: settle balance, check security alert, verify payment methods, leave dormant (don't close). | DVN/Claude | ◐ |
 | | | _next change here…_ | | |
 
 ---
@@ -114,6 +116,19 @@ Legend: ☐ not started · ◐ in progress · ☑ done · ⏭ skipped
 - **No Schema.org markup** on the site. No Wikidata entity. No FAQ/answer content. No llms.txt.
 - **DVN Coaching invisible** and mislabeled.
 - **GBP & Realtor.com** unconfirmed/likely unclaimed.
+
+---
+
+## 5b. Google entity cleanup map (one identity must not become five)
+
+| Entity | State (2026-06-13) | Action |
+|--------|--------------------|--------|
+| Business Profile (GBP) | Correct NAP, 4.8★/65, owned by another Google account | Regain ownership (claim request pending Jun 16) |
+| LSA "Van Noy Real Estate" (947-603-4678) | Legacy profile, wrong NAP (5000 W 135th St, thevannoygroup.com), not live | Pause + fix 4 fields to canonical + leave off |
+| LSA "Unknown Business Name" (723-297-1201) | Blank, incomplete signup, never launched | Abandon — do NOT complete |
+| Google Ads acct "David Van Noy LSA" (1357676347) | Dormant, 0 campaigns, $88.40 owed | Settle balance, check security alert + payment methods, leave dormant |
+
+> All legacy Google data traces to the same old cluster: **The Van Noy (Real Estate) Group · 5000 W 135th St / 66224 · (913) 393-9469 · thevannoygroup.com**. Every place it lives feeds AI a conflicting identity. Same cluster also lives on Yelp.
 
 ---
 
