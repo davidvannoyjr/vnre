@@ -125,6 +125,7 @@ Reject anything theoretical, complex without payoff, or dependent on motivation 
 | `vnre-retention-referral` | "run the retention brief", "equity and referral check" | `04 Tools/retention-referral-skill/SKILL.md` (aiDrVN Stage 08; source + sample in repo `tools/retention-referral-skill/`) |
 | `vnre-clv-sync` | "sync CLV", "client lifetime value", "partner value" | `04 Tools/clv-sync-skill/SKILL.md` (CLV from closings → FUB; QBO partner-value brief; source in repo `tools/clv-sync-skill/`) |
 | `vnre-ceo-dashboard` | "CEO dashboard", "run my numbers", "where am I vs plan" | `04 Tools/ceo-dashboard-skill/SKILL.md` (aiDrVN Stage 07; QuickBooks actuals vs 2026 plan + margin guard; source in repo `tools/ceo-dashboard-skill/`) |
+| `vnre-book-appointment` | "book the LA for {name}", "add this listing appointment" | `04 Tools/stage01-prospecting/SKILL.md` (aiDrVN Stage 01 booking → LA: event → PLP pipeline; source in repo `tools/stage01-prospecting/`) |
 | `vnre-html-branding` | branded HTML deliverables | `02 Reference/SOPs/vnre-html-branding.skill` |
 | `dvn-voice` | all outbound copy | brand voice skill (see `02 Reference/Brand/`) |
 
