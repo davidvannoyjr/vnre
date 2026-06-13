@@ -16,6 +16,7 @@ In Claude desktop / Cowork → Scheduled Tasks → New:
 | Time | Day | Task | Status |
 |---|---|---|---|
 | 5:00 AM | daily | `daily-lead-attention` (lead brief) | existing |
+| 5:15 AM | daily | **`active-hunter`** (call list) | new → [active-hunter.task.md](active-hunter.task.md) |
 | 5:45 AM | 1st Mon/month | **`clv-sync`** (refresh Lifetime Value) | new → [clv-sync.task.md](clv-sync.task.md) |
 | 6:00 AM | Mon | **`retention-referral`** (retention brief) | new → [retention-referral.task.md](retention-referral.task.md) |
 | 6:30 AM | Mon | **`ceo-dashboard`** (run my numbers) | new → [ceo-dashboard.task.md](ceo-dashboard.task.md) |

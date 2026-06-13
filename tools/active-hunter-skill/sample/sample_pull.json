@@ -1,0 +1,12 @@
+[
+  {"firstName": "Joe", "lastName": "Seller", "tags": ["FSBO"], "phone": "913-555-0101",
+   "address": "100 Main St", "city": "Olathe", "signal": "Listed FSBO 3 days ago"},
+  {"firstName": "Ed", "lastName": "Gibson", "tags": ["Expired"], "phone": "913-555-0102",
+   "address": "22 Oak", "city": "Overland Park", "lastAttemptDate": "2026-05-20", "attempts": 2},
+  {"firstName": "Amy", "lastName": "Webb", "tags": ["Aged Lead"], "phone": "816-555-0103",
+   "city": "Lee's Summit", "attempts": 1},
+  {"firstName": "Pat", "lastName": "Past", "stage": "Past Client", "phone": "913-555-0104",
+   "address": "9 Pine", "city": "Leawood"},
+  {"firstName": "Carl", "lastName": "Donotcall", "tags": ["FSBO", "DNC"], "phone": "913-555-0105"},
+  {"firstName": "Rhonda", "lastName": "Recent", "tags": ["Expired"], "lastAttemptDate": "2026-06-12"}
+]
