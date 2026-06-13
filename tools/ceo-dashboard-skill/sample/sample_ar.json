@@ -1,0 +1,12 @@
+{
+  "summary": {
+    "totalReceivables": 16050,
+    "totalOverdue": 16050,
+    "overduePercent": 100,
+    "bucketTotals": {"Current": 0, "1-30": 4550, "31-60": 0, "61-90": 0, "91+": 11500},
+    "topOverdueCustomers": [
+      {"name": "Acme Lending", "overdue": 11500},
+      {"name": "Sample Title Co", "overdue": 2000}
+    ]
+  }
+}

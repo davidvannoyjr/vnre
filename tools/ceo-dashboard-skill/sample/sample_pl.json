@@ -1,0 +1,9 @@
+{
+  "companyName": "Sample Brokerage",
+  "periodStart": "2026-01-01",
+  "periodEnd": "2026-06-30",
+  "totalIncome": 500000,
+  "grossProfit": 400000,
+  "totalExpenses": 250000,
+  "netIncome": 150000
+}
