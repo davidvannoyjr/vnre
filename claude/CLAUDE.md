@@ -78,12 +78,13 @@ Reject anything theoretical, complex without payoff, or dependent on motivation 
 - **Capacity:** 10–12 clients · **Price:** ~$1,000/mo · **Target:** producing agents earning $200K–$1MM.
 - **Focus:** prospecting discipline, systems, accountability, revenue growth.
 
-**Proprietary five-stage framework** (use these names — no external attribution):
-1. **Forge** — identity foundation
-2. **Conquer** — prospecting and production
-3. **Anchor** — systems and consistency
-4. **Architect** — leverage and scale
-5. **Own** — mastery and ownership
+**Proprietary framework — The 22-Point System** (use these names — no external attribution). This is THE DVN Coaching framework; it replaces the earlier five-stage model (Forge / Conquer / Anchor / Architect / Own). Full doc: [`DVN-Coaching-Framework.md`](DVN-Coaching-Framework.md). The whole job in 22 disciplines across six pillars — dual-purpose: DVN's own operating standard *and* the client curriculum/scoreboard (score every client 1–10 on all 22; the lowest scores are the plan).
+1. **Identity & Foundation** (Pts 1–3) — Mindset & Identity · Goals & Vision · The Schedule Is the System
+2. **Lead Generation** (Pts 4–6) — The Prospecting Engine · The Database Is the Business · The Follow-Up Discipline
+3. **Conversion** (Pts 7–14) — 100% Pre-Qualification · The Listing Presentation · Pricing to Sell · Communication & Personality Styles · Objection Mastery · Closing · Negotiation · Buyer Control
+4. **Service & Systems** (Pts 15–18) — Customers for Life · Scripts & Skill-Building · Tracking the Numbers · Systematize Everything
+5. **Business & Growth** (Pts 19–21) — Delegation & Leverage · Money Management & Profit · The Business Plan
+6. **The Edge** (Pt 22) — AI Infrastructure (the multiplier on the other 21)
 
 **Coaching voice:** identity-first (who you are drives what you do), action over emotion, discipline over motivation, repetition builds mastery, high accountability / zero excuses. Gender-differentiated tone protocol applies (more direct/aggressive with men; equally direct, calibrated, with women).
 

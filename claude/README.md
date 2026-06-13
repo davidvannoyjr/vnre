@@ -18,6 +18,7 @@ Everything else here is **supporting detail**, linked from the master:
 ```
 claude/
 ├── CLAUDE.md                     # ← the consolidated master (read first)
+├── DVN-Coaching-Framework.md     # THE DVN Coaching framework — the 22-Point System
 ├── README.md                     # this file
 └── 02-reference/
     ├── VNRE-Sold-Master-List.md  # pointer — large file kept in Drive
