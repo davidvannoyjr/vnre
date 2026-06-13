@@ -127,6 +127,7 @@ Reject anything theoretical, complex without payoff, or dependent on motivation 
 | `vnre-ceo-dashboard` | "CEO dashboard", "run my numbers", "where am I vs plan" | `04 Tools/ceo-dashboard-skill/SKILL.md` (aiDrVN Stage 07; QuickBooks actuals vs 2026 plan + margin guard; source in repo `tools/ceo-dashboard-skill/`) |
 | `vnre-book-appointment` | "book the LA for {name}", "add this listing appointment" | `04 Tools/stage01-prospecting/SKILL.md` (aiDrVN Stage 01 booking → LA: event → PLP pipeline; source in repo `tools/stage01-prospecting/`) |
 | `vnre-active-hunter` | "build my call list", "who do I prospect today" | `04 Tools/active-hunter-skill/SKILL.md` (aiDrVN Stage 01 daily targeting + DVN-voice script library; source in repo `tools/active-hunter-skill/`) |
+| `vnre-content-engine` | "build the social plan for {address}", "launch content for this listing" | `04 Tools/content-engine-skill/SKILL.md` (aiDrVN Stage 02; listing → multichannel launch package; source in repo `tools/content-engine-skill/`) |
 | `vnre-html-branding` | branded HTML deliverables | `02 Reference/SOPs/vnre-html-branding.skill` |
 | `dvn-voice` | all outbound copy | brand voice skill (see `02 Reference/Brand/`) |
 

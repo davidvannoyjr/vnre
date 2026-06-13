@@ -16,6 +16,7 @@ writes automatically), and secrets/financials kept out of git.
 | `active-hunter-skill` | 01 Prospect | Daily ranked call list (FSBO/Expired/Aged/COI/Past) + DVN-voice scripts + nurture; DNC/opt-out filtered | ✅ built | FUB segment labels |
 | `stage01-prospecting` (book-appointment) | 01 Prospect | Booking → `LA:` calendar event → PLP pipeline (the keystone) | ✅ built | confirm-gate live |
 | `stage01-prospecting/SCOPE.md` | 01 Prospect | Voice overlay (Vapi/Twilio) + Upfirst inbound + compliance | 📋 scoped | vendor + compliance sign-off |
+| `content-engine-skill` | 02 Attraction | Listing → multichannel launch package (captions, schedule, FUB blast, graphics spec) | ✅ built | photo selection per listing |
 | `ceo-dashboard-skill` | 07 Finance | Weekly QuickBooks actuals vs 2026 plan + 50% margin guard + A/R flag | ✅ built | nothing (QBO connected) |
 | `retention-referral-skill` | 08 Retention | 8-moment retention/referral brief (equity, anniversary, move, refi, birthday, referral…) | ✅ built | 3 FUB facts |
 | `clv-sync-skill` | (cross) | Client Lifetime Value from closings → FUB; QBO partner-value brief | ✅ built | `Lifetime Value` field |
@@ -28,7 +29,7 @@ Pre-existing skills (in Drive `04 Tools/`, referenced by the master manual): `pl
 
 ```
 01 Prospect    ✅ active-hunter + book-appointment   (voice overlay scoped)
-02 Attraction  ⬜ content engine — not yet built
+02 Attraction  ✅ content-engine  (pairs with premarket-social graphic gen + Publer)
 03 Prep        ✅ plp-build + plp-presentation (pre-existing)
 04 Closing     ✅ offer-to-spreadsheet (pre-existing)
 05 Operations  ✅ send-ers-agreement (pre-existing)   (full milestone automation = later)
@@ -69,7 +70,6 @@ retention; retention + active-hunter refill the funnel; the CEO dashboard watche
 4. **Voice vendor** decision (Vapi/Twilio) for autonomous dialing + Upfirst inbound integration.
 
 ## Not yet built (next candidates)
-- **Stage 02 Attraction** — content-chop engine (1 listing video → multichannel posts; Canva).
 - **Stage 06 Compliance** — file auditor (missing-signature/PDF checks).
 - **Stage 09 Scale** — AI call-coach (Granola transcripts → script feedback).
 
