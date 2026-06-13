@@ -48,15 +48,18 @@ The client handles HTTP Basic auth (API key as username), the `X-System` / `X-Sy
 headers (your "VNRE-Claude" higher-rate tier), 429 back-off, and pagination. Run
 `python3 fub_pull.py --selftest` to verify the join logic offline (no network).
 
-## 3. Confirm against your live FUB (so I can hardcode the right labels)
+## 3. Confirmed with DVN (2026-06-13) ✅
 
-1. **Segment labels** — exact **stage** and/or **tag** strings for past clients and for
-   sphere/COI. Put them in `config.json → segments` (and they also drive the engine's tiering).
-2. **Close date + sale price** — on FUB **Deals**, or on **person custom fields**? `fub_pull.py`
-   checks deals first, then custom fields named "Closing Date"/"Sale Price" (and aliases) —
-   tell me your real field names if they differ.
-3. **Sold-history JSON** — does `vnre_sold_history.json` carry **salePrice**, or only
-   family/address/city/year? Equity needs a price from a deal, a custom field, or this file.
+1. **Segment labels** — **Past Client, COI, DVN COI, Agent COI**. Set in `config.example.json →
+   segments`. Per the operating manual, Past Client + DVN COI + Agent COI are **Tier 1** (the
+   engine's `tier_of` now ranks them top); plain COI is Tier 2.
+2. **Close date + sale price** — on **FUB Deals** ✅. `fub_pull.py` already reads the most-recent
+   won deal for `closeDate` + `salePrice`, so equity/anniversary/tenure work for any client whose
+   purchase is in FUB. (Clients who bought before FUB won't have a deal → no equity touch, but
+   anniversary/move-window/referral still fire from the sold history.)
+3. **Sold-history JSON** — **no sale price** ❌. So CLV (`clv-sync`) can't price historical
+   closings; it uses **closings-count × avgGci.default** (a loyalty/transaction-count value) and
+   should be enriched with FUB deal prices for FUB-era buyers. See `clv-sync config.example.json`.
 
 See [`ENRICHMENTS.md`](ENRICHMENTS.md) for the custom fields worth adding and how the rest of
 your connectors plug in.
