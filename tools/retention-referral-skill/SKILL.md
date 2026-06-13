@@ -52,6 +52,11 @@ The script backfills any missing `closeDate` / `salePrice` / `address` from the 
 JSON by matching last name + address, so a thin pull still produces anniversary, move-window,
 and referral moments; equity moments need a sale price (from FUB or the sold list).
 
+**Full pull contract, field mapping, the works-today thin path, and the `fub_retention_pull`
+helper spec for Joey: see [`PULL_SPEC.md`](PULL_SPEC.md).** Three FUB schema facts must be
+confirmed there before the first live run (segment names, where close date/price live, and
+whether the sold JSON carries prices).
+
 ### 2. Score
 ```bash
 python3 "<skill>/scripts/build_retention_brief.py" \
