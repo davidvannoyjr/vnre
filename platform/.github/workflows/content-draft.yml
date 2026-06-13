@@ -1,0 +1,48 @@
+name: Draft approved topics
+
+# Turns every `approved` topic in content/topics/queue.yaml into a scheduled
+# .mdx draft in DVN's voice, then commits them. This is the "auto" half of
+# approve-topics → auto-publish. Run it on demand, or weekly.
+#
+# Setup: add repo secret ANTHROPIC_API_KEY (Settings → Secrets → Actions).
+
+on:
+  workflow_dispatch: {}
+  schedule:
+    # Mondays 13:00 UTC — draft the week's approved backlog.
+    - cron: "0 13 * * 1"
+
+permissions:
+  contents: write
+
+defaults:
+  run:
+    working-directory: platform
+
+jobs:
+  draft:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - run: npm ci || npm install
+      - name: Draft approved topics
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          CONTENT_MODEL: claude-opus-4-8
+        run: npm run topic:draft
+      - name: Validate drafted content
+        run: npm run content:check
+      - name: Commit drafts
+        run: |
+          git config user.name "content-bot"
+          git config user.email "content-bot@users.noreply.github.com"
+          if [ -n "$(git status --porcelain)" ]; then
+            git add -A
+            git commit -m "content: draft approved topics"
+            git push
+          else
+            echo "No new drafts."
+          fi

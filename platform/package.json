@@ -1,0 +1,43 @@
+{
+  "name": "dvn-ai-lab",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Subscriber platform teaching real estate agents how to build AI skills in their business. Automated, git-as-CMS content pipeline.",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit",
+    "content:check": "node scripts/check-content.mjs",
+    "topic:new": "node scripts/new-topic.mjs",
+    "topic:draft": "node scripts/draft-topic.mjs",
+    "content:publish-due": "node scripts/publish-due.mjs"
+  },
+  "dependencies": {
+    "next": "15.5.19",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
+    "next-auth": "5.0.0-beta.25",
+    "stripe": "17.5.0",
+    "gray-matter": "4.0.3",
+    "next-mdx-remote": "5.0.0",
+    "zod": "3.24.1",
+    "yaml": "2.7.0",
+    "date-fns": "4.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "22.10.7",
+    "@types/react": "19.0.7",
+    "@types/react-dom": "19.0.3",
+    "autoprefixer": "10.4.20",
+    "postcss": "8.5.1",
+    "tailwindcss": "3.4.17",
+    "typescript": "5.7.3",
+    "eslint": "9.18.0",
+    "eslint-config-next": "15.5.19"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

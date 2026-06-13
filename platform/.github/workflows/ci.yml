@@ -1,0 +1,27 @@
+name: CI
+
+on:
+  push:
+    paths: ["platform/**"]
+  pull_request:
+    paths: ["platform/**"]
+
+defaults:
+  run:
+    working-directory: platform
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - run: npm ci || npm install
+      - run: npm run content:check
+      - run: npm run typecheck
+      - run: npm run build
+        env:
+          # Build must succeed without secrets; auth/billing are lazy at runtime.
+          NEXT_PUBLIC_SITE_URL: http://localhost:3000

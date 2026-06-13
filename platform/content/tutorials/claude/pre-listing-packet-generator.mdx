@@ -1,0 +1,56 @@
+---
+title: "Build a Pre-Listing Packet Generator in Claude"
+description: "Upload your CMA, get a client-ready packet on a repeatable template — every time."
+status: published
+publishDate: "2026-06-15"
+track: claude
+level: intermediate
+tier: pro
+estimatedMinutes: 30
+tools: ["Claude", "Claude Projects"]
+tags: ["listings", "systems", "pre-listing"]
+topicId: "2026-06-claude-pre-listing-packet"
+prerequisites: ["why-claude-for-agents"]
+---
+
+A pre-listing packet should be a fill-in-the-blank, not a from-scratch every time. Build the machine once.
+
+## Step 1 — Create a Claude Project
+
+Projects give Claude persistent context. Create one called **"Pre-Listing Packet."** Everything you put in its knowledge applies to every chat inside it.
+
+## Step 2 — Load your template into project knowledge
+
+Upload (or paste) your standard packet structure. Define the sections you use every time:
+
+1. Cover + your value proposition
+2. Market snapshot for the subject neighborhood
+3. CMA summary and pricing recommendation
+4. Plan of action / marketing timeline
+5. Next steps
+
+Add a voice note in the project instructions: *"Write in my voice — direct, confident, no hype. Use only the data I provide. Never fabricate a comp or a number."*
+
+## Step 3 — Run it per listing
+
+Start a new chat in the project and paste:
+
+```
+Build a pre-listing packet for [address, city]. Seller is [situation].
+Here's my CMA data: [paste or attach].
+Use the packet template in this project. Fill section 3 from the CMA only —
+flag anything you can't support with the data instead of guessing.
+Output clean Markdown I can drop into my design.
+```
+
+## Step 4 — Guardrails that keep you safe
+
+- **Never let it invent comps.** The instruction "flag, don't guess" is non-negotiable. You sign your name to this.
+- **You set price.** Let it summarize and lay out options; the recommendation is yours.
+- **Review every number** against your source before it goes to a client.
+
+## The payoff
+
+What took an hour of assembly is now ten minutes of review. Same quality, repeatable, and it scales with zero added staff. That's the whole point of leverage.
+
+Advanced track builds on this: connecting Claude to your live data with MCP so you stop pasting altogether.

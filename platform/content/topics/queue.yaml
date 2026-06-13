@@ -1,0 +1,61 @@
+# ──────────────────────────────────────────────────────────────────────────
+# TOPIC QUEUE — the control surface for the automated content pipeline.
+#
+# How it works (see docs/CONTENT-OPS.md for the full runbook):
+#   1. Anyone (you, or Claude proposing) adds a topic with status: proposed.
+#   2. YOU approve it: change status to `approved`. THIS is your only required job.
+#   3. The drafter (scripts/draft-topic.mjs, run locally or by GitHub Action)
+#      turns each `approved` topic into a real .mdx draft in your voice and
+#      flips it to `drafted`.
+#   4. You glance, set a publishDate, change status to `scheduled` in the .mdx.
+#      (Or, if you trust the lane, the Action can schedule automatically.)
+#   5. publish-due.mjs flips `scheduled` → `published` when the date arrives.
+#
+# status values: proposed | approved | drafted | published | rejected
+# type:          tutorial | blog
+# For tutorials, track + level + tier are required.
+# ──────────────────────────────────────────────────────────────────────────
+
+topics:
+  - id: 2026-06-chatgpt-first-listing-description
+    type: tutorial
+    track: chatgpt
+    level: basic
+    tier: basic
+    title: "Write a Listing Description in 90 Seconds with ChatGPT"
+    angle: "The exact prompt + how to feed it your property details so it sounds like you, not a robot."
+    status: published
+
+  - id: 2026-06-claude-pre-listing-packet
+    type: tutorial
+    track: claude
+    level: intermediate
+    tier: pro
+    title: "Build a Pre-Listing Packet Generator in Claude"
+    angle: "Upload your CMA and have Claude assemble a client-ready packet on a repeatable template."
+    status: published
+
+  - id: 2026-06-fub-ai-followup
+    type: tutorial
+    track: automation
+    level: intermediate
+    tier: pro
+    title: "Automate Lead Follow-Up with Follow Up Boss + AI"
+    angle: "Wire an AI step into your FUB action plans so no lead goes cold while you prospect."
+    status: proposed
+
+  - id: 2026-06-ai-voice-agent-inbound
+    type: tutorial
+    track: re-tools
+    level: advanced
+    tier: elite
+    title: "Stand Up an Inbound AI Voice Agent for Your Listings Line"
+    angle: "Capture and route every inbound call 24/7 without hiring. Setup, scripts, and guardrails."
+    status: proposed
+
+  - id: 2026-06-what-changed-in-ai-this-month
+    type: blog
+    tier: free
+    title: "What Changed in AI This Month (For Agents Who Don't Have Time to Watch)"
+    angle: "Monthly dated update. Only what moves the needle for a listing business — skip the hype."
+    status: proposed
