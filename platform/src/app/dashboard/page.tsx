@@ -3,6 +3,8 @@ import { auth } from "@/lib/auth";
 import { getAllTutorials, getAllBlogPosts } from "@/lib/content";
 import { PLANS, LEVELS, type Tier, canAccess } from "@/lib/tiers";
 import { ManageBillingButton } from "@/components/manage-billing-button";
+import { dbEnabled } from "@/lib/db";
+import { completedCount } from "@/lib/progress";
 
 export const metadata = { title: "Dashboard" };
 
@@ -26,6 +28,7 @@ export default async function DashboardPage() {
   const tutorials = getAllTutorials();
   const unlocked = tutorials.filter((t) => canAccess(tier, t.frontmatter.tier));
   const latest = getAllBlogPosts().slice(0, 5);
+  const completed = dbEnabled && session.user.id ? await completedCount(session.user.id) : 0;
 
   return (
     <div className="mx-auto max-w-5xl px-4 py-16">
@@ -49,7 +52,7 @@ export default async function DashboardPage() {
       </div>
 
       <section className="mt-10 grid gap-6 sm:grid-cols-3">
-        <Stat label="Lessons unlocked" value={`${unlocked.length} / ${tutorials.length}`} />
+        <Stat label="Lessons completed" value={`${completed} / ${unlocked.length}`} />
         <Stat label="Levels you can access" value={plan.unlocks.map((l) => LEVELS[l].name).join(", ") || "Free intros"} />
         <Stat label="New this week" value={`${latest.length} posts`} />
       </section>

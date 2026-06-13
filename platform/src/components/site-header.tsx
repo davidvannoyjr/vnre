@@ -19,10 +19,19 @@ export function SiteHeader() {
         </Link>
         <nav className="flex items-center gap-6 text-sm font-medium">
           {NAV.map((item) => (
-            <Link key={item.href} href={item.href} className="hover:text-accent">
+            <Link key={item.href} href={item.href} className="hidden hover:text-accent sm:inline">
               {item.label}
             </Link>
           ))}
+          <form action="/search" className="hidden md:block">
+            <input
+              type="search"
+              name="q"
+              placeholder="Search…"
+              aria-label="Search"
+              className="w-36 rounded-md border border-band px-3 py-1.5 text-sm"
+            />
+          </form>
           <Link href="/login" className="hover:text-accent">
             Log in
           </Link>

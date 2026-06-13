@@ -36,6 +36,7 @@ model User {
   coachingProfile ClientProfile?  @relation("ClientUser")
   coachedClients  ClientProfile[] @relation("CoachUser")
   authoredNotes   CoachingNote[]
+  lessonProgress  LessonProgress[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -74,6 +75,17 @@ model VerificationToken {
   expires    DateTime
 
   @@unique([identifier, token])
+}
+
+// A member marking a tutorial complete (progress tracking).
+model LessonProgress {
+  id          String   @id @default(cuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  slug        String // tutorial slug
+  completedAt DateTime @default(now())
+
+  @@unique([userId, slug])
 }
 
 // ── 1:1 Coaching workspace ────────────────────────────────────────────────────

@@ -7,7 +7,7 @@ import {
   type BlogFrontmatter,
   type TutorialFrontmatter
 } from "@/content-schema";
-import type { Level, Track } from "@/lib/tiers";
+import { LEVELS, type Level, type Track } from "@/lib/tiers";
 
 /**
  * Git-as-CMS loader. Content lives as .mdx files under /content.
@@ -105,4 +105,23 @@ export function getTutorial(slug: string): Tutorial | null {
 
 export function getTutorialsByTrack(track: Track): Tutorial[] {
   return getAllTutorials().filter((t) => t.track === track);
+}
+
+/** Ordered guided path within a track: basic → intermediate → advanced, then title. */
+export function getTrackPath(track: Track): Tutorial[] {
+  return getTutorialsByTrack(track).sort((a, b) => {
+    const byLevel = LEVELS[a.level].order - LEVELS[b.level].order;
+    return byLevel !== 0 ? byLevel : a.frontmatter.title.localeCompare(b.frontmatter.title);
+  });
+}
+
+/** Previous/next lesson in a track's guided path, for in-lesson navigation. */
+export function getTutorialNeighbors(track: Track, slug: string): {
+  prev: Tutorial | null;
+  next: Tutorial | null;
+} {
+  const path = getTrackPath(track);
+  const i = path.findIndex((t) => t.slug === slug);
+  if (i === -1) return { prev: null, next: null };
+  return { prev: path[i - 1] ?? null, next: path[i + 1] ?? null };
 }

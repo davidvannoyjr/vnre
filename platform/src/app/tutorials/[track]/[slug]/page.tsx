@@ -1,10 +1,13 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getAllTutorials, getTutorial } from "@/lib/content";
+import { getAllTutorials, getTutorial, getTutorialNeighbors } from "@/lib/content";
 import { Mdx } from "@/components/mdx";
 import { AccessGate } from "@/components/access-gate";
 import { auth } from "@/lib/auth";
-import { TRACKS, LEVELS, type Tier } from "@/lib/tiers";
+import { dbEnabled } from "@/lib/db";
+import { isCompleted } from "@/lib/progress";
+import { toggleLessonComplete } from "../../actions";
+import { TRACKS, LEVELS, canAccess, type Tier, type Track } from "@/lib/tiers";
 
 export function generateStaticParams() {
   return getAllTutorials().map((t) => ({ track: t.track, slug: t.slug }));
@@ -28,6 +31,11 @@ export default async function TutorialPage({
   const session = await auth();
   const viewerTier: Tier = session?.user?.tier ?? "free";
   const fm = tutorial.frontmatter;
+
+  const hasAccess = canAccess(viewerTier, fm.tier);
+  const canTrackProgress = !!session?.user?.id && dbEnabled && hasAccess;
+  const done = canTrackProgress ? await isCompleted(session!.user.id!, tutorial.slug) : false;
+  const { prev, next } = getTutorialNeighbors(track as Track, tutorial.slug);
 
   return (
     <article className="mx-auto max-w-3xl px-4 py-16">
@@ -62,6 +70,35 @@ export default async function TutorialPage({
       <AccessGate viewerTier={viewerTier} requiredTier={fm.tier}>
         <Mdx source={tutorial.body} />
       </AccessGate>
+
+      {canTrackProgress && (
+        <form action={toggleLessonComplete} className="mt-10">
+          <input type="hidden" name="slug" value={tutorial.slug} />
+          <input type="hidden" name="track" value={track} />
+          <button
+            className={`rounded-md px-5 py-2.5 text-sm font-medium ${
+              done ? "border border-steel text-steel" : "bg-accent text-white"
+            } hover:opacity-90`}
+          >
+            {done ? "✓ Completed — mark not done" : "Mark this lesson complete"}
+          </button>
+        </form>
+      )}
+
+      {(prev || next) && (
+        <nav className="mt-12 flex justify-between gap-4 border-t border-band pt-6 text-sm">
+          {prev ? (
+            <Link href={`/tutorials/${prev.track}/${prev.slug}`} className="text-accent hover:underline">
+              ← {prev.frontmatter.title}
+            </Link>
+          ) : <span />}
+          {next ? (
+            <Link href={`/tutorials/${next.track}/${next.slug}`} className="text-right text-accent hover:underline">
+              {next.frontmatter.title} →
+            </Link>
+          ) : <span />}
+        </nav>
+      )}
     </article>
   );
 }
