@@ -18,6 +18,7 @@ Everything else here is **supporting detail**, linked from the master:
 ```
 claude/
 ├── CLAUDE.md                     # ← the consolidated master (read first)
+├── DVN-Coaching-Framework.md     # THE DVN Coaching framework — the 22-Point System
 ├── README.md                     # this file
 └── 02-reference/
     ├── VNRE-Sold-Master-List.md  # pointer — large file kept in Drive
@@ -41,5 +42,10 @@ claude/
 
 ## Source of truth & sync
 
-- **Canonical:** Google Drive `Claude md/` (VNRE shared drive). If the two disagree, Drive wins.
+- **Canonical:** Google Drive `Claude md/` (VNRE shared drive). If the two disagree, Drive wins — **except** for the one GitHub-canonical file below.
 - **Refresh this mirror** after Drive edits: ask "re-sync the Claude brain to GitHub."
+
+### GitHub-canonical exception — the DVN Coaching Framework
+
+- **[`DVN-Coaching-Framework.md`](DVN-Coaching-Framework.md) is GitHub-canonical, single source of truth.** It is static reference content — no skills, no Follow Up Boss, no live artifacts, no MCP dependency — so it lives and is edited in this repo. **Drive holds no copy.** Nothing to reconcile, no sync schedule.
+- `CLAUDE.md` §5 carries only a **derived pointer/summary** of the framework, not a second copy of the substance. **If §5 and the framework doc ever disagree, the doc wins.** A re-sync from Drive must preserve the §5 pointer; the framework block in Drive's `CLAUDE.md` is kept as a thin pointer to this doc for exactly that reason.
