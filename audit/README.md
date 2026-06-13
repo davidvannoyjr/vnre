@@ -20,6 +20,8 @@ footprint — built to make one consistent, machine-readable identity that AI en
 - **[Wikidata Entity Draft.md](Wikidata%20Entity%20Draft.md)** — ready-to-submit knowledge-graph entity.
 - **[DVN Coaching Page.md](DVN%20Coaching%20Page.md)** — full coaching page copy + schema.
 - **[Radio Show Page.md](Radio%20Show%20Page.md)** — radio show page copy + PodcastEpisode schema.
+- **[Review Request Templates.md](Review%20Request%20Templates.md)** — SMS/email/in-person scripts to grow Google + Zillow reviews (feeds your star rating into AI).
+- **[Market Update to FAQ - Repurposing SOP.md](Market%20Update%20to%20FAQ%20-%20Repurposing%20SOP.md)** — turn each monthly KC Market Update into AI-citable Q&A + Dataset schema.
 
 ## Tracking
 - **[Profile Tracker.md](Profile%20Tracker.md)** — per-platform checklist (mirrors the Audit Log ledger).

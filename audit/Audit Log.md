@@ -93,6 +93,7 @@ Legend: ☐ not started · ◐ in progress · ☑ done · ⏭ skipped
 | 2026-06-13 | — | Assets drafted: canonical block, JSON-LD schema, llms.txt, profile tracker | Claude | ✅ |
 | 2026-06-13 | — | Drafted FAQ content, Wikidata entity, and outreach/fix scripts (Zillow, Yelp, Agent Pronto, Homes.com, dev brief) | Claude | ✅ |
 | 2026-06-13 | — | Built Profile Copy Pack (per-platform paste-ready copy), DVN Coaching page, Radio Show page, Execution Checklist, folder README | Claude | ✅ |
+| 2026-06-13 | — | Added Review Request Templates and the Market Update → FAQ repurposing SOP | Claude | ✅ |
 | | | _next change here…_ | | |
 
 ---
