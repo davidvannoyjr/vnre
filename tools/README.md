@@ -19,7 +19,7 @@ writes automatically), and secrets/financials kept out of git.
 | `content-engine-skill` | 02 Attraction | Listing → multichannel launch package (captions, schedule, FUB blast, graphics spec) | ✅ built | photo selection per listing |
 | `compliance-auditor-skill` | 06 Compliance | Transaction-file completeness vs per-stage checklist (missing / verify-sig / deadlines) | ✅ built | confirm form set w/ broker |
 | `ceo-dashboard-skill` | 07 Finance | Weekly QuickBooks actuals vs 2026 plan + 50% margin guard + A/R flag | ✅ built | nothing (QBO connected) |
-| `retention-referral-skill` | 08 Retention | 8-moment retention/referral brief (equity, anniversary, move, refi, birthday, referral…) | ✅ built | 3 FUB facts |
+| `database-coi-skill` | 08 Database/COI | 2-lane brief: Customer Care + Opportunity & Database Mgmt (8 moments) | ✅ built | 3 FUB facts |
 | `clv-sync-skill` | (cross) | Client Lifetime Value from closings → FUB; QBO partner-value brief | ✅ built | `Lifetime Value` field |
 | `call-coach-skill` | 09 Scale | Granola transcript → script-adherence self-coaching (phases, objections, talk ratio, drills) | ✅ built | Granola transcripts |
 | `scheduled-tasks` | — | Standing Cowork task definitions for the above | ✅ defined | create in Cowork |
@@ -37,7 +37,7 @@ Pre-existing skills (in Drive `04 Tools/`, referenced by the master manual): `pl
 05 Operations  ✅ send-ers-agreement (pre-existing)   (full milestone automation = later)
 06 Compliance  ✅ compliance-auditor  (checklist-driven; broker signs off)
 07 Finance     ✅ ceo-dashboard
-08 Retention   ✅ retention-referral  (+ clv-sync profit-weighting)
+08 Database/COI   ✅ database-coi  (+ clv-sync profit-weighting)
 09 Scale       ✅ call-coach  (self mode; client/agent modes ready)
 ```
 
@@ -52,21 +52,21 @@ active-hunter ─(connect)─▶ book-appointment ─▶ LA: event ─▶ plp-bu
       ▼                                                                                           ▼
    nurture seq                                                                              closed deal
                                                                                                   │
-clv-sync ──(Lifetime Value)──▶ retention-referral ◀──(past clients + sold history)───────────────┘
+clv-sync ──(Lifetime Value)──▶ database-coi ◀──(past clients + sold history)───────────────┘
 ceo-dashboard ◀── QuickBooks ── watches revenue pace, 50% margin, A/R
 ```
 
 A booked appointment lights the whole downstream pipeline; closings feed CLV; CLV profit-weights
-retention; retention + active-hunter refill the funnel; the CEO dashboard watches the money.
+database & COI + active-hunter refill the funnel; the CEO dashboard watches the money.
 
 ## Per-device setup (live)
-- `followupboss` MCP connected (active-hunter, retention, clv-sync, lead brief).
+- `followupboss` MCP connected (active-hunter, database & COI, clv-sync, lead brief).
 - QuickBooks MCP connected (ceo-dashboard, clv-sync partner view).
 - Skills saved in Claude desktop; each tool's `config.json` filled from its `config.example.json`.
 - Schedules created from `scheduled-tasks/`.
 
 ## Open items before full live operation
-1. **3 FUB facts** (retention + CLV): segment labels, where close-date/price live, whether the
+1. **3 FUB facts** (database & COI + CLV): segment labels, where close-date/price live, whether the
    sold JSON carries price/commission.
 2. **`Lifetime Value` custom field** — run `clv-sync-skill/scripts/fub_field_setup.py --create`
    to create/verify it (and the other suite fields); falls back to admin-UI steps if the API
@@ -79,5 +79,5 @@ retention; retention + active-hunter refill the funnel; the CEO dashboard watche
 - **Call-coach client/agent modes** — turn Stage 09 into a DVN Coaching / new-agent product.
 - **Deeper compliance** — PDF AcroForm signature-field parsing.
 
-Recently added: **retention delivery layer** (`build_delivery.py` → Gmail drafts + Canva equity
+Recently added: **database & COI delivery layer** (`build_delivery.py` → Gmail drafts + Canva equity
 one-pagers + manual queue) and **FUB field setup** (`fub_field_setup.py`) — both built.

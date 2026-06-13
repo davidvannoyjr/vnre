@@ -70,7 +70,7 @@ voice overlay does **not** ship until they're signed off:
 - **Two-party recording consent** — KS is one-party, **MO is all-party**; if calls are
   recorded, lead with the disclosure. You operate in both.
 - **Calling-hours windows** + an **opt-out tag** in FUB honored everywhere (ties to the
-  retention engine's opt-out guard).
+  Database & COI engine's opt-out guard).
 - **AI disclosure** — emerging rules may require disclosing an AI caller; script for it.
 
 > This is automation of prospecting you already do (Mojo, 150 calls/day) — the gate is about

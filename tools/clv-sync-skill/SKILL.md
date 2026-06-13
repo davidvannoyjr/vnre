@@ -1,6 +1,6 @@
 ---
 name: vnre-clv-sync
-description: Compute each VNRE past client's Lifetime Value from the closing history (Deal Sheets / sold history + FUB won deals), write it back to the Follow Up Boss "Lifetime Value" custom field, and produce a QuickBooks partner-value brief. Use whenever DVN says "sync CLV", "update lifetime value", "client lifetime value", "partner value", "which partners drive my MSA income", or before a retention run that should be profit-weighted.
+description: Compute each VNRE past client's Lifetime Value from the closing history (Deal Sheets / sold history + FUB won deals), write it back to the Follow Up Boss "Lifetime Value" custom field, and produce a QuickBooks partner-value brief. Use whenever DVN says "sync CLV", "update lifetime value", "client lifetime value", "partner value", "which partners drive my MSA income", or before a Database & COI run that should be profit-weighted.
 ---
 
 # VNRE CLV Sync + Partner Value
@@ -8,7 +8,7 @@ description: Compute each VNRE past client's Lifetime Value from the closing his
 Two outputs, both about putting money behind your attention:
 
 1. **Client Lifetime Value → FUB.** Sum each past client's commission across every closing and
-   write it to their FUB `Lifetime Value` custom field. The retention engine then CLV-weights
+   write it to their FUB `Lifetime Value` custom field. The Database & COI engine then CLV-weights
    its scoring, so your most profitable relationships rise to the top of every brief — directly
    serving the 50% margin target.
 2. **Partner Value brief (QuickBooks).** Your QBO "customers" are B2B partners (lenders, title,
@@ -55,7 +55,7 @@ it prints the exact click-path instead. Set `config.json → customFieldName = "
 3. **Build the plan:**
    ```bash
    python3 scripts/build_clv.py --sold vnre_sold_history.json \
-     --people retention-pull-YYYY-MM-DD.json --config config.json --out clv-plan.json
+     --people coi-pull-YYYY-MM-DD.json --config config.json --out clv-plan.json
    ```
    Review `clv-plan.json`: `writeback` (matched), `unmatchedClients` (past clients not in FUB —
    candidates to add). Spot-check the top names and match confidence.
@@ -80,7 +80,7 @@ python3 scripts/partner_value.py --qbo qbo.json --out "YYYY Partner Value Brief.
 - `fub_push.py` is **dry-run by default**; nothing is written without `--commit`.
 - The `Lifetime Value` custom field must exist in FUB (Admin → Custom Fields). Confirm its
   exact name and set it in `config.json → customFieldName`.
-- Run **quarterly**, and always **before a retention run** so scoring is current. Re-running is
+- Run **quarterly**, and always **before a Database & COI run** so scoring is current. Re-running is
   idempotent (it overwrites the same field with the latest sum).
 
 ## Verify offline

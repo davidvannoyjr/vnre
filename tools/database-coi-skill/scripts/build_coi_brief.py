@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """
-build_retention_brief.py — VNRE Stage 08 (Retention & Referral) engine.
+build_coi_brief.py — VNRE Stage 08 (Database & COI Management + Customer Care) engine.
 
-Deterministic scoring layer for the `vnre-retention-referral` skill. Consumes the
+Deterministic scoring layer for the `vnre-database-coi` skill. Consumes the
 JSON produced by fub_pull.py (Follow Up Boss past clients + sphere, joined with
 deals, communications, and property-view events), merges with the VNRE sold-history
 JSON, detects outreach "moments," scores + dedupes against a state file, and writes
@@ -50,11 +50,19 @@ MOMENT_WEIGHT = {
     "active_move": 7, "equity": 5, "anniversary": 4, "move_window": 4,
     "refi": 3, "birthday": 3, "referral": 3, "reengage": 2,
 }
-SECTIONS = [
-    ("active_move", "🔥 Active Move Signals"), ("equity", "💰 Equity Updates"),
-    ("anniversary", "🏡 Home Anniversaries"), ("move_window", "📦 Move-Window Check-ins"),
-    ("refi", "💵 Rate / Refi Touches"), ("birthday", "🎂 Birthdays"),
-    ("referral", "🔁 Referral Asks"), ("reengage", "👋 Re-engage Sphere"),
+LANES = [
+    ("🤝 Customer Care", [
+        ("anniversary", "🏡 Home Anniversaries"),
+        ("birthday", "🎂 Birthdays"),
+    ]),
+    ("📇 Opportunity & Database Management", [
+        ("active_move", "🔥 Active Move Signals"),
+        ("equity", "💰 Equity Updates"),
+        ("move_window", "📦 Move-Window Check-ins"),
+        ("refi", "💵 Rate / Refi Touches"),
+        ("referral", "🔁 Referral Asks"),
+        ("reengage", "👋 Re-engage Cold Contacts"),
+    ]),
 ]
 
 # ----------------------------------------------------------------- helpers
@@ -252,29 +260,35 @@ def main():
     rows.sort(key=lambda r: r["score"], reverse=True)
     capped, tail = rows[:args.cap], max(0, len(rows) - args.cap)
 
-    lines = [f"# VNRE Retention & Referral Brief — {today.isoformat()}", "",
+    lines = [f"# VNRE Database & COI Brief — Care & Opportunity — {today.isoformat()}", "",
              f"Surfaced **{len(capped)}** contacts" + (f" (+{tail} in tail)" if tail else "") +
              f" · suppressed {suppressed} (contacted < {SUPPRESS_CONTACT_DAYS}d).",
              f"_Appreciation {int(APPRECIATION_RATE*100)}%/yr · equity ≥ {usd(EQUITY_GAIN_THRESHOLD)} · "
              f"move {MOVE_WINDOW_YEARS[0]}–{MOVE_WINDOW_YEARS[1]}y · property-view {PROPERTY_VIEW_DAYS}d · "
              f"refi ≥ {REFI_MARKET_RATE + REFI_DELTA}% · referral {REFERRAL_DUE_DAYS}d._", "",
-             "> Drafts are in DVN voice. Approve/edit before sending; nothing goes out automatically.", ""]
-    for key, title in SECTIONS:
-        bucket = [r for r in capped if any(m["type"] == key for m in r["moments"])]
-        if not bucket:
+             "> **Customer Care** = relationship touches, no ask. **Opportunity & Database "
+             "Management** = surfaced opportunities + hygiene. Drafts are in DVN voice; nothing "
+             "goes out automatically.", ""]
+    for lane, sections in LANES:
+        if not any(any(mm["type"] == k for r in capped for mm in r["moments"]) for k, _ in sections):
             continue
-        lines.append(f"## {title} ({len(bucket)})")
-        for r in bucket:
-            m = next(mm for mm in r["moments"] if mm["type"] == key)
-            where = (r["address"] + (", " + r["city"] if r["city"] else "")) or "—"
-            extra = []
-            if r["channel"]:
-                extra.append(f"prefers {r['channel']}")
-            if r["clv"]:
-                extra.append(f"CLV {usd(r['clv'])}")
-            tag = (" · " + " · ".join(extra)) if extra else ""
-            lines += [f"- **{r['name']}** — {where} · {m['detail']}{tag}", f"  > {m['draft']}"]
-        lines.append("")
+        lines.append(f"## {lane}")
+        for key, title in sections:
+            bucket = [r for r in capped if any(m["type"] == key for m in r["moments"])]
+            if not bucket:
+                continue
+            lines.append(f"### {title} ({len(bucket)})")
+            for r in bucket:
+                m = next(mm for mm in r["moments"] if mm["type"] == key)
+                where = (r["address"] + (", " + r["city"] if r["city"] else "")) or "—"
+                extra = []
+                if r["channel"]:
+                    extra.append(f"prefers {r['channel']}")
+                if r["clv"]:
+                    extra.append(f"CLV {usd(r['clv'])}")
+                tag = (" · " + " · ".join(extra)) if extra else ""
+                lines += [f"- **{r['name']}** — {where} · {m['detail']}{tag}", f"  > {m['draft']}"]
+            lines.append("")
     open(args.out_md, "w").write("\n".join(lines).rstrip() + "\n")
 
     if args.out_json:

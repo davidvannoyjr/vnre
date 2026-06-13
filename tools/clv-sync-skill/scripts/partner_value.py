@@ -72,7 +72,7 @@ def main():
             f"- **Lock the top 5** ({top5:.0f}% of partner income) with formal MSAs and a quarterly check-in — "
             "concentration here is your biggest single risk.",
             "- **Confirm reciprocity:** for each lender/title/insurance partner, verify you're getting "
-            "referrals back proportional to what you send. The refi touch (retention engine) routes "
+            "referrals back proportional to what you send. The refi touch (Database & COI engine) routes "
             "past clients to your lender partner — that flow should show up here over time.",
             "- **Coverage gaps:** if a partner type is missing or thin (e.g., no Title/Escrow line), "
             "that's an open MSA opportunity toward the $25k goal.",

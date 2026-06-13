@@ -25,4 +25,4 @@ days?"
 
 ## Close
 Move signal → **run `vnre-book-appointment`**. Otherwise → confirm preferred channel, log to FUB,
-and let the **retention engine** carry the ongoing touches.
+and let the **Database & COI engine** carry the ongoing touches.

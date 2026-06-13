@@ -1,9 +1,9 @@
 # vnre-clv-sync — Client Lifetime Value + Partner Value
 
-Makes every retention and CEO decision **profit-weighted**.
+Makes every Database & COI and CEO decision **profit-weighted**.
 
 - **Client CLV → FUB:** sums each past client's commission across all closings and writes it
-  to their FUB `Lifetime Value` field. The retention engine CLV-weights its scoring, so the
+  to their FUB `Lifetime Value` field. The Database & COI engine CLV-weights its scoring, so the
   most profitable relationships surface first. Serves the **50% margin** target.
 - **Partner Value brief:** turns QuickBooks sales-by-customer (your lenders/title/insurance/
   co-op partners) into a ranked nurture brief with concentration risk + MSA actions. Serves
@@ -39,7 +39,7 @@ python3 scripts/partner_value.py --qbo sample/sample_qbo.json --out /tmp/partner
    custom-field name.
 2. `build_clv.py` with your real `vnre_sold_history.json` + a `fub_pull.py` people dump.
 3. `fub_push.py --plan … ` (dry-run) → review → add `--commit` to write.
-4. Run **quarterly** and **before each retention run**. Idempotent.
+4. Run **quarterly** and **before each Database & COI run**. Idempotent.
 
 > Commission defaults (2.5% / $12k listing / $5.5k buyer) come from the 2026 plan — set your
 > real numbers in `config.json`. If `vnre_sold_history.json` carries actual commission per

@@ -1,23 +1,23 @@
-# Scheduled Task — retention-referral
+# Scheduled Task — database-coi
 
-- **Name:** `retention-referral`
+- **Name:** `database-coi`
 - **Schedule:** Weekly — **Monday 6:00 AM**
-- **Skill:** `vnre-retention-referral`
-- **Output:** `Follow Up Boss Pipeline/YYYY-MM-DD Retention & Referral Brief.md` + Gmail drafts
-- **Prereqs:** `followupboss` MCP connected; `04 Tools/plp-presentation-builder/vnre_sold_history.json` present; `04 Tools/retention-referral-skill/config.json` set.
+- **Skill:** `vnre-database-coi`
+- **Output:** `Follow Up Boss Pipeline/YYYY-MM-DD Database & COI Brief.md` + Gmail drafts
+- **Prereqs:** `followupboss` MCP connected; `04 Tools/plp-presentation-builder/vnre_sold_history.json` present; `04 Tools/database-coi-skill/config.json` set.
 
 ## Trigger prompt (paste verbatim)
 
 ```
-Run the weekly retention brief.
+Run the weekly Database & COI brief.
 
 1. Pull Past Client + Sphere/COI contacts from Follow Up Boss using fub_pull.py
    (or the fub_* tools): id, name, address/city, tags, stage, close date + sale
    price from the most recent won deal, last-contact date, recent property-view
    events, and the mortgage-rate / birthday / preferred-channel / lifetime-value
-   custom fields. Save to Follow Up Boss Pipeline/_data/retention-pull-<today>.json.
-2. Run build_retention_brief.py with that pull, --sold vnre_sold_history.json, and
-   the retention-state.json, today = <today>. Output the brief to the Follow Up
+   custom fields. Save to Follow Up Boss Pipeline/_data/coi-pull-<today>.json.
+2. Run build_coi_brief.py with that pull, --sold vnre_sold_history.json, and
+   the coi-state.json, today = <today>. Output the brief to the Follow Up
    Boss Pipeline folder.
 3. Review the drafts: kill any equity claim you can't defend, personalize the top
    few from prior conversation notes, keep DVN's voice. Respect the 30-day

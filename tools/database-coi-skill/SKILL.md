@@ -1,17 +1,18 @@
 ---
-name: vnre-retention-referral
-description: Build DVN's retention & referral brief — the ranked list of past clients and sphere (COI) contacts who have an outreach "moment" right now (equity milestone, home anniversary, move-window, referral ask, or cold-sphere re-engage), each with a drafted message in DVN's voice. Use whenever DVN says "run the retention brief", "retention", "equity and referral check", "who should I reach out to from my database / past clients", "referral opportunities", or when the retention-referral scheduled task fires. Also use to re-run, tune, or backfill a retention brief.
+name: vnre-database-coi
+description: Build DVN's weekly Database & COI brief — two lanes: **Customer Care** (home anniversaries, birthdays, life-event/service touches — relationship, no ask) and **Opportunity & Database Management** (equity updates, move-window, refi, referral asks, re-engaging cold contacts). Ranks past clients + sphere by who's worth a touch now, each with a DVN-voice draft. Use whenever DVN says "run the Database & COI brief", "COI brief", "customer care", "who needs a touch", "database & COI", "equity and referral check", or when the database-coi scheduled task fires. Re-run / tune / backfill as needed.
 ---
 
-# VNRE Retention & Referral Brief (aiDrVN Stage 08)
+# VNRE Database & COI Brief (aiDrVN Stage 08)
 
-Surfaces the past clients and sphere contacts most worth a touch this week — name, the
-specific trigger (years owned, estimated equity gain, anniversary year, days since
-contact), and a one-line draft in DVN's voice. The point: convert the 3,000-contact
-database and 1,450-deal sold history into the **50% repeat-and-referral business** that
-the VNRE business plan names as a key thrust — without DVN hand-combing the CRM.
+Two jobs in one weekly brief: **take great care of past clients** (the relationship — birthdays,
+anniversaries, life events) and **keep the 3,000-contact database + sphere worked and surfaced
+for opportunity** (equity, move-window, refi, referrals, hygiene). Good care is what *produces*
+the **50% repeat-and-referral business** the plan targets — it's the output, not the pitch. Each
+contact comes with the specific trigger and a one-line draft in DVN's voice, so DVN never combs
+the CRM by hand.
 
-This is the Stage 08 (Retention) module of the aiDrVN operating model. Same architecture
+This is the Stage 08 (Database & COI) module of the aiDrVN operating model. Same architecture
 as `daily-lead-attention`: MCP pull → deterministic Python → Claude review → deliver.
 
 ## Architecture (why it works this way)
@@ -22,7 +23,7 @@ on the Mac with full network access. Flow:
 
 1. `fub_*` pull → dump past-client + COI contacts (with last-contact date and, where
    available, deal close date + sale price) to a JSON file.
-2. `scripts/build_retention_brief.py` → merges with the sold-history JSON, detects
+2. `scripts/build_coi_brief.py` → merges with the sold-history JSON, detects
    moments, scores, dedupes against state, writes the brief.
 3. Claude → sanity-check the drafts, tune any that misfire, deliver.
 
@@ -34,20 +35,20 @@ FUB API from the sandbox — it is blocked.
 
 - **Brief home (deliverables + state):** the `Follow Up Boss Pipeline` project folder
   (resolve the session mount at runtime, same as the lead brief).
-- Brief: `<home>/YYYY-MM-DD Retention & Referral Brief.md`
-- Working data: `<home>/_data/` → `retention-pull-YYYY-MM-DD.json`, `retention-brief.json`,
-  `retention-state.json`
-- This skill's script: `04 Tools/retention-referral-skill/scripts/build_retention_brief.py`
+- Brief: `<home>/YYYY-MM-DD Database & COI Brief.md`
+- Working data: `<home>/_data/` → `coi-pull-YYYY-MM-DD.json`, `coi-brief.json`,
+  `coi-state.json`
+- This skill's script: `04 Tools/database-coi-skill/scripts/build_coi_brief.py`
 - Sold history (for equity/tenure): `04 Tools/plp-presentation-builder/vnre_sold_history.json`
 
 ## Steps
 
 ### 1. Pull
-Two ways to produce `_data/retention-pull-YYYY-MM-DD.json`, both self-owned (no third party):
+Two ways to produce `_data/coi-pull-YYYY-MM-DD.json`, both self-owned (no third party):
 
 - **Preferred — `scripts/fub_pull.py`.** Self-contained FUB v1 REST client. On any machine
   with network + the API key: `FUB_API_KEY=… python3 fub_pull.py --config config.json --out
-  _data/retention-pull-YYYY-MM-DD.json`. It pulls the Past Client + Sphere segments, joins the
+  _data/coi-pull-YYYY-MM-DD.json`. It pulls the Past Client + Sphere segments, joins the
   most-recent **won deal** (close date, sale price, property address), bulk-pulls
   **communications** for a true last-contact date, and reads **property-view events** + person
   custom fields (mortgage rate, birthday, CLV, preferred channel). See [`PULL_SPEC.md`](PULL_SPEC.md)
@@ -65,12 +66,12 @@ API from the Cowork sandbox — it is blocked (use `fub_pull.py` on a networked 
 
 ### 2. Score
 ```bash
-python3 "<skill>/scripts/build_retention_brief.py" \
-  --pull  "<home>/_data/retention-pull-YYYY-MM-DD.json" \
+python3 "<skill>/scripts/build_coi_brief.py" \
+  --pull  "<home>/_data/coi-pull-YYYY-MM-DD.json" \
   --sold  "04 Tools/plp-presentation-builder/vnre_sold_history.json" \
-  --state "<home>/_data/retention-state.json" \
-  --out-md   "<home>/YYYY-MM-DD Retention & Referral Brief.md" \
-  --out-json "<home>/_data/retention-brief.json" \
+  --state "<home>/_data/coi-state.json" \
+  --out-md   "<home>/YYYY-MM-DD Database & COI Brief.md" \
+  --out-json "<home>/_data/coi-brief.json" \
   --today YYYY-MM-DD
 ```
 (Translate paths to the bash mount prefix.) The script owns: equity estimation
@@ -94,8 +95,8 @@ Edit the brief `.md` directly with corrections.
 
 ### 4. Deliver (stage it — don't just list it)
 1. Present the brief `.md`.
-2. **Stage the actions:** `python3 scripts/build_delivery.py --in _data/retention-brief.json
-   --out-md "<home>/<today> Retention Delivery Plan.md" --out-json _data/delivery.json`.
+2. **Stage the actions:** `python3 scripts/build_delivery.py --in _data/coi-brief.json
+   --out-md "<home>/<today> Database & COI Delivery Plan.md" --out-json _data/delivery.json`.
    It splits the surfaced touches into **Gmail drafts** (emailable, non-text contacts),
    **Canva equity one-pagers** (every Equity Update), and a **manual queue** (text-preferred
    or no-email). Nothing sends — it only plans.
@@ -106,15 +107,15 @@ Edit the brief `.md` directly with corrections.
      (the equity value/gain visual), then attach/link it to that contact's email draft.
    - `manualQueue` items → present as a call/text list (the connector can't send texts).
 4. Log a planned-touch note back to FUB so the team sees it (and feeds loop-closure).
-5. Housekeeping: delete `_data/retention-pull-*.json` older than 30 days.
+5. Housekeeping: delete `_data/coi-pull-*.json` older than 30 days.
 6. Chat summary: counts by moment + by channel, anything overruled, anyone high-value suppressed.
 
 ## Cadence
-Weekly (Monday AM) via Cowork scheduled task `retention-referral`; manual trigger:
-"run the retention brief". Weekly keeps each batch small and the database in constant,
+Weekly (Monday AM) via Cowork scheduled task `database-coi`; manual trigger:
+"run the Database & COI brief". Weekly keeps each batch small and the database in constant,
 light rotation rather than an annual blast.
 
 ## Tuning knobs (when DVN asks)
-All at the top of `build_retention_brief.py`: `APPRECIATION_RATE`, `EQUITY_GAIN_THRESHOLD`,
+All at the top of `build_coi_brief.py`: `APPRECIATION_RATE`, `EQUITY_GAIN_THRESHOLD`,
 `MOVE_WINDOW_YEARS`, `REFERRAL_DUE_DAYS`, `REENGAGE_COI_DAYS`, `SUPPRESS_CONTACT_DAYS`,
 `CAP`, and the moment/tier weights. Cap is also a CLI arg (`--cap`).

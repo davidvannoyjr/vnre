@@ -1,7 +1,7 @@
 # Scheduled Task — clv-sync
 
 - **Name:** `clv-sync`
-- **Schedule:** Monthly — **first Monday 5:45 AM** (ahead of the retention brief so scoring is current)
+- **Schedule:** Monthly — **first Monday 5:45 AM** (ahead of the Database & COI brief so scoring is current)
 - **Skill:** `vnre-clv-sync`
 - **Output:** `Follow Up Boss Pipeline/_data/clv-plan.json` + a dry-run summary in chat; optional partner brief
 - **Prereqs:** `followupboss` MCP connected; `vnre_sold_history.json` present; `04 Tools/clv-sync-skill/config.json` set; FUB `Lifetime Value` custom field exists.
@@ -11,7 +11,7 @@
 ```
 Refresh client Lifetime Value (dry-run — do not write to FUB unless I say so).
 
-1. Run build_clv.py --sold vnre_sold_history.json --people <latest retention pull
+1. Run build_clv.py --sold vnre_sold_history.json --people <latest COI pull
    or a fub_search_people dump> --config config.json --out _data/clv-plan.json.
    This sums each past client's commission across all their closings (repeat
    clients rank highest) and matches them to FUB people.
@@ -25,7 +25,7 @@ Refresh client Lifetime Value (dry-run — do not write to FUB unless I say so).
 ```
 
 ## Notes
-- Quarterly is enough if monthly feels heavy — the data moves slowly. Keep it ahead of the first retention run of the period either way.
+- Quarterly is enough if monthly feels heavy — the data moves slowly. Keep it ahead of the first Database & COI run of the period either way.
 - Once you've validated a few dry-runs, you can let it auto-commit by adding `--commit` to step 2 and dropping the approval gate.
 
 ## On failure

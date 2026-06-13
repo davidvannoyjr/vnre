@@ -1,4 +1,4 @@
-# FUB Pull Spec — vnre-retention-referral (Stage 08)
+# FUB Pull Spec — vnre-database-coi (Stage 08)
 
 The pull is implemented and self-owned: **`scripts/fub_pull.py`** talks directly to the
 Follow Up Boss v1 REST API and emits exactly the schema below. This doc is the contract +

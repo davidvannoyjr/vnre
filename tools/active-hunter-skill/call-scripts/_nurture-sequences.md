@@ -23,7 +23,7 @@ until they pick up or opt out — no lead leaks from a missed dial.
 
 ## COI / Past Client (relationship — no pressure)
 - Don't "sequence" them like leads. One friendly follow-up text, then hand off to the
-  **retention engine**, which carries equity / anniversary / referral touches on cadence.
+  **Database & COI engine**, which carries equity / anniversary / referral touches on cadence.
 
 ## Templates live in DVN voice
 Direct, declarative, no "just checking in" filler, no "hope this finds you well." Every message

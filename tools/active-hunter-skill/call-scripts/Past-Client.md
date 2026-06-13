@@ -23,4 +23,4 @@ you. You can just text me their name."
 
 ## Close
 Move/refi signal → **run `vnre-book-appointment`** or route the refi to the lender partner.
-Otherwise → log to FUB; the **retention engine** keeps the cadence (equity / anniversary / referral).
+Otherwise → log to FUB; the **Database & COI engine** keeps the cadence (equity / anniversary / referral).

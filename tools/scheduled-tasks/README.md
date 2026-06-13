@@ -18,22 +18,22 @@ In Claude desktop / Cowork → Scheduled Tasks → New:
 | 5:00 AM | daily | `daily-lead-attention` (lead brief) | existing |
 | 5:15 AM | daily | **`active-hunter`** (call list) | new → [active-hunter.task.md](active-hunter.task.md) |
 | 5:45 AM | 1st Mon/month | **`clv-sync`** (refresh Lifetime Value) | new → [clv-sync.task.md](clv-sync.task.md) |
-| 6:00 AM | Mon | **`retention-referral`** (retention brief) | new → [retention-referral.task.md](retention-referral.task.md) |
+| 6:00 AM | Mon | **`database-coi`** (Database & COI brief) | new → [database-coi.task.md](database-coi.task.md) |
 | 6:30 AM | Mon | **`ceo-dashboard`** (run my numbers) | new → [ceo-dashboard.task.md](ceo-dashboard.task.md) |
 | 7:00 AM | daily | `plp-folder-build` (PLP prep) | existing |
 | 8:48 AM | daily | Team huddle | existing |
 
 Order matters on the **first Monday of the month**: `clv-sync` (5:45) refreshes Lifetime
-Value *before* `retention-referral` (6:00) so retention scoring is profit-weighted. Other
-Mondays, retention uses the last CLV sync.
+Value *before* `database-coi` (6:00) so Database & COI scoring is profit-weighted. Other
+Mondays, the brief uses the last CLV sync.
 
 ## Shared prerequisites (one-time, per device)
-- `followupboss` MCP server connected (lead brief / retention / clv-sync).
+- `followupboss` MCP server connected (lead brief / database & COI / clv-sync).
 - QuickBooks MCP connected (ceo-dashboard / clv-sync partner view).
 - Skills saved in Claude desktop; each tool's `config.json` filled from its `config.example.json`.
 
 ## Safety posture
-- **retention-referral, ceo-dashboard:** read-only outputs (briefs + drafts). Nothing sends
+- **database-coi, ceo-dashboard:** read-only outputs (briefs + drafts). Nothing sends
   or writes automatically.
 - **clv-sync:** scheduled run produces the plan + **dry-run** only. It does **not** auto-write
   to FUB. Flip to auto-commit (add `--commit`) yourself once you've validated a few runs.

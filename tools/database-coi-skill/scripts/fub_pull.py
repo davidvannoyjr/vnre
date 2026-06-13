@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """
-fub_pull.py — Follow Up Boss pull for the VNRE retention/referral engine.
+fub_pull.py — Follow Up Boss pull for the VNRE Database & COI engine.
 
 Self-contained. Talks directly to the Follow Up Boss v1 REST API and emits the
-contact schema that build_retention_brief.py consumes. No third party, no MCP
+contact schema that build_coi_brief.py consumes. No third party, no MCP
 helper — runs anywhere with network + the API key (DVN's Mac, a cron box, etc.).
 
 What it assembles per contact (Past Client + Sphere segments):
@@ -21,7 +21,7 @@ Config: pass --config config.json (see config.example.json). The API key is read
 from FUB_API_KEY env var or the `apiKeyFile` path — never hardcode or commit it.
 
 Usage:
-  FUB_API_KEY=xxx python3 fub_pull.py --config config.json --out _data/retention-pull-2026-06-13.json
+  FUB_API_KEY=xxx python3 fub_pull.py --config config.json --out _data/coi-pull-2026-06-13.json
   python3 fub_pull.py --selftest        # verify assembly logic offline, no network
 """
 import argparse

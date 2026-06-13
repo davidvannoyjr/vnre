@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """
-build_delivery.py — stage the retention brief into ready-to-send actions.
+build_delivery.py — stage the Database & COI brief into ready-to-send actions.
 
-Turns the retention brief JSON (build_retention_brief.py --out-json) from a list of
+Turns the Database & COI brief JSON (build_coi_brief.py --out-json) from a list of
 touches into a DELIVERY PLAN the skill can execute against the connected MCPs:
   - Gmail draft (create_draft) per emailable contact, in DVN's voice
   - Canva one-pager spec for every Equity Update (generate-design)
@@ -76,7 +76,7 @@ def build(brief):
 
 
 def render_md(plan, today):
-    L = [f"# Retention Delivery Plan — {today}", "",
+    L = [f"# Database & COI Delivery Plan — {today}", "",
          f"{len(plan['gmailDrafts'])} Gmail drafts · {len(plan['canvaOnePagers'])} Canva "
          f"equity one-pagers · {len(plan['manualQueue'])} manual (text/call).",
          "", "> The skill creates these against Gmail / Canva on approval. Nothing sends automatically.", ""]

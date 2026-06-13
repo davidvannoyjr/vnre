@@ -1,4 +1,4 @@
-# Retention Engine — Workflow Audit, Data to Add, & Connector Map
+# Database & COI Engine — Workflow Audit, Data to Add, & Connector Map
 
 Everything here is about one thing: turning your existing data + connectors into the
 **50% repeat-and-referral business** the VNRE plan names as a key thrust, plus the
@@ -35,14 +35,14 @@ admin to add, then maintained at closing.
 | **Sale Price** (if not on the deal) | equity update | listing leads |
 | **Loan Balance + Loan Type + Rate + Lender** | *true* equity (not estimated), refi touch, lender MSA | MSA income, listings |
 | **Original Mortgage Rate** | refi touch | MSA income |
-| **Birthday / Anniversary (personal)** | birthday + life-event touches | referral, retention |
+| **Birthday / Anniversary (personal)** | birthday + life-event touches | referral, repeat |
 | **Preferred Channel** (call/text/email) | every draft → right medium | conversion |
 | **Lifetime Value** (auto from QBO) | CLV scoring → whales first | profit / 50% margin |
 | **Referral Source** + **Referrals Given (count/date)** | who refers; when to re-ask | 50% referral thrust |
 | **NPS Score** (you already run NPS, target 9.2) | only ask referrals from promoters | referral quality |
 | **Do-Not-Contact / Opt-Out tag** | hard suppression guard | compliance, trust |
 | **Property Type / Subdivision / ZIP** | per-ZIP appreciation, sharper comps | equity accuracy |
-| **Home Anniversary Year-Bought** | milestone weighting | retention |
+| **Home Anniversary Year-Bought** | milestone weighting | repeat business |
 
 > Quick win: **NPS + Referrals-Given** are the two highest-leverage adds — they turn the
 > Referral Ask from a blind blast into "ask my 9–10 promoters who haven't referred in 12 mo."
@@ -51,7 +51,7 @@ admin to add, then maintained at closing.
 
 ## 3. Your other connectors — how each plugs into this workflow
 
-You're paying for these already; here's where they earn their keep in retention.
+You're paying for these already; here's where they earn their keep in database & COI stewardship.
 
 - **QuickBooks (connected):** sum each past client's commission across closings → write
   **Lifetime Value** back to FUB. Whales rise to the top of every brief automatically. Also
@@ -71,7 +71,7 @@ You're paying for these already; here's where they earn their keep in retention.
   folder; the sold-history JSON feeds equity/tenure.
 
 **Highest-ROI connector add:** the **QuickBooks → FUB Lifetime Value** sync. It makes every
-retention decision profit-weighted and directly serves the 50% margin target. I can build
+Database & COI decision profit-weighted and directly serves the 50% margin target. I can build
 that as its own small skill next.
 
 ---

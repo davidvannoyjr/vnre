@@ -122,7 +122,7 @@ Reject anything theoretical, complex without payoff, or dependent on motivation 
 | `plp-presentation` | "build presentation for {client}" | `02 Reference/SOPs/Listings - PLP Presentation Build.md` (+ `plp-presentation.skill`) |
 | `send-ers-agreement` | "send the ERS / listing agreement to {client}" | `02 Reference/SOPs/Listings - ERS Send Workflow.md` (+ `.skill`; source in `04 Tools/send-ers-agreement-skill/`) |
 | `daily-lead-attention` | "run the lead brief", "who should I call today" | `04 Tools/daily-lead-attention-skill/SKILL.md` (+ `daily-lead-attention.skill`) |
-| `vnre-retention-referral` | "run the retention brief", "equity and referral check" | `04 Tools/retention-referral-skill/SKILL.md` (aiDrVN Stage 08; source + sample in repo `tools/retention-referral-skill/`) |
+| `vnre-database-coi` | "run the Database & COI brief", "equity and referral check" | `04 Tools/database-coi-skill/SKILL.md` (aiDrVN Stage 08; source + sample in repo `tools/database-coi-skill/`) |
 | `vnre-clv-sync` | "sync CLV", "client lifetime value", "partner value" | `04 Tools/clv-sync-skill/SKILL.md` (CLV from closings → FUB; QBO partner-value brief; source in repo `tools/clv-sync-skill/`) |
 | `vnre-ceo-dashboard` | "CEO dashboard", "run my numbers", "where am I vs plan" | `04 Tools/ceo-dashboard-skill/SKILL.md` (aiDrVN Stage 07; QuickBooks actuals vs 2026 plan + margin guard; source in repo `tools/ceo-dashboard-skill/`) |
 | `vnre-book-appointment` | "book the LA for {name}", "add this listing appointment" | `04 Tools/stage01-prospecting/SKILL.md` (aiDrVN Stage 01 booking → LA: event → PLP pipeline; source in repo `tools/stage01-prospecting/`) |
@@ -134,7 +134,7 @@ Reject anything theoretical, complex without payoff, or dependent on motivation 
 | `dvn-voice` | all outbound copy | brand voice skill (see `02 Reference/Brand/`) |
 
 > Skill packages (`.skill` zips) and tool source live in Drive `04 Tools/` and are not mirrored to this repo. Install a `.skill` by opening it in Claude desktop → **Save skill**. Per-device setup for FUB-backed skills: `npm install` in the tool folder, quit Claude, run `04 Tools/followupboss-mcp/fix-claude-config.sh`, reopen.
-> **Standing schedules** for the newer skills: see `tools/scheduled-tasks/` — `daily-lead-attention` 5:00 daily, `active-hunter` 5:15 daily, `clv-sync` first Mon 5:45, `retention-referral` Mon 6:00, `ceo-dashboard` Mon 6:30, `plp-folder-build` 7:00 daily. Full module index + 9-stage coverage map: `tools/README.md`.
+> **Standing schedules** for the newer skills: see `tools/scheduled-tasks/` — `daily-lead-attention` 5:00 daily, `active-hunter` 5:15 daily, `clv-sync` first Mon 5:45, `database-coi` Mon 6:00, `ceo-dashboard` Mon 6:30, `plp-folder-build` 7:00 daily. Full module index + 9-stage coverage map: `tools/README.md`.
 
 ---
 

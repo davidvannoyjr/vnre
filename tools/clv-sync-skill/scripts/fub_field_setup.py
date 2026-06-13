@@ -24,9 +24,9 @@ BASE = "https://api.followupboss.com/v1"
 
 # Fields the suite uses. type: text|number|date|dropdown.
 SUITE_FIELDS = [
-    {"name": "Lifetime Value", "type": "number", "used_by": "clv-sync (CLV scoring in retention)"},
-    {"name": "Mortgage Rate", "type": "number", "used_by": "retention refi touch"},
-    {"name": "Preferred Channel", "type": "text", "used_by": "retention/active-hunter delivery"},
+    {"name": "Lifetime Value", "type": "number", "used_by": "clv-sync (CLV scoring in the Database & COI brief)"},
+    {"name": "Mortgage Rate", "type": "number", "used_by": "Database & COI refi touch"},
+    {"name": "Preferred Channel", "type": "text", "used_by": "Database & COI + active-hunter delivery"},
     {"name": "Opt-Out", "type": "text", "used_by": "compliance suppression (or use a tag)"},
 ]
 

@@ -11,7 +11,7 @@ script, and filters DNC/opt-out before anything surfaces. A connect routes to
 prospecting block aimed at the plan's **120 listing appointments**.
 
 ## Architecture
-Same shape as the lead/retention briefs: FUB pull → deterministic ranking → review → work it.
+Same shape as the lead/Database & COI briefs: FUB pull → deterministic ranking → review → work it.
 
 1. **Pull** prospecting contacts from FUB (FSBO, Expired, Aged Lead, Geo-farm, COI, Past Client)
    with `id, name, phone, address/city, tags, stage, segment?, lastAttemptDate, attempts, signal`,
