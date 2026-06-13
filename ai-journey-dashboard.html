@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The AI Journey for Real Estate Agents — Starting Framework | DVN Coaching</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&family=Roboto+Mono:wght@400;500&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+    :root{
+        --red:#C8102E;
+        --red-tint:#FBE3E6;
+        --charcoal:#1C1C1C;
+        --gray:#6E6E6E;
+        --light:#F4F4F4;
+        --band:#E8E8E8;
+        --white:#FFFFFF;
+        --green:#1F7A3D;
+    }
+    *{margin:0;padding:0;box-sizing:border-box;}
+    html{scroll-behavior:smooth;}
+    body{
+        font-family:'Roboto',sans-serif;
+        color:var(--charcoal);
+        background:var(--light);
+        line-height:1.55;
+        font-size:15px;
+    }
+    h1,h2,h3,.condensed{font-family:'Roboto Condensed',sans-serif;}
+    .mono{font-family:'Roboto Mono',monospace;}
+
+    /* ---------- Layout ---------- */
+    .wrap{max-width:1180px;margin:0 auto;padding:0 24px;}
+
+    /* ---------- Header ---------- */
+    header{
+        background:var(--charcoal);
+        color:var(--white);
+        padding:46px 0 40px;
+        border-bottom:5px solid var(--red);
+    }
+    .eyebrow{
+        font-family:'Roboto Condensed',sans-serif;
+        text-transform:uppercase;
+        letter-spacing:3px;
+        font-size:13px;
+        color:var(--red);
+        font-weight:700;
+        margin-bottom:12px;
+    }
+    header h1{
+        font-size:42px;
+        font-weight:700;
+        line-height:1.05;
+        text-transform:uppercase;
+        letter-spacing:0.5px;
+        margin-bottom:14px;
+    }
+    header h1 .accent{color:var(--red);}
+    header p.lede{
+        font-size:17px;
+        max-width:760px;
+        color:#D6D6D6;
+    }
+    .brandline{
+        margin-top:22px;
+        font-family:'Roboto Condensed',sans-serif;
+        font-size:13px;
+        letter-spacing:1px;
+        text-transform:uppercase;
+        color:var(--gray);
+    }
+
+    /* ---------- Principle bar ---------- */
+    .principle{
+        background:var(--white);
+        border-left:5px solid var(--red);
+        padding:26px 28px;
+        margin:-28px auto 0;
+        max-width:1132px;
+        position:relative;
+        box-shadow:0 10px 30px rgba(0,0,0,0.10);
+        border-radius:4px;
+    }
+    .principle .tag{
+        font-family:'Roboto Condensed',sans-serif;
+        text-transform:uppercase;
+        letter-spacing:2px;
+        font-size:12px;
+        color:var(--red);
+        font-weight:700;
+    }
+    .principle p{font-size:17px;margin-top:6px;}
+    .principle strong{color:var(--charcoal);}
+
+    /* ---------- Sections ---------- */
+    section{padding:48px 0 8px;}
+    .section-head{margin-bottom:26px;}
+    .section-head .num{
+        font-family:'Roboto Mono',monospace;
+        color:var(--red);
+        font-weight:500;
+        font-size:14px;
+        letter-spacing:1px;
+    }
+    .section-head h2{
+        font-size:30px;
+        text-transform:uppercase;
+        letter-spacing:0.5px;
+        margin-top:2px;
+    }
+    .section-head p{color:var(--gray);max-width:760px;margin-top:6px;font-size:15px;}
+
+    /* ---------- Quick start ---------- */
+    .quickstart{
+        display:grid;
+        grid-template-columns:repeat(3,1fr);
+        gap:18px;
+    }
+    .qs-step{
+        background:var(--white);
+        border-radius:8px;
+        padding:24px;
+        border-top:4px solid var(--red);
+        box-shadow:0 4px 14px rgba(0,0,0,0.06);
+    }
+    .qs-step .qnum{
+        font-family:'Roboto Mono',monospace;
+        font-size:30px;
+        color:var(--red);
+        font-weight:500;
+        line-height:1;
+    }
+    .qs-step h3{font-size:18px;margin:10px 0 6px;text-transform:uppercase;letter-spacing:0.5px;}
+    .qs-step p{font-size:14px;color:#444;}
+    .qs-step a{color:var(--red);font-weight:500;text-decoration:none;}
+    .qs-step a:hover{text-decoration:underline;}
+
+    /* ---------- Roadmap ---------- */
+    .phases{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+    .phase{
+        background:var(--white);
+        border-radius:8px;
+        overflow:hidden;
+        box-shadow:0 4px 14px rgba(0,0,0,0.06);
+        display:flex;flex-direction:column;
+    }
+    .phase-top{
+        padding:18px 22px;
+        color:var(--white);
+        background:var(--charcoal);
+    }
+    .phase:nth-child(2) .phase-top{background:#3a3a3a;}
+    .phase:nth-child(3) .phase-top{background:var(--red);}
+    .phase-top .label{
+        font-family:'Roboto Condensed',sans-serif;
+        text-transform:uppercase;letter-spacing:2px;font-size:12px;opacity:.8;
+    }
+    .phase-top h3{font-size:23px;text-transform:uppercase;margin-top:2px;}
+    .phase-top .when{font-size:13px;opacity:.85;font-family:'Roboto Mono',monospace;}
+    .phase-body{padding:18px 22px 22px;}
+    .phase-body .goal{font-size:13px;color:var(--gray);margin-bottom:14px;font-style:italic;}
+    .check{
+        display:flex;align-items:flex-start;gap:10px;
+        padding:9px 0;border-bottom:1px solid var(--light);
+        cursor:pointer;font-size:14px;
+    }
+    .check:last-child{border-bottom:none;}
+    .check input{
+        appearance:none;-webkit-appearance:none;
+        width:20px;height:20px;min-width:20px;margin-top:1px;
+        border:2px solid var(--gray);border-radius:4px;cursor:pointer;
+        position:relative;transition:.15s;
+    }
+    .check input:checked{background:var(--green);border-color:var(--green);}
+    .check input:checked::after{
+        content:"✓";position:absolute;color:#fff;font-size:13px;
+        top:-1px;left:3px;font-weight:700;
+    }
+    .check input:checked + span{color:var(--gray);text-decoration:line-through;}
+
+    /* ---------- Progress ---------- */
+    .progress-wrap{
+        background:var(--charcoal);color:#fff;border-radius:8px;
+        padding:22px 26px;display:flex;align-items:center;gap:26px;flex-wrap:wrap;
+        margin-bottom:26px;
+    }
+    .progress-wrap .pct{font-family:'Roboto Mono',monospace;font-size:40px;font-weight:500;color:var(--red);line-height:1;}
+    .progress-meta{flex:1;min-width:240px;}
+    .progress-meta .ptitle{font-family:'Roboto Condensed',sans-serif;text-transform:uppercase;letter-spacing:1px;font-size:15px;}
+    .progress-meta .psub{font-size:13px;color:#B8B8B8;margin-top:2px;}
+    .bar{height:10px;background:#3a3a3a;border-radius:6px;overflow:hidden;margin-top:10px;width:100%;}
+    .bar-fill{height:100%;background:var(--red);width:0;transition:width .5s ease;}
+    .reset-btn{
+        background:none;border:1px solid var(--gray);color:#ccc;
+        font-family:'Roboto Condensed',sans-serif;text-transform:uppercase;letter-spacing:1px;
+        font-size:12px;padding:8px 14px;border-radius:5px;cursor:pointer;transition:.15s;
+    }
+    .reset-btn:hover{border-color:var(--red);color:#fff;}
+
+    /* ---------- Leverage cards ---------- */
+    .levers{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;}
+    .lever{
+        background:var(--white);border-radius:8px;padding:24px;
+        box-shadow:0 4px 14px rgba(0,0,0,0.06);
+        display:flex;flex-direction:column;
+        border-top:4px solid var(--charcoal);
+    }
+    .lever-head{display:flex;align-items:center;gap:14px;margin-bottom:6px;}
+    .lever-ic{
+        width:46px;height:46px;min-width:46px;border-radius:9px;
+        background:var(--red-tint);display:flex;align-items:center;justify-content:center;
+        font-size:24px;
+    }
+    .lever-head .pt{font-family:'Roboto Mono',monospace;font-size:12px;color:var(--red);}
+    .lever-head h3{font-size:20px;text-transform:uppercase;letter-spacing:0.3px;}
+    .lever .what{font-size:14px;color:#3a3a3a;margin:6px 0 16px;}
+    .first-project{
+        background:var(--light);border-radius:6px;padding:12px 14px;margin-bottom:14px;
+    }
+    .first-project .fp-label{
+        font-family:'Roboto Condensed',sans-serif;text-transform:uppercase;letter-spacing:1px;
+        font-size:11px;color:var(--red);font-weight:700;
+    }
+    .first-project p{font-size:13.5px;margin-top:3px;}
+    .prompt-block{position:relative;margin-bottom:14px;}
+    .prompt-label{
+        font-family:'Roboto Condensed',sans-serif;text-transform:uppercase;letter-spacing:1px;
+        font-size:11px;color:var(--gray);font-weight:700;margin-bottom:5px;display:block;
+    }
+    .prompt-box{
+        background:var(--charcoal);color:#E8E8E8;font-family:'Roboto Mono',monospace;
+        font-size:12.5px;line-height:1.5;padding:14px 14px 14px;border-radius:6px;
+        white-space:pre-wrap;border-left:3px solid var(--red);
+    }
+    .copy-btn{
+        position:absolute;top:26px;right:8px;
+        background:var(--red);color:#fff;border:none;border-radius:4px;
+        font-family:'Roboto Condensed',sans-serif;text-transform:uppercase;letter-spacing:1px;
+        font-size:10px;font-weight:700;padding:5px 9px;cursor:pointer;transition:.15s;
+    }
+    .copy-btn:hover{background:#a50d26;}
+    .copy-btn.copied{background:var(--green);}
+    .lever .learn{margin-top:auto;}
+    .lever .learn a{
+        color:var(--red);font-weight:500;text-decoration:none;font-size:13.5px;
+        display:inline-flex;align-items:center;gap:6px;
+    }
+    .lever .learn a:hover{text-decoration:underline;}
+
+    /* ---------- Guardrails ---------- */
+    .guardrails{
+        background:var(--white);border-radius:8px;padding:28px;
+        border-left:5px solid var(--red);box-shadow:0 4px 14px rgba(0,0,0,0.06);
+        display:grid;grid-template-columns:1fr 1fr;gap:24px;
+    }
+    .guardrails h3{font-size:17px;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px;}
+    .guardrails ul{list-style:none;}
+    .guardrails li{padding:6px 0 6px 22px;position:relative;font-size:14px;}
+    .guardrails li::before{content:"";position:absolute;left:0;top:12px;width:9px;height:9px;border-radius:2px;background:var(--red);}
+
+    /* ---------- Resources ---------- */
+    .resources{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+    .res{
+        background:var(--white);border-radius:8px;padding:20px;text-decoration:none;color:inherit;
+        box-shadow:0 4px 14px rgba(0,0,0,0.06);transition:.18s;display:block;border-bottom:3px solid transparent;
+    }
+    .res:hover{transform:translateY(-4px);border-bottom-color:var(--red);box-shadow:0 10px 24px rgba(0,0,0,0.12);}
+    .res .rk{font-family:'Roboto Condensed',sans-serif;text-transform:uppercase;letter-spacing:1px;font-size:11px;color:var(--red);font-weight:700;}
+    .res h4{font-size:17px;margin:4px 0 6px;}
+    .res p{font-size:13px;color:var(--gray);}
+    .res .url{font-family:'Roboto Mono',monospace;font-size:11.5px;color:var(--charcoal);margin-top:8px;word-break:break-all;}
+
+    /* ---------- Footer ---------- */
+    footer{
+        background:var(--charcoal);color:#B8B8B8;margin-top:54px;
+        padding:34px 0;border-top:5px solid var(--red);text-align:center;
+    }
+    footer .fbrand{font-family:'Roboto Condensed',sans-serif;text-transform:uppercase;letter-spacing:2px;color:#fff;font-size:15px;}
+    footer p{font-size:13px;margin-top:6px;}
+
+    /* ---------- Responsive ---------- */
+    @media(max-width:900px){
+        .quickstart,.phases,.levers,.resources,.guardrails{grid-template-columns:1fr;}
+        header h1{font-size:32px;}
+    }
+</style>
+</head>
+<body>
+
+<header>
+    <div class="wrap">
+        <div class="eyebrow">DVN Coaching &nbsp;·&nbsp; Point 22 — AI Infrastructure</div>
+        <h1>The AI Journey for the <span class="accent">Real Estate Agent</span></h1>
+        <p class="lede">A starting framework for the beginner and the intermediate agent. No hype, no overwhelm — one clear path from "I've never used it" to "AI runs the repetitive work while I run the relationships."</p>
+        <div class="brandline">Van Noy Real Estate · DVN Coaching · Kansas City Metro</div>
+    </div>
+</header>
+
+<div class="wrap">
+    <div class="principle">
+        <div class="tag">The Principle</div>
+        <p><strong>AI is the multiplier on your disciplines — not a replacement for them.</strong> It won't prospect for you, build your database, or close the deal. It makes you prospect more, follow up faster, present sharper, and serve deeper with the same hours in the day. Master the fundamentals first. Then bolt AI onto each one.</p>
+    </div>
+</div>
+
+<!-- THE FILTER -->
+<section id="filter">
+    <div class="wrap">
+        <div class="section-head">
+            <div class="num">// THE DECISION FILTER</div>
+            <h2>Before You Adopt Any Tool</h2>
+            <p>Every AI tool — like every other business decision — runs through the same four questions. If it fails any of them, skip it. This keeps you out of shiny-object purgatory.</p>
+        </div>
+        <div class="quickstart">
+            <div class="qs-step"><div class="qnum">01</div><h3>Does it drive GCI?</h3><p>If it doesn't move you toward listings, conversions, or commission, it's a toy. Pass.</p></div>
+            <div class="qs-step"><div class="qnum">02</div><h3>Pays off in 90 days?</h3><p>Real return inside a quarter — not "someday." No pilots that never ship.</p></div>
+            <div class="qs-step"><div class="qnum">03</div><h3>Simple enough daily?</h3><p>If you won't use it every day, it's friction. Simple beats clever, every time.</p></div>
+        </div>
+    </div>
+</section>
+
+<!-- QUICK START -->
+<section id="start">
+    <div class="wrap">
+        <div class="section-head">
+            <div class="num">// START HERE</div>
+            <h2>Your First 30 Minutes</h2>
+            <p>Three moves. Do these today, in order, before anything else on this page.</p>
+        </div>
+        <div class="quickstart">
+            <div class="qs-step">
+                <div class="qnum">1</div>
+                <h3>Get Claude</h3>
+                <p>Create a free account at <a href="https://claude.ai" target="_blank" rel="noopener">claude.ai</a>. This is your AI co-pilot. Upgrade to Pro once you're using it daily — it pays for itself in one saved hour.</p>
+            </div>
+            <div class="qs-step">
+                <div class="qnum">2</div>
+                <h3>Get a CRM Spine</h3>
+                <p>AI is only as good as the data it sits on. Put every contact in one real CRM (we run <a href="https://www.followupboss.com" target="_blank" rel="noopener">Follow Up Boss</a>). No database, no leverage.</p>
+            </div>
+            <div class="qs-step">
+                <div class="qnum">3</div>
+                <h3>Pick ONE Lever</h3>
+                <p>Don't boil the ocean. Choose the single building block below where you're weakest, run its 30-day project, then add the next. One tool at a time.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ROADMAP -->
+<section id="roadmap">
+    <div class="wrap">
+        <div class="section-head">
+            <div class="num">// THE ROADMAP</div>
+            <h2>Crawl · Walk · Run</h2>
+            <p>Three phases from total beginner to running AI as real infrastructure. Check off each step — your progress saves automatically on this device.</p>
+        </div>
+
+        <div class="progress-wrap">
+            <div class="pct" id="pctNum">0%</div>
+            <div class="progress-meta">
+                <div class="ptitle">Your AI Journey Progress</div>
+                <div class="psub" id="progressSub">0 of 0 steps complete — pick a phase and start checking boxes.</div>
+                <div class="bar"><div class="bar-fill" id="barFill"></div></div>
+            </div>
+            <button class="reset-btn" id="resetBtn">Reset</button>
+        </div>
+
+        <div class="phases">
+            <div class="phase">
+                <div class="phase-top">
+                    <div class="label">Phase 1 — Beginner</div>
+                    <h3>Crawl</h3>
+                    <div class="when">Weeks 1–2</div>
+                </div>
+                <div class="phase-body">
+                    <div class="goal">Goal: get comfortable talking to AI like a sharp assistant.</div>
+                    <label class="check"><input type="checkbox" data-id="c1"><span>Set up claude.ai and send your first 10 prompts</span></label>
+                    <label class="check"><input type="checkbox" data-id="c2"><span>Get all contacts into one CRM</span></label>
+                    <label class="check"><input type="checkbox" data-id="c3"><span>Draft one prospecting email with Claude</span></label>
+                    <label class="check"><input type="checkbox" data-id="c4"><span>Generate market talking points before one call</span></label>
+                    <label class="check"><input type="checkbox" data-id="c5"><span>Take the free Anthropic Academy intro course</span></label>
+                </div>
+            </div>
+
+            <div class="phase">
+                <div class="phase-top">
+                    <div class="label">Phase 2 — Intermediate</div>
+                    <h3>Walk</h3>
+                    <div class="when">Weeks 3–6</div>
+                </div>
+                <div class="phase-body">
+                    <div class="goal">Goal: AI saves you real hours every week on the repetitive work.</div>
+                    <label class="check"><input type="checkbox" data-id="w1"><span>Build a Claude Project with your scripts &amp; voice</span></label>
+                    <label class="check"><input type="checkbox" data-id="w2"><span>Run an AI role-play drill on your weakest objection</span></label>
+                    <label class="check"><input type="checkbox" data-id="w3"><span>Write 5 listing descriptions + social captions with AI</span></label>
+                    <label class="check"><input type="checkbox" data-id="w4"><span>Build a re-engagement message for cold past clients</span></label>
+                    <label class="check"><input type="checkbox" data-id="w5"><span>Learn prompt engineering basics (be specific, give context)</span></label>
+                </div>
+            </div>
+
+            <div class="phase">
+                <div class="phase-top">
+                    <div class="label">Phase 3 — Advanced</div>
+                    <h3>Run</h3>
+                    <div class="when">Weeks 7+</div>
+                </div>
+                <div class="phase-body">
+                    <div class="goal">Goal: AI is infrastructure — woven into the daily system.</div>
+                    <label class="check"><input type="checkbox" data-id="r1"><span>Standardize prompts your whole workflow reuses</span></label>
+                    <label class="check"><input type="checkbox" data-id="r2"><span>AI-assist every CMA and pricing narrative</span></label>
+                    <label class="check"><input type="checkbox" data-id="r3"><span>Daily morning AI role-play before prospecting</span></label>
+                    <label class="check"><input type="checkbox" data-id="r4"><span>Review your tool inventory — kill the worst, double the best</span></label>
+                    <label class="check"><input type="checkbox" data-id="r5"><span>Connect a tool to your data (Claude Projects / MCP)</span></label>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- LEVERS -->
+<section id="levers">
+    <div class="wrap">
+        <div class="section-head">
+            <div class="num">// THE FIVE BUILDING BLOCKS</div>
+            <h2>Where AI Gives an Agent Leverage</h2>
+            <p>These are the five places AI pays off fastest for a real estate agent. Each has a 30-day starter project and a copy-paste prompt to run today. Start with your weakest.</p>
+        </div>
+        <div class="levers">
+
+            <!-- Prospecting -->
+            <div class="lever">
+                <div class="lever-head">
+                    <div class="lever-ic">📞</div>
+                    <div><div class="pt">Building Block 01</div><h3>Prospecting Prep</h3></div>
+                </div>
+                <p class="what">AI gives you sharper, more confident calls. Before you dial, it pulls neighborhood angles, recent market stats, and talking points so you never open cold. It doesn't make the call — it makes you better on it.</p>
+                <div class="first-project">
+                    <div class="fp-label">Your First 30-Day Project</div>
+                    <p>Before every prospecting block, spend 5 minutes getting Claude to brief you on the area and the market. Track whether your conversations get longer.</p>
+                </div>
+                <div class="prompt-block">
+                    <span class="prompt-label">Copy this starter prompt</span>
+                    <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+                    <div class="prompt-box">You're my prospecting coach. I'm about to call homeowners in [NEIGHBORHOOD], [CITY/STATE]. Give me: 3 conversation openers that aren't salesy, 3 current talking points about this local market a homeowner would care about, and 2 smart questions that get them talking about their plans. Keep it tight and natural — I'm reading this live on a call.</div>
+                </div>
+                <div class="learn"><a href="https://www.anthropic.com/learn" target="_blank" rel="noopener">→ Learn more: Anthropic Academy (free)</a></div>
+            </div>
+
+            <!-- Database / Follow-up -->
+            <div class="lever">
+                <div class="lever-head">
+                    <div class="lever-ic">🗂️</div>
+                    <div><div class="pt">Building Block 02</div><h3>Database &amp; Follow-Up</h3></div>
+                </div>
+                <p class="what">Your database is the business. AI helps you write follow-ups fast, segment by motivation, and re-engage the contacts you've gone quiet on. The fortune is in the follow-up — AI removes the excuse of "I didn't have time to write it."</p>
+                <div class="first-project">
+                    <div class="fp-label">Your First 30-Day Project</div>
+                    <p>Pull your 25 most-neglected past clients. Have Claude draft a personal, no-pressure re-engagement message for each. Send 5 a day.</p>
+                </div>
+                <div class="prompt-block">
+                    <span class="prompt-label">Copy this starter prompt</span>
+                    <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+                    <div class="prompt-box">Write a short, warm re-engagement text to a past client I haven't spoken to in over a year. Their name is [NAME], I helped them buy/sell [PROPERTY/YEAR]. No hard sell — I just want to reconnect and stay top of mind. Sound like a real person, not a marketer. Give me 2 versions.</div>
+                </div>
+                <div class="learn"><a href="https://docs.claude.com/en/docs/about-claude/use-case-guides" target="_blank" rel="noopener">→ Learn more: Claude use-case guides</a></div>
+            </div>
+
+            <!-- CMA / Pricing -->
+            <div class="lever">
+                <div class="lever-head">
+                    <div class="lever-ic">📊</div>
+                    <div><div class="pt">Building Block 03</div><h3>CMA &amp; Pricing Story</h3></div>
+                </div>
+                <p class="what">AI won't pull live MLS data — but feed it your comps and it will structure a clean pricing narrative, explain the numbers in plain English, and prep you to defend the price at the table. Faster prep, sharper presentation.</p>
+                <div class="first-project">
+                    <div class="fp-label">Your First 30-Day Project</div>
+                    <p>On your next listing appointment, paste your comps into Claude and have it draft the pricing story you'll walk the seller through. Practice it out loud.</p>
+                </div>
+                <div class="prompt-block">
+                    <span class="prompt-label">Copy this starter prompt</span>
+                    <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+                    <div class="prompt-box">Here are recent comparable sales I pulled: [PASTE COMPS — address, price, sqft, beds/baths, sold date]. My seller's home is [DETAILS]. Help me build a clear pricing story I can present: where this home sits vs. the comps, the recommended list price range, and how I'd explain it to a seller who thinks their home is worth more. Plain language.</div>
+                </div>
+                <div class="learn"><a href="https://docs.claude.com/en/docs/build-with-claude/prompt-engineering/overview" target="_blank" rel="noopener">→ Learn more: Prompt engineering guide</a></div>
+            </div>
+
+            <!-- Skill-building -->
+            <div class="lever">
+                <div class="lever-head">
+                    <div class="lever-ic">🎯</div>
+                    <div><div class="pt">Building Block 04</div><h3>Skill-Building &amp; Role-Play</h3></div>
+                </div>
+                <p class="what">AI is a role-play partner that never gets tired and never judges. Drill your weakest scripts and objections every morning. Repetition builds mastery — and now you can rep against a live partner before you ever dial a real lead.</p>
+                <div class="first-project">
+                    <div class="fp-label">Your First 30-Day Project</div>
+                    <p>Pick the objection you fumble most. Run 5 minutes of AI role-play on it every morning for two weeks. Watch your real-world response tighten.</p>
+                </div>
+                <div class="prompt-block">
+                    <span class="prompt-label">Copy this starter prompt</span>
+                    <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+                    <div class="prompt-box">Role-play with me. You're a FSBO seller who's skeptical of agents and says "I'm not paying a commission." Stay in character and push back realistically. After each of my responses, break character for one line to coach me on what worked and what to sharpen. Start by giving me the objection.</div>
+                </div>
+                <div class="learn"><a href="https://docs.anthropic.com/en/resources/prompt-library/library" target="_blank" rel="noopener">→ Learn more: Anthropic Prompt Library</a></div>
+            </div>
+
+            <!-- Marketing -->
+            <div class="lever">
+                <div class="lever-head">
+                    <div class="lever-ic">📣</div>
+                    <div><div class="pt">Building Block 05</div><h3>Marketing &amp; Content</h3></div>
+                </div>
+                <p class="what">Automate the production, never the relationship. AI writes listing descriptions, social captions, and Just-Listed / Just-Sold copy at scale — so you spend your time face-to-face, not staring at a blank caption box.</p>
+                <div class="first-project">
+                    <div class="fp-label">Your First 30-Day Project</div>
+                    <p>For your next listing, generate the MLS description, 3 social captions, and an email blurb in one sitting. Bank a content library you reuse.</p>
+                </div>
+                <div class="prompt-block">
+                    <span class="prompt-label">Copy this starter prompt</span>
+                    <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+                    <div class="prompt-box">Write listing marketing for this home: [ADDRESS, BEDS/BATHS, SQFT, KEY FEATURES, NEIGHBORHOOD]. Give me: 1 polished MLS description (~150 words), 3 short social captions with a different hook each, and a 2-line "Just Listed" email teaser. Confident and professional — no clichés like "must see" or "won't last."</div>
+                </div>
+                <div class="learn"><a href="https://www.anthropic.com/customers" target="_blank" rel="noopener">→ Learn more: How others use Claude</a></div>
+            </div>
+
+            <!-- Bonus: build your own -->
+            <div class="lever" style="border-top-color:var(--red);">
+                <div class="lever-head">
+                    <div class="lever-ic">🧠</div>
+                    <div><div class="pt">Building Block 06 — Next Level</div><h3>Build Your Own Brain</h3></div>
+                </div>
+                <p class="what">Once you're fluent, create a <strong>Claude Project</strong> — upload your scripts, your voice, your market data, your best objection handlers. Now every answer comes back in <em>your</em> system, not generic AI. This is where AI stops being a tool and becomes infrastructure.</p>
+                <div class="first-project">
+                    <div class="fp-label">Your First 30-Day Project</div>
+                    <p>Create one Claude Project called "My Real Estate Brain." Upload your scripts and 3 of your best past emails. Run every prompt above through it.</p>
+                </div>
+                <div class="prompt-block">
+                    <span class="prompt-label">Copy this starter prompt</span>
+                    <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+                    <div class="prompt-box">I've uploaded my prospecting scripts, my voice samples, and my market notes to this Project. From now on, when I ask you to write anything client-facing, match my voice and pull from these materials. First, read everything I uploaded and give me a 5-bullet summary of how you'd describe my style.</div>
+                </div>
+                <div class="learn"><a href="https://support.claude.com" target="_blank" rel="noopener">→ Learn more: Claude Projects (Help Center)</a></div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- GUARDRAILS -->
+<section id="guardrails">
+    <div class="wrap">
+        <div class="section-head">
+            <div class="num">// THE GUARDRAILS</div>
+            <h2>What AI Never Touches</h2>
+            <p>The tools exist to protect the relationship — never to replace it. Two lines you don't cross.</p>
+        </div>
+        <div class="guardrails">
+            <div>
+                <h3>AI augments. You close.</h3>
+                <ul>
+                    <li>The relationship, the trust, the close — always you. AI preps, you perform.</li>
+                    <li>Never automate the human moment: the live conversation, the hard call, the negotiation.</li>
+                    <li>Always read what AI gives you before it goes out. You own every word with your name on it.</li>
+                    <li>AI handles the repetitive and the analytical. You keep the relationship and the judgment.</li>
+                </ul>
+            </div>
+            <div>
+                <h3>Protect your data.</h3>
+                <ul>
+                    <li>Draw a clear line on what client data never goes into a public AI model.</li>
+                    <li>No full SSNs, financials, or signed contracts pasted into a chat box.</li>
+                    <li>Use first names and general details for drafting — strip the sensitive specifics.</li>
+                    <li>When in doubt, leave it out. The follow-up isn't worth a privacy breach.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- RESOURCES -->
+<section id="resources">
+    <div class="wrap">
+        <div class="section-head">
+            <div class="num">// GO DEEPER</div>
+            <h2>Resources — Claude First</h2>
+            <p>When you're ready to go further on any building block, start here. Free, official, and built for exactly this.</p>
+        </div>
+        <div class="resources">
+            <a class="res" href="https://claude.ai" target="_blank" rel="noopener">
+                <div class="rk">The Tool</div><h4>Claude</h4>
+                <p>Your AI co-pilot. Start free, upgrade to Pro when you're using it daily.</p>
+                <div class="url">claude.ai</div>
+            </a>
+            <a class="res" href="https://www.anthropic.com/learn" target="_blank" rel="noopener">
+                <div class="rk">Free Courses</div><h4>Anthropic Academy</h4>
+                <p>Step-by-step courses that take you from beginner to confident. Start at the top.</p>
+                <div class="url">anthropic.com/learn</div>
+            </a>
+            <a class="res" href="https://docs.claude.com/en/docs/build-with-claude/prompt-engineering/overview" target="_blank" rel="noopener">
+                <div class="rk">Get Better Answers</div><h4>Prompt Engineering Guide</h4>
+                <p>The skill of asking. Be specific, give context, give examples — this guide shows how.</p>
+                <div class="url">docs.claude.com</div>
+            </a>
+            <a class="res" href="https://docs.anthropic.com/en/resources/prompt-library/library" target="_blank" rel="noopener">
+                <div class="rk">Steal These</div><h4>Prompt Library</h4>
+                <p>Ready-made prompts you can adapt for writing, summarizing, and role-play.</p>
+                <div class="url">docs.anthropic.com/prompt-library</div>
+            </a>
+            <a class="res" href="https://support.claude.com" target="_blank" rel="noopener">
+                <div class="rk">How-To</div><h4>Claude Help Center</h4>
+                <p>Projects, file uploads, and account setup — every "how do I…" answered.</p>
+                <div class="url">support.claude.com</div>
+            </a>
+            <a class="res" href="https://www.anthropic.com/customers" target="_blank" rel="noopener">
+                <div class="rk">Proof</div><h4>Customer Stories</h4>
+                <p>How real businesses put AI to work. Steal the patterns that fit your day.</p>
+                <div class="url">anthropic.com/customers</div>
+            </a>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="wrap">
+        <div class="fbrand">DVN Coaching · Van Noy Real Estate</div>
+        <p>Point 22 — AI Infrastructure: the multiplier on the other 21 disciplines.</p>
+        <p>Master the fundamentals first. Bolt AI onto each one. One tool at a time.</p>
+    </div>
+</footer>
+
+<script>
+    const STORAGE_KEY = 'dvn-ai-journey-progress';
+
+    function loadProgress(){
+        let saved = {};
+        try{ saved = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; }catch(e){ saved = {}; }
+        document.querySelectorAll('.check input').forEach(cb=>{
+            if(saved[cb.dataset.id]) cb.checked = true;
+        });
+    }
+
+    function saveProgress(){
+        const state = {};
+        document.querySelectorAll('.check input').forEach(cb=>{ state[cb.dataset.id] = cb.checked; });
+        try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }catch(e){}
+    }
+
+    function updateBar(){
+        const boxes = document.querySelectorAll('.check input');
+        const total = boxes.length;
+        const done = [...boxes].filter(b=>b.checked).length;
+        const pct = total ? Math.round((done/total)*100) : 0;
+        document.getElementById('barFill').style.width = pct + '%';
+        document.getElementById('pctNum').textContent = pct + '%';
+        let msg;
+        if(pct === 0) msg = done + ' of ' + total + ' steps complete — pick a phase and start checking boxes.';
+        else if(pct === 100) msg = 'All ' + total + ' steps complete. AI is now infrastructure. Review your tools monthly — kill the worst, double the best.';
+        else msg = done + ' of ' + total + ' steps complete — keep going, one tool at a time.';
+        document.getElementById('progressSub').textContent = msg;
+    }
+
+    document.querySelectorAll('.check input').forEach(cb=>{
+        cb.addEventListener('change', ()=>{ saveProgress(); updateBar(); });
+    });
+
+    document.getElementById('resetBtn').addEventListener('click', ()=>{
+        document.querySelectorAll('.check input').forEach(cb=> cb.checked = false);
+        saveProgress(); updateBar();
+    });
+
+    function copyPrompt(btn){
+        const text = btn.parentElement.querySelector('.prompt-box').innerText;
+        navigator.clipboard.writeText(text).then(()=>{
+            const orig = btn.textContent;
+            btn.textContent = 'Copied'; btn.classList.add('copied');
+            setTimeout(()=>{ btn.textContent = orig; btn.classList.remove('copied'); }, 1600);
+        }).catch(()=>{ btn.textContent = 'Copy failed'; });
+    }
+
+    loadProgress();
+    updateBar();
+</script>
+</body>
+</html>
