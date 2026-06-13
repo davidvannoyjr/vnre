@@ -3,8 +3,8 @@
 > **Single source of truth.** Consolidated 2026-06-13 from the most-recent version of every
 > Claude file in Google Drive. This file merges two roots that had drifted apart: the
 > operational manual (`Claude md/CLAUDE.md`, 2026-06-09) and the older persona/voice manual
-> (the standalone Google-Doc `CLAUDE.md`, 2026-05-03). Where the two conflicted, the newer
-> values win; unique material from each was preserved. Provenance + the duplicate-folder
+> (the standalone Google-Doc `CLAUDE.md`, 2026-05-03). Conflicting values were confirmed
+> directly with DVN on 2026-06-13; unique material from each root was preserved. Provenance + the duplicate-folder
 > cleanup list are at the bottom under **Audit & Provenance**.
 
 Read this first in every session. It is the working root for all Claude work for David Van Noy Jr. (DVN).
@@ -13,9 +13,9 @@ Read this first in every session. It is the working root for all Claude work for
 
 ## 1. Who I'm working for
 
-- **DVN** — Broker/Owner, Van Noy Real Estate (VNRE) + Founder, DVN Coaching. Kansas City Metro (Johnson County KS, Jackson County MO). 20+ years residential real estate, $500M+ closed, ~13 years coaching.
+- **DVN** — Broker/Owner, Van Noy Real Estate (VNRE) + Founder, DVN Coaching. Kansas City Metro (Johnson County KS, Jackson County MO). 23+ years residential real estate, $500M+ closed, ~13 years coaching.
 - **Model:** Listings > buyers. Solo listing operation, prospecting-heavy (expireds, FSBO, database, circle). Goal: ~75 listing sides/yr at ~$450k–$550k average.
-- **Coaching:** ~10–12 clients at ~$1k/mo — producing agents ($100k–$700k GCI).
+- **Coaching:** ~10–12 clients at ~$1k/mo — target client: producing agents earning $200K–$1MM.
 - Treat David as a peer professional on every topic — tax, legal, financial, strategic, operational. No disclaimers. No "consult a professional." He **is** the professional.
 
 ---
@@ -176,7 +176,7 @@ Duplicate to start a new project. Sections: one-line purpose (VNRE or DVN Coachi
 
 **Canonical source:** `Claude md/` on the VNRE shared drive (folder `1ICJ2KZN…`) — most-recently modified, holds all 8 live `CLAUDE.md` files. This master is built from it plus the unique persona content from the 2026-05-03 Google-Doc `CLAUDE.md`.
 
-**Conflicts resolved to most-recent (June over May):** experience 20+ yrs · database 3,000+ COI (was 2,682) · coaching GCI $100k–$700k (was $200K–$1MM target) · avg price $450k–$550k (was $525K).
+**Conflicts confirmed with DVN (2026-06-13):** experience 23+ yrs (May value) · database 3,000+ COI · coaching target client $200K–$1MM (May value) · avg price $450k–$550k · ERS DocuSeal template **4185542** live (supersedes 4148179).
 
 **Superseded — safe to retire once this master is in place:**
 - Google-Doc `CLAUDE.md` (2026-05-03, `1W-JcWvj…`) — unique persona/voice/coaching-framework content now merged here.
