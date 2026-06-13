@@ -102,6 +102,7 @@ Legend: ☐ not started · ◐ in progress · ☑ done · ⏭ skipped
 | 2026-06-13 | Google Local Services Ads | CONFIRMED "Unknown Business Name" = an incomplete/abandoned NEW signup (blank business-details form, never launched → can't bill). Action: abandon it, do NOT complete. Real work is on the "Van Noy Real Estate" (947-603-4678) account. | DVN/Claude | ◐ |
 | 2026-06-13 | Google Ads account | Parent Google Ads acct "David Van Noy LSA" (ID 1357676347): 0 campaigns, $0/day — NOT actively spending. $88.40 balance owed (auto-pays Jul 1 / at $500, checking ending 638). 1 security alert + 2 payment methods to verify. 1 conversion tag recording (fine). Action: settle balance, check security alert, verify payment methods, leave dormant (don't close). | DVN/Claude | ◐ |
 | 2026-06-13 | Google Ads account | ✅ $88.40 balance PAID (checking …638, acct 9476034678; processing 3–5 days). Balance cleared. | DVN | ✅ |
+| 2026-06-13 | Google identity | MAJOR: a SECOND Google login exists — **david@thevannoygroup.com** (legacy domain) — holding 2 MORE Google Ads accounts: "RE-DavidVanNoy-KC-3k" (591-648-8315, likely vendor-managed PPC, "3k"=possible $3k/mo budget) + "Google Ads account" (643-233-9415). PRIORITY: check RE-…-3k for ACTIVE SPEND + linked agency/manager access. ALSO: this login is likely the GBP owner → add david@vannoyre.com as Owner from here (skip the Jun-16 transfer). Endgame: consolidate keepers to vannoyre.com login, retire thevannoygroup.com identity. | DVN/Claude | ◐ |
 | | | _next change here…_ | | |
 
 ---
@@ -130,6 +131,14 @@ Legend: ☐ not started · ◐ in progress · ☑ done · ⏭ skipped
 | Google Ads acct "David Van Noy LSA" (1357676347) | Dormant, 0 campaigns, $88.40 owed | Settle balance, check security alert + payment methods, leave dormant |
 
 > All legacy Google data traces to the same old cluster: **The Van Noy (Real Estate) Group · 5000 W 135th St / 66224 · (913) 393-9469 · thevannoygroup.com**. Every place it lives feeds AI a conflicting identity. Same cluster also lives on Yelp.
+
+### Two Google logins (root cause of the sprawl)
+| Login | Holds | Plan |
+|-------|-------|------|
+| **david@vannoyre.com** (current/canonical) | LSA accts (Van Noy RE + blank), Google Ads acct 1357676347 (dormant, balance paid) | Keep as the home for everything |
+| **david@thevannoygroup.com** (legacy) | Google Ads "RE-DavidVanNoy-KC-3k" (591-648-8315) + "Google Ads account" (643-233-9415); likely GBP owner | CHECK RE-…-3k for active spend/agency; use to grant GBP ownership to vannoyre.com; then retire |
+
+> Action order: (1) check RE-DavidVanNoy-KC-3k for live spend — pause if bleeding; (2) from this login, add david@vannoyre.com as GBP Owner; (3) consolidate keepers, retire the thevannoygroup.com identity.
 
 ---
 
