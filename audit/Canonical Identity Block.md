@@ -2,7 +2,7 @@
 
 > One identity, repeated verbatim across every profile. AI gains confidence to state
 > facts when independent sources agree. Do not paraphrase per-platform — copy-paste.
-> **Confirm the ⚠️ fields once, then this is locked.**
+> **LOCKED 2026-06-13** — phone, address, public email confirmed by DVN. (Cell still open.)
 
 ---
 
@@ -12,11 +12,11 @@
 Name:            David Van Noy Jr.
 Business:        Van Noy Real Estate
 Title:           Broker/Owner
-Address:         ⚠️ CONFIRM — 8700 State Line Rd, Suite 180, Leawood, KS 66206
-Office phone:    ⚠️ CONFIRM — (913) 349-7580
-Cell:            ⚠️ CONFIRM — (816) ___-____
-Public email:    info@vannoyre.com
-Direct email:    david@vannoyre.com
+Address:         8700 State Line Rd, Suite 180, Leawood, KS 66206
+Office phone:    (913) 349-7580
+Public email:    david@vannoyre.com   (THE public-facing email)
+General inbox:   info@vannoyre.com    (brokerage general only)
+Cell:            (still open — give me the number to keep public, or omit)
 Website:         https://vannoyre.com
 Market:          Kansas City Metro — Johnson County KS & Jackson County MO
 ```
@@ -43,6 +43,17 @@ Market:          Kansas City Metro — Johnson County KS & Jackson County MO
 
 ---
 
+## Canonical contact (paste exactly)
+
+```
+David Van Noy Jr. — Broker/Owner
+Van Noy Real Estate
+8700 State Line Rd, Suite 180, Leawood, KS 66206
+Office: (913) 349-7580
+Email: david@vannoyre.com
+Web: https://vannoyre.com
+```
+
 ## Canonical facts (use these exact numbers everywhere)
 
 | Fact | Value |
@@ -62,3 +73,5 @@ Market:          Kansas City Metro — Johnson County KS & Jackson County MO
 - ❌ "1,000+ homes" → use **1,450+**
 - ❌ "Van Noy Coaching Method" → use **DVN Coaching**
 - ❌ kchomelistings.com / thevannoygroup.com / kw.com as a live destination
+- ❌ Any phone other than (913) 349-7580 as the office number
+- ❌ 5000 W 135th St (wrong address on Yelp) → 8700 State Line Rd, Ste 180

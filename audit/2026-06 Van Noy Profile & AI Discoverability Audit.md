@@ -68,10 +68,10 @@ Three numbers tell the story:
 | Career volume | **$500M+ closed** | Consistent — keep. |
 | Homes sold | **1,450+ homes** | Upgrade from "1,000+." It's your real number and it's stronger. |
 | Market | **Kansas City metro — Johnson County KS & Jackson County MO** | |
-| Email (public) | **info@vannoyre.com** (general) / **david@vannoyre.com** (direct) | Pick which is public-facing and use it consistently. |
-| Office phone | **⚠️ CONFIRM** — (913) 349-7580 or (913) 393-9469? | Two are live. Tell me the right one. |
-| Office address | **⚠️ CONFIRM** — 8700 State Line Rd, Ste 180, Leawood, KS 66206 (Yelp shows 5000 W 135th St). | Which is current? |
-| Cell | **⚠️ CONFIRM** — 816 number on LinkedIn. | Keep public or not? |
+| Email (public) | **david@vannoyre.com** | Locked. info@vannoyre.com = brokerage general inbox only. |
+| Office phone | **(913) 349-7580** | Locked. Retire (913) 393-9469. |
+| Office address | **8700 State Line Rd, Suite 180, Leawood, KS 66206** | Locked. Fix Yelp (shows 5000 W 135th St). |
+| Cell | *Open* — 816 number on LinkedIn. | Tell me whether to keep it public. |
 
 ### Conflicts found in the wild
 

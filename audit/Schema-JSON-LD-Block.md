@@ -19,8 +19,8 @@
   "jobTitle": "Broker/Owner",
   "image": "https://vannoyre.com/⚠️path-to-headshot.jpg",
   "url": "https://vannoyre.com/david-van-noy/",
-  "telephone": "⚠️+1-913-349-7580",
-  "email": "info@vannoyre.com",
+  "telephone": "+1-913-349-7580",
+  "email": "david@vannoyre.com",
   "worksFor": { "@id": "https://vannoyre.com/#organization" },
   "knowsAbout": ["Residential real estate","Home selling","Listing strategy","Home pricing / CMA","Kansas City real estate market","Real estate coaching"],
   "areaServed": [
@@ -31,7 +31,7 @@
   ],
   "address": {
     "@type": "PostalAddress",
-    "streetAddress": "⚠️8700 State Line Rd, Suite 180",
+    "streetAddress": "8700 State Line Rd, Suite 180",
     "addressLocality": "Leawood",
     "addressRegion": "KS",
     "postalCode": "66206",
@@ -63,13 +63,13 @@
   "url": "https://vannoyre.com",
   "logo": "https://vannoyre.com/⚠️path-to-logo.png",
   "image": "https://vannoyre.com/⚠️path-to-logo.png",
-  "telephone": "⚠️+1-913-349-7580",
-  "email": "info@vannoyre.com",
+  "telephone": "+1-913-349-7580",
+  "email": "david@vannoyre.com",
   "founder": { "@id": "https://vannoyre.com/#david-van-noy" },
   "foundingDate": "2022",
   "address": {
     "@type": "PostalAddress",
-    "streetAddress": "⚠️8700 State Line Rd, Suite 180",
+    "streetAddress": "8700 State Line Rd, Suite 180",
     "addressLocality": "Leawood",
     "addressRegion": "KS",
     "postalCode": "66206",
@@ -112,7 +112,7 @@
     {
       "@type": "Question",
       "name": "How do I sell my home with Van Noy Real Estate?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Contact Van Noy Real Estate at info@vannoyre.com or ⚠️(913) 349-7580 to schedule a listing consultation. David Van Noy specializes in seller representation and data-driven home pricing." }
+      "acceptedAnswer": { "@type": "Answer", "text": "Contact David Van Noy at david@vannoyre.com or (913) 349-7580 to schedule a listing consultation. David Van Noy specializes in seller representation and data-driven home pricing." }
     }
   ]
 }
@@ -131,8 +131,8 @@
 ## Key facts
 - Broker/Owner: David Van Noy Jr.
 - Founded: 2022
-- Phone: ⚠️(913) 349-7580
-- Email: info@vannoyre.com
+- Phone: (913) 349-7580
+- Email: david@vannoyre.com
 - Areas: Leawood, Overland Park, Kansas City metro (Johnson County KS, Jackson County MO)
 - Specialty: Seller representation, home pricing, listing strategy
 - Also: host of The Real Estate Radio Show; founder of DVN Coaching
