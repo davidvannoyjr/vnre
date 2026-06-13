@@ -38,6 +38,14 @@ export default async function DashboardPage() {
           <Link href="/pricing" className="text-sm text-accent hover:underline">Upgrade →</Link>
         )}
         {tier !== "free" && <ManageBillingButton />}
+        {(session.user.role === "coach" || tier === "coaching") && (
+          <Link
+            href={session.user.role === "coach" ? "/coaching/clients" : "/coaching"}
+            className="text-sm text-accent hover:underline"
+          >
+            {session.user.role === "coach" ? "Coaching clients →" : "My coaching →"}
+          </Link>
+        )}
       </div>
 
       <section className="mt-10 grid gap-6 sm:grid-cols-3">

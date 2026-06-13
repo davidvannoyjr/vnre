@@ -1,5 +1,6 @@
-import { PLANS } from "@/lib/tiers";
+import { PUBLIC_PLANS } from "@/lib/tiers";
 import { CheckoutButton } from "@/components/checkout-button";
+import { siteConfig } from "../../../site.config";
 
 export const metadata = { title: "Pricing" };
 
@@ -15,7 +16,7 @@ export default function PricingPage() {
       </div>
 
       <div className="mt-12 grid gap-6 lg:grid-cols-4">
-        {PLANS.map((plan) => (
+        {PUBLIC_PLANS.map((plan) => (
           <div
             key={plan.id}
             className={`flex flex-col rounded-lg border p-6 ${
@@ -57,10 +58,20 @@ export default function PricingPage() {
         ))}
       </div>
 
-      <p className="mx-auto mt-10 max-w-2xl text-center text-xs text-steel/50">
-        Elite includes done-with-you build sessions and a direct line into DVN Coaching — the
-        natural step up into 1:1 coaching for producing agents.
-      </p>
+      <div className="mx-auto mt-12 max-w-2xl rounded-lg border border-steel/20 bg-strip p-6 text-center">
+        <h2 className="text-lg font-bold">1:1 Coaching with DVN</h2>
+        <p className="mt-2 text-sm text-steel/70">
+          Private monthly coaching for producing agents — your living business plan, a coaching
+          outline mapped to the five stages, and direct accountability. Invite-only and capped at
+          10–12 clients, so it's not a checkout button.
+        </p>
+        <a
+          href={`mailto:${siteConfig.contactEmail}?subject=1:1 Coaching`}
+          className="mt-4 inline-block rounded-md border border-steel px-5 py-2 text-sm font-medium hover:bg-white"
+        >
+          Apply for coaching
+        </a>
+      </div>
     </div>
   );
 }

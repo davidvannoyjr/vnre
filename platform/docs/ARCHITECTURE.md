@@ -53,6 +53,14 @@ models plus billing fields on `User` (`stripeCustomerId`, `tier`, etc.).
 - **Remaining config (not code):** provision Postgres + `DATABASE_URL` (`npm run db:push`),
   create the 3 Stripe prices, register the webhook endpoint + `STRIPE_WEBHOOK_SECRET`.
 
+## 1:1 Coaching (`src/app/coaching/*`, `src/lib/coaching.ts`)
+
+A private, invite-only `coaching` tier with a two-sided per-client workspace — business plan,
+tasks on the five-stage outline (Forge → Own), and coach-private/shareable notes. Coaches are
+identified by `COACH_EMAILS` (or stored role); they onboard clients and mint per-client
+monthly checkout links (`/api/coaching/checkout`). Hidden from public pricing. All loads and
+mutations are guarded server-side by role + profile ownership. Full guide: `docs/COACHING.md`.
+
 ## The content pipeline (`scripts/` + `.github/workflows/`)
 
 See `docs/CONTENT-OPS.md`. In short: `queue.yaml` (approve) → `draft-topic.mjs` (Claude

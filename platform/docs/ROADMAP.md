@@ -27,7 +27,11 @@ revenue product.
 - [ ] Per-tier content recommendations on the dashboard.
 
 ## Phase 4 — Coaching upsell
-- [ ] Elite → DVN Coaching application funnel (the natural step up).
+- [x] **1:1 Coaching tier** — invite-only `coaching` plan, two-sided client workspace
+      (business plan, five-stage task outline, coach-private/shareable notes), per-client
+      monthly checkout links. See `docs/COACHING.md`. (Config left: `STRIPE_PRICE_COACHING`,
+      `COACH_EMAILS`.)
+- [ ] Pricing-page "Apply for coaching" → a real application form/funnel (currently mailto).
 - [ ] Cohort/workshop scheduling; gate recordings by tier.
 - [ ] Community (start off-the-shelf — Circle/Skool — linked from the dashboard).
 

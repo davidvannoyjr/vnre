@@ -3,6 +3,7 @@ import Google from "next-auth/providers/google";
 import Nodemailer from "next-auth/providers/nodemailer";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import { prisma, dbEnabled } from "@/lib/db";
+import { isCoachEmail } from "@/lib/coaching";
 import type { Tier } from "@/lib/tiers";
 
 /**
@@ -23,6 +24,7 @@ declare module "next-auth" {
       email?: string | null;
       image?: string | null;
       tier: Tier;
+      role: "member" | "coach";
     };
   }
 }
@@ -58,9 +60,12 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     // With the database strategy, `user` is the persisted row (carrying `tier`).
     // With JWT (no DB), `user` is absent and we default to "free".
     async session({ session, user }) {
-      const dbUser = user as { id?: string; tier?: Tier } | undefined;
+      const dbUser = user as { id?: string; tier?: Tier; role?: string } | undefined;
       if (dbUser?.id) session.user.id = dbUser.id;
       session.user.tier = dbUser?.tier ?? "free";
+      // Coach access comes from the stored role or the COACH_EMAILS allowlist.
+      session.user.role =
+        dbUser?.role === "coach" || isCoachEmail(session.user.email) ? "coach" : "member";
       return session;
     }
   }

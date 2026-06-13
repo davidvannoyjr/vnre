@@ -21,13 +21,21 @@ model User {
   accounts      Account[]
   sessions      Session[]
 
+  // member | coach. Coaches manage 1:1 clients; see lib/coaching.ts.
+  role String @default("member")
+
   // Billing — kept on the user for fast tier reads in the session callback.
   stripeCustomerId       String?   @unique
   stripeSubscriptionId   String?   @unique
   stripePriceId          String?
   stripeCurrentPeriodEnd DateTime?
-  // Resolved subscription tier: free | basic | pro | elite. Updated by the webhook.
+  // Resolved subscription tier: free | basic | pro | elite | coaching.
   tier                   String    @default("free")
+
+  // 1:1 coaching relationships.
+  coachingProfile ClientProfile?  @relation("ClientUser")
+  coachedClients  ClientProfile[] @relation("CoachUser")
+  authoredNotes   CoachingNote[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -66,4 +74,60 @@ model VerificationToken {
   expires    DateTime
 
   @@unique([identifier, token])
+}
+
+// ── 1:1 Coaching workspace ────────────────────────────────────────────────────
+
+// One per coaching client: links the client user to their coach (DVN).
+model ClientProfile {
+  id        String   @id @default(cuid())
+  clientId  String   @unique
+  client    User     @relation("ClientUser", fields: [clientId], references: [id], onDelete: Cascade)
+  coachId   String
+  coach     User     @relation("CoachUser", fields: [coachId], references: [id])
+  status    String   @default("active") // active | paused | ended
+  startedAt DateTime @default(now())
+
+  plan  BusinessPlan?
+  notes CoachingNote[]
+  tasks CoachingTask[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// The client's current business plan (shared — both coach and client edit).
+model BusinessPlan {
+  id              String        @id @default(cuid())
+  clientProfileId String        @unique
+  clientProfile   ClientProfile @relation(fields: [clientProfileId], references: [id], onDelete: Cascade)
+  content         String        @default("")
+  updatedAt       DateTime      @updatedAt
+}
+
+// Coaching notes. Coach-private by default; shareWithClient flips visibility.
+model CoachingNote {
+  id               String        @id @default(cuid())
+  clientProfileId  String
+  clientProfile    ClientProfile @relation(fields: [clientProfileId], references: [id], onDelete: Cascade)
+  authorId         String
+  author           User          @relation(fields: [authorId], references: [id])
+  body             String
+  sharedWithClient Boolean       @default(false)
+  createdAt        DateTime      @default(now())
+}
+
+// A task tied to the five-stage coaching outline.
+model CoachingTask {
+  id              String        @id @default(cuid())
+  clientProfileId String
+  clientProfile   ClientProfile @relation(fields: [clientProfileId], references: [id], onDelete: Cascade)
+  stage           String        @default("forge") // forge|conquer|anchor|architect|own
+  title           String
+  detail          String        @default("")
+  status          String        @default("todo") // todo | done
+  dueDate         DateTime?
+  completedAt     DateTime?
+  sortOrder       Int           @default(0)
+  createdAt       DateTime      @default(now())
 }

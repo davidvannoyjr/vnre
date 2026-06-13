@@ -3,7 +3,7 @@
  * Gating rule: a member can view content whose `tier` rank is <= their plan rank.
  */
 
-export type Tier = "free" | "basic" | "pro" | "elite";
+export type Tier = "free" | "basic" | "pro" | "elite" | "coaching";
 export type Level = "basic" | "intermediate" | "advanced";
 export type Track = "chatgpt" | "claude" | "re-tools" | "automation";
 
@@ -11,7 +11,8 @@ export const TIER_RANK: Record<Tier, number> = {
   free: 0,
   basic: 1,
   pro: 2,
-  elite: 3
+  elite: 3,
+  coaching: 4
 };
 
 export interface TierPlan {
@@ -25,6 +26,8 @@ export interface TierPlan {
   // Maps to STRIPE_PRICE_* env var. null for the free tier.
   stripeEnv: string | null;
   highlight?: boolean;
+  // Invite-only tiers are hidden from public pricing (coach onboards directly).
+  invite?: boolean;
 }
 
 export const PLANS: TierPlan[] = [
@@ -86,8 +89,28 @@ export const PLANS: TierPlan[] = [
     ],
     unlocks: ["basic", "intermediate", "advanced"],
     stripeEnv: "STRIPE_PRICE_ELITE"
+  },
+  {
+    id: "coaching",
+    name: "1:1 Coaching",
+    price: 1000,
+    blurb: "Private monthly coaching with DVN. Invite-only — capped at 10–12 clients.",
+    features: [
+      "Everything in Elite",
+      "Private 1:1 coaching workspace",
+      "Your living business plan",
+      "Tasks mapped to your coaching outline (Forge → Own)",
+      "Coaching notes shared with you",
+      "Direct accountability with DVN"
+    ],
+    unlocks: ["basic", "intermediate", "advanced"],
+    stripeEnv: "STRIPE_PRICE_COACHING",
+    invite: true
   }
 ];
+
+/** Plans shown on the public pricing page (invite-only tiers excluded). */
+export const PUBLIC_PLANS = PLANS.filter((p) => !p.invite);
 
 export const TRACKS: Record<Track, { name: string; blurb: string }> = {
   chatgpt: {
