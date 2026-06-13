@@ -76,8 +76,8 @@ Legend: ☐ not started · ◐ in progress · ☑ done · ⏭ skipped
 |---|------|-------|--------|-----------|-------|
 | 20 | Create Wikidata entity | Claude/DVN | ◐ | | Draft ready (`Wikidata Entity Draft.md`); DVN to submit |
 | 21 | Add FAQPage content to top 5 pages | Claude/Dev | ◐ | | Copy drafted (`FAQ Content.md`); Dev to publish + schema |
-| 22 | DVN Coaching dedicated page + schema | Claude/Dev | ☐ | | |
-| 23 | Radio Show page + transcripts + schema | Claude/Dev | ☐ | | |
+| 22 | DVN Coaching dedicated page + schema | Claude/Dev | ◐ | | Page copy + schema drafted (`DVN Coaching Page.md`); Dev to publish |
+| 23 | Radio Show page + transcripts + schema | Claude/Dev | ◐ | | Page copy + schema drafted (`Radio Show Page.md`); needs episode source |
 | 24 | Publish llms.txt at vannoyre.com/llms.txt | Dev | ☐ | | Block ready |
 | 25 | Caption all YouTube videos | DVN | ☐ | | AI reads transcripts |
 | 26 | Reviews → AggregateRating/Review schema | Dev | ☐ | | From 80+ reviews |
@@ -92,6 +92,7 @@ Legend: ☐ not started · ◐ in progress · ☑ done · ⏭ skipped
 | 2026-06-13 | — | Canonical record locked (phone/address/email confirmed by DVN) | Claude/DVN | ✅ |
 | 2026-06-13 | — | Assets drafted: canonical block, JSON-LD schema, llms.txt, profile tracker | Claude | ✅ |
 | 2026-06-13 | — | Drafted FAQ content, Wikidata entity, and outreach/fix scripts (Zillow, Yelp, Agent Pronto, Homes.com, dev brief) | Claude | ✅ |
+| 2026-06-13 | — | Built Profile Copy Pack (per-platform paste-ready copy), DVN Coaching page, Radio Show page, Execution Checklist, folder README | Claude | ✅ |
 | | | _next change here…_ | | |
 
 ---
