@@ -129,6 +129,7 @@ Reject anything theoretical, complex without payoff, or dependent on motivation 
 | `dvn-voice` | all outbound copy | brand voice skill (see `02 Reference/Brand/`) |
 
 > Skill packages (`.skill` zips) and tool source live in Drive `04 Tools/` and are not mirrored to this repo. Install a `.skill` by opening it in Claude desktop → **Save skill**. Per-device setup for FUB-backed skills: `npm install` in the tool folder, quit Claude, run `04 Tools/followupboss-mcp/fix-claude-config.sh`, reopen.
+> **Standing schedules** for the newer skills: see `tools/scheduled-tasks/` — `daily-lead-attention` 5:00 daily, `clv-sync` first Mon 5:45, `retention-referral` Mon 6:00, `ceo-dashboard` Mon 6:30, `plp-folder-build` 7:00 daily.
 
 ---
 
