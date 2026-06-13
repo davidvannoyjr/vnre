@@ -1,5 +1,6 @@
 import Stripe from "stripe";
 import { PLANS, type Tier } from "@/lib/tiers";
+import { prisma } from "@/lib/db";
 
 /**
  * Stripe billing helpers. Lazy client so the app boots without keys in dev.
@@ -25,7 +26,8 @@ export function priceIdForTier(tier: Tier): string | null {
 }
 
 /** Reverse lookup: given a Stripe price id, which tier is it? */
-export function tierForPriceId(priceId: string): Tier {
+export function tierForPriceId(priceId: string | null | undefined): Tier {
+  if (!priceId) return "free";
   for (const plan of PLANS) {
     if (plan.stripeEnv && process.env[plan.stripeEnv] === priceId) return plan.id;
   }
@@ -33,16 +35,36 @@ export function tierForPriceId(priceId: string): Tier {
 }
 
 /**
- * Map a customer's active subscription to a tier.
- * Wire this into the auth session callback once an adapter stores the customer id.
+ * Get the member's Stripe customer id, creating the customer (and persisting
+ * the id on the user) the first time. Requires a database.
  */
-export async function getTierForCustomer(customerId: string): Promise<Tier> {
-  const subs = await stripe().subscriptions.list({
-    customer: customerId,
-    status: "active",
-    limit: 1,
-    expand: ["data.items.data.price"]
+export async function getOrCreateCustomer(userId: string, email?: string | null): Promise<string> {
+  const user = await prisma.user.findUnique({ where: { id: userId } });
+  if (user?.stripeCustomerId) return user.stripeCustomerId;
+
+  const customer = await stripe().customers.create({
+    email: email ?? undefined,
+    metadata: { userId }
   });
-  const price = subs.data[0]?.items.data[0]?.price?.id;
-  return price ? tierForPriceId(price) : "free";
+  await prisma.user.update({ where: { id: userId }, data: { stripeCustomerId: customer.id } });
+  return customer.id;
+}
+
+/**
+ * Persist a subscription's state to the owning user, resolving the tier from
+ * its price. Called by the webhook on create/update; pass null to downgrade.
+ */
+export async function syncSubscriptionToUser(subscription: Stripe.Subscription | null, customerId: string) {
+  const priceId = subscription?.items.data[0]?.price?.id ?? null;
+  await prisma.user.updateMany({
+    where: { stripeCustomerId: customerId },
+    data: {
+      tier: tierForPriceId(priceId),
+      stripeSubscriptionId: subscription?.id ?? null,
+      stripePriceId: priceId,
+      stripeCurrentPeriodEnd: subscription?.current_period_end
+        ? new Date(subscription.current_period_end * 1000)
+        : null
+    }
+  });
 }

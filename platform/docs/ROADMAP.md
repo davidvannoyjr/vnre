@@ -4,12 +4,15 @@ The current build is **complete basic infrastructure**: a runnable, gated, conte
 platform with an automated approve→publish pipeline. This is the order to harden it into a
 revenue product.
 
-## Phase 1 — Take payments (the only thing between you and revenue)
-- [ ] Add a DB (Postgres) + `@auth/prisma-adapter`: persist users + Stripe customer id.
-- [ ] Finish the Stripe webhook switch (upsert customer→tier; downgrade on cancel).
-- [ ] Resolve `session.user.tier` from `getTierForCustomer()` in the auth callback.
-- [ ] Customer billing portal link (`stripe.billingPortal.sessions.create`).
-- [ ] Create the 3 prices in Stripe; set the env IDs.
+## Phase 1 — Take payments  ✅ code complete; remaining items are deploy-time config
+- [x] DB (Postgres) + `@auth/prisma-adapter`: persists users + Stripe customer id (`prisma/schema.prisma`).
+- [x] Stripe webhook keeps each member's `tier` in sync (create/update/cancel → `syncSubscriptionToUser`).
+- [x] `session.user.tier` resolves from the persisted user row (`lib/auth.ts`).
+- [x] Customer billing portal (`/api/stripe/portal` + "Manage billing" on the dashboard).
+- [x] Checkout attaches a reusable Stripe customer (`/api/stripe/checkout`).
+- [ ] **Provision a Postgres DB**, set `DATABASE_URL`, run `npm run db:push`.
+- [ ] **Create the 3 prices in Stripe**, set `STRIPE_PRICE_BASIC/PRO/ELITE`.
+- [ ] **Register the webhook endpoint** (`/api/stripe/webhook`), set `STRIPE_WEBHOOK_SECRET`.
 
 ## Phase 2 — Make it sticky
 - [ ] Progress tracking (mark lessons complete) — per-user, in the DB.

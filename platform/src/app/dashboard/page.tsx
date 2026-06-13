@@ -2,6 +2,7 @@ import Link from "next/link";
 import { auth } from "@/lib/auth";
 import { getAllTutorials, getAllBlogPosts } from "@/lib/content";
 import { PLANS, LEVELS, type Tier, canAccess } from "@/lib/tiers";
+import { ManageBillingButton } from "@/components/manage-billing-button";
 
 export const metadata = { title: "Dashboard" };
 
@@ -36,6 +37,7 @@ export default async function DashboardPage() {
         {tier !== "elite" && (
           <Link href="/pricing" className="text-sm text-accent hover:underline">Upgrade →</Link>
         )}
+        {tier !== "free" && <ManageBillingButton />}
       </div>
 
       <section className="mt-10 grid gap-6 sm:grid-cols-3">

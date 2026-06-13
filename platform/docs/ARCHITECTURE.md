@@ -28,18 +28,30 @@ and see the whole product on minute one, then wire in services as you go.
 
 ## Auth (`src/lib/auth.ts`)
 
-Auth.js v5. Passwordless email magic-link (preferred for agents) + optional Google. JWT
-sessions out of the box. The session's `user.tier` resolves the member's plan — wired to
-`"free"` until billing is connected. **For production**, add a database adapter (e.g.
-`@auth/prisma-adapter`) so you can persist the user ↔ Stripe customer mapping, then have
-the `session` callback call `getTierForCustomer()`.
+Auth.js v5. Passwordless email magic-link (preferred for agents) + optional Google.
+**When `DATABASE_URL` is set**, it uses the Prisma adapter with database sessions and
+resolves `session.user.tier` from the persisted `User` row (kept current by the Stripe
+webhook). **Without a database**, it falls back to JWT sessions and everyone resolves to
+`"free"` — so the app boots with zero setup. The email magic-link provider requires the
+database (it stores verification tokens), so it's only enabled when both SMTP and
+`DATABASE_URL` are configured; Google works either way.
 
-## Billing (`src/lib/stripe.ts`, `src/app/api/stripe/*`)
+Persistence is **Prisma** (`prisma/schema.prisma`, `src/lib/db.ts`): the Auth.js adapter
+models plus billing fields on `User` (`stripeCustomerId`, `tier`, etc.).
 
-- `POST /api/stripe/checkout` creates a Stripe Checkout subscription session for a tier.
-- `POST /api/stripe/webhook` verifies signatures and is where you persist customer→tier on
-  subscription lifecycle events (the switch is scaffolded with TODOs).
-- Tier → Stripe Price ID mapping is env-driven (`STRIPE_PRICE_BASIC/PRO/ELITE`).
+## Billing (`src/lib/stripe.ts`, `src/app/api/stripe/*`) — implemented
+
+- `POST /api/stripe/checkout` — looks up (or creates) the member's Stripe customer, then
+  creates a subscription Checkout session for the tier.
+- `POST /api/stripe/webhook` — verifies signatures and keeps the persisted `User.tier` in
+  sync on `checkout.session.completed` and `customer.subscription.created/updated/deleted`
+  (downgrades to `free` on cancel) via `syncSubscriptionToUser`.
+- `POST /api/stripe/portal` — opens the Stripe billing portal so members manage/cancel
+  themselves ("Manage billing" on the dashboard).
+- Tier → Stripe Price ID mapping is env-driven (`STRIPE_PRICE_BASIC/PRO/ELITE`); the reverse
+  lookup resolves a subscription's price back to a tier.
+- **Remaining config (not code):** provision Postgres + `DATABASE_URL` (`npm run db:push`),
+  create the 3 Stripe prices, register the webhook endpoint + `STRIPE_WEBHOOK_SECRET`.
 
 ## The content pipeline (`scripts/` + `.github/workflows/`)
 
@@ -51,10 +63,11 @@ writes `.mdx`) → `publish-due.mjs` (date-based promotion). CI (`ci.yml`) runs
 
 - [ ] Set brand name/tagline in `site.config.ts`.
 - [ ] Deploy to Vercel (zero-config for Next.js). Set `NEXT_PUBLIC_SITE_URL`.
-- [ ] Auth: set `AUTH_SECRET` + an email SMTP provider (and/or Google OAuth).
-- [ ] Add a DB adapter for persistent users + Stripe customer IDs.
-- [ ] Stripe: create 3 products/prices, set `STRIPE_*` envs, register the webhook endpoint,
-      finish the webhook switch + `getTierForCustomer` wiring in the session callback.
+- [ ] Provision Postgres, set `DATABASE_URL`, run `npm run db:push`.
+- [ ] Auth: set `AUTH_SECRET` + an email SMTP provider (and/or Google OAuth). The email
+      magic-link needs the database; Google works with or without it.
+- [ ] Stripe: create 3 products/prices, set `STRIPE_*` envs, register the webhook endpoint
+      (`/api/stripe/webhook`) + `STRIPE_WEBHOOK_SECRET`. (Webhook handling is already built.)
 - [ ] GitHub: add `ANTHROPIC_API_KEY` secret; enable Actions write permission.
 - [ ] Seed/approve the first batch of topics in `content/topics/queue.yaml`.
 

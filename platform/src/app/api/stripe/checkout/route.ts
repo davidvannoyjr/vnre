@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
-import { stripe, priceIdForTier } from "@/lib/stripe";
+import { stripe, priceIdForTier, getOrCreateCustomer } from "@/lib/stripe";
 import { auth } from "@/lib/auth";
+import { dbEnabled } from "@/lib/db";
 import { siteConfig } from "../../../../../site.config";
 import type { Tier } from "@/lib/tiers";
 
@@ -17,16 +18,25 @@ export async function POST(req: Request) {
     }
 
     const session = await auth();
-    const customerEmail = session?.user?.email ?? undefined;
+    if (!session?.user?.id || !dbEnabled) {
+      return NextResponse.json(
+        { error: "Log in first, then subscribe." },
+        { status: 401 }
+      );
+    }
+
+    // Reuse (or create) the member's Stripe customer so upgrades/downgrades and
+    // the billing portal all attach to one record.
+    const customerId = await getOrCreateCustomer(session.user.id, session.user.email);
 
     const checkout = await stripe().checkout.sessions.create({
       mode: "subscription",
+      customer: customerId,
       line_items: [{ price: priceId, quantity: 1 }],
-      customer_email: customerEmail,
       allow_promotion_codes: true,
       success_url: `${siteConfig.url}/dashboard?welcome=1`,
       cancel_url: `${siteConfig.url}/pricing`,
-      metadata: { tier }
+      metadata: { userId: session.user.id, tier }
     });
 
     return NextResponse.json({ url: checkout.url });
