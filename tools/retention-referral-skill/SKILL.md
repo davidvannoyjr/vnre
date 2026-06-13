@@ -43,19 +43,25 @@ FUB API from the sandbox — it is blocked.
 ## Steps
 
 ### 1. Pull
-Pull FUB contacts tagged/staged **Past Client** and **COI / Sphere**. For each, capture:
-`id, firstName, lastName, address, city, tags, stage, lastContactDate`, and — where the
-contact has a closed deal — `closeDate` and `salePrice`. Write a JSON array (or
-`{"contacts": [...]}`) to `_data/retention-pull-YYYY-MM-DD.json`.
+Two ways to produce `_data/retention-pull-YYYY-MM-DD.json`, both self-owned (no third party):
 
-The script backfills any missing `closeDate` / `salePrice` / `address` from the sold-history
-JSON by matching last name + address, so a thin pull still produces anniversary, move-window,
-and referral moments; equity moments need a sale price (from FUB or the sold list).
+- **Preferred — `scripts/fub_pull.py`.** Self-contained FUB v1 REST client. On any machine
+  with network + the API key: `FUB_API_KEY=… python3 fub_pull.py --config config.json --out
+  _data/retention-pull-YYYY-MM-DD.json`. It pulls the Past Client + Sphere segments, joins the
+  most-recent **won deal** (close date, sale price, property address), bulk-pulls
+  **communications** for a true last-contact date, and reads **property-view events** + person
+  custom fields (mortgage rate, birthday, CLV, preferred channel). See [`PULL_SPEC.md`](PULL_SPEC.md)
+  for the field contract and [`ENRICHMENTS.md`](ENRICHMENTS.md) for the full data map.
+- **In-session fallback — `fub_*` MCP tools.** Inside Cowork (no outbound network), assemble
+  the same JSON with `fub_search_people` + the deal/comm tools, then run the engine.
 
-**Full pull contract, field mapping, the works-today thin path, and the `fub_retention_pull`
-helper spec for Joey: see [`PULL_SPEC.md`](PULL_SPEC.md).** Three FUB schema facts must be
-confirmed there before the first live run (segment names, where close date/price live, and
-whether the sold JSON carries prices).
+The engine backfills any missing `closeDate` / `salePrice` / `address` from the sold-history
+JSON (last name + address), so even a thin pull yields anniversary, move-window, and referral
+moments; equity needs a sale price (from a FUB deal, a custom field, or the sold list).
+
+If `fub_*` tools are unavailable in-session: restart Claude; if still missing, run
+`04 Tools/followupboss-mcp/fix-claude-config.sh` with Claude fully quit. Never curl the FUB
+API from the Cowork sandbox — it is blocked (use `fub_pull.py` on a networked machine instead).
 
 ### 2. Score
 ```bash

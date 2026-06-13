@@ -1,0 +1,12 @@
+{
+  "_comment": "Copy to config.json and fill in. config.json is gitignored — never commit the key.",
+  "apiKeyFile": "~/Library/CloudStorage/GoogleDrive-david@vannoyre.com/.../02 Reference/fub-api-key.local.md",
+  "xSystem": "VNRE-Claude",
+  "xSystemKey": "REPLACE_WITH_YOUR_X_SYSTEM_KEY",
+  "commLookbackDays": 1095,
+  "segments": [
+    {"stage": "Past Client"},
+    {"tag": "COI"},
+    {"tag": "Sphere"}
+  ]
+}
