@@ -9,6 +9,17 @@ Design rules across all modules: deterministic Python (no network in the scoring
 offline `--selftest`, tunable constants at the top, **approval-gated** outputs (nothing sends or
 writes automatically), and secrets/financials kept out of git.
 
+## Layout & ownership
+
+```
+tools/vnre/    🏢 runs the brokerage (almost everything)
+tools/shared/  🔁 dual-use VNRE + DVN Coaching (call-coach today)
+```
+
+**[`MANIFEST.md`](MANIFEST.md) is the authoritative per-module classification** (business,
+maturity, keep) — read it before merging to see exactly what's VNRE vs. coaching-overlap.
+(In Drive these live flat under `04 Tools/`; the vnre/shared split is repo-clarity only.)
+
 ## Module index
 
 | Module | Stage | What it does | Status | To go live |
