@@ -96,7 +96,8 @@ def days_between(a, b):
 
 def tier_of(contact):
     blob = " ".join([contact.get("stage", "")] + contact.get("tags", [])).lower()
-    if any(k in blob for k in ("past client", "pastclient", "closed", "sold")):
+    # Tier 1 (top) = Past Client, DVN COI, Agent COI (per the operating manual)
+    if any(k in blob for k in ("past client", "pastclient", "closed", "sold", "dvn coi", "agent coi")):
         return "past_client"
     if any(k in blob for k in ("coi", "sphere", "center of influence")):
         return "coi"

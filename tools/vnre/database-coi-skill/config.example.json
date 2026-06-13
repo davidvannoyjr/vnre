@@ -1,5 +1,5 @@
 {
-  "_comment": "Copy to config.json and fill in. config.json is gitignored — never commit the key.",
+  "_comment": "Copy to config.json and fill in. config.json is gitignored — never commit the key. Segments below are DVN's real FUB labels (2026-06-13). 'stage' vs 'tag' may need flipping to match how your FUB stores each — adjust if a pull comes back empty for a segment.",
   "apiKeyFile": "~/Library/CloudStorage/GoogleDrive-david@vannoyre.com/.../02 Reference/fub-api-key.local.md",
   "xSystem": "VNRE-Claude",
   "xSystemKey": "REPLACE_WITH_YOUR_X_SYSTEM_KEY",
@@ -7,6 +7,7 @@
   "segments": [
     {"stage": "Past Client"},
     {"tag": "COI"},
-    {"tag": "Sphere"}
+    {"tag": "DVN COI"},
+    {"tag": "Agent COI"}
   ]
 }
