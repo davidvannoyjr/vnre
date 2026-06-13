@@ -17,6 +17,7 @@
     "stripe:setup": "node scripts/setup-stripe.mjs",
     "content:check": "node scripts/check-content.mjs",
     "topic:new": "node scripts/new-topic.mjs",
+    "topic:propose": "node scripts/propose-topics.mjs",
     "topic:draft": "node scripts/draft-topic.mjs",
     "content:publish-due": "node scripts/publish-due.mjs"
   },

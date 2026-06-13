@@ -10,10 +10,12 @@ export function SiteFooter() {
             <div className="font-bold text-steel">{siteConfig.name}</div>
             <div>{siteConfig.tagline}</div>
           </div>
-          <nav className="flex gap-6">
+          <nav className="flex flex-wrap gap-6">
             <Link href="/tutorials" className="hover:text-accent">Tutorials</Link>
             <Link href="/blog" className="hover:text-accent">Blog</Link>
             <Link href="/pricing" className="hover:text-accent">Pricing</Link>
+            <Link href="/about" className="hover:text-accent">About &amp; FAQ</Link>
+            <a href="/feed.xml" className="hover:text-accent">RSS</a>
           </nav>
         </div>
         <div className="mt-6 text-xs text-steel/50">

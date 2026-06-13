@@ -39,7 +39,13 @@ Commit. That's it. The next pipeline run drafts it.
 
 ## What the automation does
 
-Two GitHub Actions, both committing back to the repo:
+Three GitHub Actions, all committing back to the repo:
+
+0. **Propose topics** (`content-propose.yml`) — weekly (Sun 13:00 UTC) or on demand.
+   Runs `scripts/propose-topics.mjs`: asks Claude for fresh ideas across the four tracks and
+   three levels (run through your decision filter), appends them to `queue.yaml` as
+   `proposed`, and commits. This keeps your backlog full so there's always something to
+   approve — you never start from a blank page. Approving stays your call.
 
 1. **Draft approved topics** (`content-draft.yml`) — weekly (Mon 13:00 UTC) or on demand.
    Runs `scripts/draft-topic.mjs`: for every `approved` topic, calls Claude
