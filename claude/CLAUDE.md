@@ -173,15 +173,15 @@ Duplicate to start a new project. Sections: one-line purpose (VNRE or DVN Coachi
 4. `node_modules` never synced — `npm install` per device in each `04 Tools/` app.
 5. If a `<name> (1).ext` conflict file appears, newest content wins; merge manually and delete the duplicate.
 
-> GitHub mirror: this repo's `claude/` folder is the synced copy so Claude Code on the web auto-loads this manual. Drive stays canonical; if the two disagree, Drive wins. To re-sync after Drive edits, ask: "re-sync the Claude brain to GitHub."
+> **Source of truth = the GitHub repo `claude/`. Edit the brain there** — it's versioned, diffable, and structurally can't spawn the duplicate-`CLAUDE.md` problem that hand-editing Drive can. Claude Code on the web reads it directly. **Drive holds one downstream copy of this file** (`Claude md/CLAUDE.md`) so the desktop app / Drive-connected sessions read the same manual. After a GitHub edit, push it down by **overwriting that single Drive file in place — never create a second file.** There must be exactly one `CLAUDE.md` in Drive at all times.
 >
-> **One GitHub-canonical exception:** `DVN-Coaching-Framework.md` (the 22-Point System) is single-source-of-truth on **GitHub** — static reference content with no skill/FUB/artifact dependency, so it lives in the repo and Drive holds no copy. No sync schedule. §5 below is a **derived summary** of it; if the two disagree, the framework doc wins. A Drive re-sync must keep §5 as a thin pointer (don't restore the old five-stage block).
+> `DVN-Coaching-Framework.md` is **GitHub-only** (Drive holds no copy, nothing to sync). §5 above is a derived summary of it; the framework doc wins on conflict.
 
 ---
 
 ## 12. Audit & Provenance (2026-06-13)
 
-**Canonical source:** `Claude md/` on the VNRE shared drive (folder `1ICJ2KZN…`) — most-recently modified, holds all 8 live `CLAUDE.md` files. This master is built from it plus the unique persona content from the 2026-05-03 Google-Doc `CLAUDE.md`.
+**Built from (2026-06-13 consolidation):** `Claude md/` on the VNRE shared drive (folder `1ICJ2KZN…`) — the most-recently modified Drive files at the time — plus the unique persona content from the 2026-05-03 Google-Doc `CLAUDE.md`. Going forward the source of truth is the **GitHub repo** (see §11); Drive holds one downstream copy of this file.
 
 **Conflicts confirmed with DVN (2026-06-13):** experience 23+ yrs (May value) · database 3,000+ COI · coaching target client $200K–$1MM (May value) · avg price $450k–$550k · ERS DocuSeal template **4185542** live (supersedes 4148179).
 
