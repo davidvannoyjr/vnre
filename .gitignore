@@ -17,3 +17,7 @@ _data/
 *.jpg
 *.jpeg
 *.skill
+
+# Python cache
+__pycache__/
+*.pyc
