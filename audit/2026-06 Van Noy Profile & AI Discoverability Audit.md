@@ -48,6 +48,7 @@ Three numbers tell the story:
 
 **Likely MISSING / unclaimed (high-value gaps):**
 - 🟠 **Google Business Profile** — EXISTS and verified (4.8★/65 reviews, address correct) but owned by another Google account. As of 2026-06-13 DVN sent an ownership-transfer request (deadline Jun 16). #1 source for local AI answers/Maps — regain control fast (check other Google accounts / ask team first).
+- 🔴 **Google Local Services Ads (LSA / "Google Screened")** — a THIRD, separate Google entity found 2026-06-13: "The Van Noy Real Estate Group" carrying all-legacy data (5000 W 135th St / 66224, (913) 393-9469, thevannoygroup.com), $500/wk budget, pending verification, not live. Corrective action: **pause → fix all fields to canonical → leave off** (buyer-lead product, off-strategy for a listing-focused business). Three Google surfaces now confirmed: GBP (current, correct), LSA (legacy, wrong), and the org's search presence — they must not disagree.
 - 🔴 **Realtor.com agent profile** — no profile surfaced. Realtor.com is heavily scraped by AI engines.
 - 🔴 **Wikidata entity** — no structured knowledge-graph node. This is how you become a "known entity" to AI.
 - 🔴 **DVN Coaching** — essentially invisible. Externally mislabeled "Van Noy Coaching Method." No dedicated, discoverable presence.

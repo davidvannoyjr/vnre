@@ -89,5 +89,23 @@
 
 ---
 
+## 6. Google Local Services Ads (LSA / "Google Screened") — pause + correct
+
+**Problem:** A separate legacy LSA account, "The Van Noy Real Estate Group," with all-wrong data and a $500/wk budget, pending verification.
+**Channel:** ads.google.com/localservices (the Local Services Ads dashboard) — NOT the same as Google Business Profile.
+
+**Steps (in order):**
+1. **Pause first:** top of the Profile & budget screen, toggle the ad **OFF** so budget can't spend.
+2. **Decision:** LSA is a buyer-lead product (~$2k/mo at $500/wk). For a listing-focused business this is likely off-strategy — recommendation is to leave it **paused** unless you're deliberately building a buyer-lead channel.
+3. **Fix every field to canonical** (even while paused — it feeds Google/AI):
+   - Business name: "The Van Noy Real Estate Group" → **Van Noy Real Estate**
+   - Address: 5000 W 135th St, 66224 → **8700 State Line Rd, Suite 180, Leawood, KS 66206**
+   - Phone: (913) 393-9469 → **(913) 349-7580**
+   - Website: thevannoygroup.com → **https://vannoyre.com**
+   - Business bio: paste the short bio from `Canonical Identity Block.md`
+4. **Do NOT complete Google Screened verification** (license + background check) until data is fixed and you've decided to run LSA.
+
+---
+
 ### After each fix
 Log it in `Audit Log.md` §4 (Change Log) and check the matching task in §3. Re-verify the listing a week later — some platforms revert.
