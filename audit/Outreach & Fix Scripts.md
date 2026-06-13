@@ -94,8 +94,11 @@
 **Problem:** A separate legacy LSA account, "The Van Noy Real Estate Group," with all-wrong data and a $500/wk budget, pending verification.
 **Channel:** ads.google.com/localservices (the Local Services Ads dashboard) — NOT the same as Google Business Profile.
 
+**Update (2026-06-13):** there are **TWO** LSA accounts under the login — "Unknown Business Name" (723-297-1201, likely junk → **close** it) and "Van Noy Real Estate" Leawood (947-603-4678, the legacy one → pause/fix below). Phone numbers shown in the picker are Google **proxy/tracking** numbers, not real NAP. Do **not** create a new account. Goal: consolidate to **≤1** LSA account, paused and correct.
+
 **Steps (in order):**
-1. **Pause first:** top of the Profile & budget screen, toggle the ad **OFF** so budget can't spend.
+0. **Close the junk account:** open "Unknown Business Name" → if empty/not billing → Settings → Close/Cancel account.
+1. **Pause first:** in the "Van Noy Real Estate" account, top of Profile & budget, toggle the ad **OFF** so budget can't spend.
 2. **Decision:** LSA is a buyer-lead product (~$2k/mo at $500/wk). For a listing-focused business this is likely off-strategy — recommendation is to leave it **paused** unless you're deliberately building a buyer-lead channel.
 3. **Fix every field to canonical** (even while paused — it feeds Google/AI):
    - Business name: "The Van Noy Real Estate Group" → **Van Noy Real Estate**

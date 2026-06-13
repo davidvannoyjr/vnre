@@ -52,7 +52,7 @@ Legend: ☐ not started · ◐ in progress · ☑ done · ⏭ skipped
 | 3 | 301-redirect kchomelistings.com → vannoyre.com | Dev | ☐ | | Remove ReeceNichols language |
 | 4 | 301-redirect thevannoygroup.com → vannoyre.com | Dev | ☐ | | |
 | 5 | Kill/redirect vannoy-homes.kw.com | DVN/KW | ☐ | | Off-brand KW page |
-| 5b | Google Local Services Ads (LSA) — pause + fix data | DVN | ◐ | | 2026-06-13 FOUND: separate "Google Screened" LSA acct "The Van Noy Real Estate Group" w/ ALL wrong data (5000 W 135th St/66224, (913) 393-9469, thevannoygroup.com), $500/wk budget, pending verification. ACTION: pause ad → fix 4 fields to canonical → leave off (buyer-lead product, off-strategy for listings focus). |
+| 5b | Google Local Services Ads (LSA) — consolidate to ≤1, pause + fix | DVN | ◐ | | 2026-06-13 FOUND **TWO** LSA accounts under one login: (1) "Unknown Business Name" 723-297-1201 — likely junk/incomplete → CLOSE; (2) "Van Noy Real Estate" Leawood 947-603-4678 = the legacy "Van Noy Real Estate Group" profile w/ wrong NAP (5000 W 135th St/66224, thevannoygroup.com, $500/wk) → PAUSE + fix to canonical + leave off. Phone numbers shown are Google LSA proxy/tracking numbers, not real NAP. Don't create new accounts. End state: ≤1 LSA, paused & correct. |
 | 6 | Fix Yelp — name + address | DVN | ☐ | | → Van Noy Real Estate, 8700 State Line Rd |
 | 7 | Rename "Van Noy Group" on Agent Pronto | DVN | ☐ | | |
 | 8 | Add Schema.org JSON-LD to vannoyre.com | Dev | ☐ | | Block ready in Schema file |
@@ -97,6 +97,7 @@ Legend: ☐ not started · ◐ in progress · ☑ done · ⏭ skipped
 | 2026-06-13 | — | Added Review Request Templates and the Market Update → FAQ repurposing SOP | Claude | ✅ |
 | 2026-06-13 | Google Business Profile | DVN began claim — GBP already exists/verified under another account; sent ownership request (deadline Jun 16). Address correct. Captured real rating 4.8★/65 → into schema | DVN/Claude | ✅ |
 | 2026-06-13 | Google Local Services Ads | FOUND a third Google entity — legacy LSA "The Van Noy Real Estate Group" with all wrong NAP + thevannoygroup.com + $500/wk budget, pending verification. Corrective action: pause, fix to canonical, leave off (buyer-lead product, off-strategy) | DVN/Claude | ◐ |
+| 2026-06-13 | Google Local Services Ads | Account picker shows TWO LSA accounts: "Unknown Business Name" (723-297-1201, likely junk → close) + "Van Noy Real Estate" Leawood (947-603-4678, the legacy one → pause/fix/off). Consolidate to ≤1. | DVN/Claude | ◐ |
 | | | _next change here…_ | | |
 
 ---
