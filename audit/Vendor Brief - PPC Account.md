@@ -26,7 +26,11 @@ We're consolidating our entire public identity onto one brand and domain. Your a
 
 4. **Fix the disapprovals.** "Video | Seller | Retargeting" shows 34/34 ads disapproved, and several local search campaigns have all ads disapproved. We're paying for inventory that can't serve — please resolve or pause.
 
-5. **Send a quick account summary:** current monthly spend + management fee, which campaigns are actually producing seller leads, and where those leads land in our system. (Last 28 days showed ~$962 spend / 457 clicks / $2.10 CPC.)
+5. **Send a real ROI summary — this is the priority.** I can see the spend (≈$1,063 charged Jun 1, ~$8,600 YTD, trending down from ~$2,560/mo in January) but not the return. I need:
+   - Your **management fee** on top of ad spend.
+   - **How many seller/listing leads** this has produced in the last 3–6 months, and **how many became listings or closings** — i.e., cost per listing.
+   - Where those leads land in our CRM (Follow Up Boss).
+   - Given 34/34 disapproved ads on "Video | Seller | Retargeting" and 7/9 on "Video | Shorts," I'm effectively paying for inventory that can't serve. Justify the spend with results or let's cut what isn't working.
 
 Also: please confirm who has access to this account (Admin → Access and security) and add **david@vannoyre.com** as an admin so it's under our primary login going forward.
 
