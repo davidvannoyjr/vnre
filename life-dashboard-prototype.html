@@ -338,7 +338,10 @@ function loadAll(){try{return JSON.parse(localStorage.getItem(KEY))||{}}catch(e)
 function saveAll(o){localStorage.setItem(KEY,JSON.stringify(o))}
 function getDay(o){return loadAll()[dayKey(o)]||{hours:0,calls:0,contacts:0,apptsSet:0,apptsKept:0}}
 function setDay(o,d){const a=loadAll();a[dayKey(o)]=d;saveAll(a)}
-const AUTO={calls:118,contacts:22,apptsSet:2,apptsKept:2};
+/* FUB feed for today: pulled from the warehouse snapshot when connected, else manual-only.
+   LIVE.prospecting.today is null until Follow Up Boss is wired (see tools/life/CONNECT-FUB.md). */
+function autoProsp(){return (typeof LIVE!=='undefined'&&LIVE.prospecting&&LIVE.prospecting.today)||{calls:0,contacts:0,apptsSet:0,apptsKept:0};}
+function hasFub(){return typeof LIVE!=='undefined'&&LIVE.prospecting&&!!LIVE.prospecting.today;}
 function flash(){const f=document.getElementById('savedFlash');f.classList.add('show');setTimeout(()=>f.classList.remove('show'),900);}
 function renderLog(){
   const data=getDay(cursor),host=document.getElementById('logRows');host.innerHTML='';
@@ -349,7 +352,7 @@ function renderLog(){
   host.querySelectorAll('input').forEach(inp=>inp.onchange=()=>{const k=inp.id.replace('in_',''),d=getDay(cursor);d[k]=Math.max(0,+inp.value||0);setDay(cursor,d);flash();renderProspecting();});
 }
 function renderProspecting(){
-  const m=getDay(cursor),a=cursor===0?AUTO:{calls:0,contacts:0,apptsSet:0,apptsKept:0};
+  const m=getDay(cursor),a=cursor===0?autoProsp():{calls:0,contacts:0,apptsSet:0,apptsKept:0};
   const calls=(m.calls||0)+a.calls,contacts=(m.contacts||0)+a.contacts,set=(m.apptsSet||0)+a.apptsSet,kept=(m.apptsKept||0)+a.apptsKept,hours=(m.hours||0);
   const $=id=>document.getElementById(id);
   $('pCalls').innerHTML=calls+'<small>/150</small>';$('pContacts').innerHTML=contacts+'<small>/30</small>';$('pHours').innerHTML=hours+'<small>/3</small>';
@@ -358,7 +361,7 @@ function renderProspecting(){
   $('pCallsBar').style.width=pct+'%';$('pCallsBar').className=pct>=100?'g':'';$('pCallsPct').textContent=pct+'%';
   $('keptRate').textContent=set>0?Math.round(kept/set*100)+'%  ('+kept+'/'+set+')':'—';
   $('contactRatio').textContent=set>0?Math.round(contacts/set)+' : 1':(contacts>0?contacts+' : 0':'—');
-  $('prospSrc').textContent=cursor===0?'Manual + FUB':'Manual';
+  $('prospSrc').textContent=cursor!==0?'Manual':(hasFub()?'Manual + FUB':'Manual · FUB pending');
   const gc=$('gCalls');gc.innerHTML=pct+'<small>%</small>';gc.className='v '+(pct>=100?'g':pct>=60?'a':'r');
   const gk=$('gKept');gk.textContent=set>0?Math.round(kept/set*100)+'%':'—';gk.className='v '+(set>0&&kept/set>=0.7?'g':'');
 }
@@ -483,7 +486,10 @@ const LIVE={
   meta:{generated_at:"2026-06-14"},
   finance_biz:{revenue_ytd:446501.03,net_income_ytd:82462.81,margin:0.185,ar_over_30:11500,cash:25888.38,
     flags:["Balance-sheet net income ($285,929) ≠ P&L net income ($82,463) — reconcile basis."]},
-  labs:{total:123,in_range:104,out_of_range:5}
+  labs:{total:123,in_range:104,out_of_range:5},
+  /* Follow Up Boss — null until wired. When the runner writes prospecting_daily, set e.g.
+     prospecting:{today:{calls:142,contacts:28,apptsSet:2,apptsKept:2}} and the card auto-fills. */
+  prospecting:null
 };
 function money(n){const a=Math.abs(n);const s=n<0?'−':'';if(a>=1e6)return s+'$'+(a/1e6).toFixed(1)+'M';if(a>=1e3)return s+'$'+Math.round(a/1e3)+'K';return s+'$'+Math.round(a);}
 function hydrate(){

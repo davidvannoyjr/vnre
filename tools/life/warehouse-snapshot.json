@@ -9,7 +9,7 @@
       "credit_karma":    { "status": "live", "pulled": "score band + factor standings (no numeric score exposed)" },
       "google_calendar": { "status": "live", "pulled": "today's events" },
       "granola":         { "status": "live", "pulled": "meeting count (this week)" },
-      "follow_up_boss":  { "status": "pending", "reason": "custom MCP not connected in web session — Phase 1.5 target" },
+      "follow_up_boss":  { "status": "adapter-ready", "reason": "full REST adapter built (Phase 1.5); needs API key/MCP attached — see CONNECT-FUB.md. Not reachable in web session." },
       "whoop":           { "status": "pending", "reason": "device not yet purchased" },
       "withings":        { "status": "pending", "reason": "device not yet purchased" },
       "macro_log":       { "status": "pending", "reason": "skill not yet built" },
