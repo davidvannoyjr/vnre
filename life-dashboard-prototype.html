@@ -28,7 +28,7 @@ body{font-family:'Roboto',system-ui,sans-serif;background:var(--bg);color:var(--
   border-bottom:1px solid var(--line);padding:14px 16px calc(12px + env(safe-area-inset-top));
   padding-top:max(14px,env(safe-area-inset-top))}
 .brandrow{display:flex;align-items:center;justify-content:space-between}
-.brand{font-family:var(--cond);font-weight:700;letter-spacing:.5px;font-size:18px;text-transform:uppercase}
+.brand{font-family:var(--cond);font-weight:700;letter-spacing:.5px;font-size:15px;text-transform:uppercase}
 .brand b{color:var(--red)}
 .datenav{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--dim)}
 .datenav button{background:var(--card2);border:1px solid var(--line);color:var(--txt);
@@ -36,9 +36,17 @@ body{font-family:'Roboto',system-ui,sans-serif;background:var(--bg);color:var(--
 .datenav button:active{background:var(--red)}
 #dateLabel{min-width:96px;text-align:center;font-weight:500;color:var(--txt)}
 
+/* Summary row (persistent top) */
+.summary{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:10px}
+.sm{background:#202020;border:1px solid var(--line);border-radius:9px;padding:7px 4px 6px;text-align:center}
+.sm .v{font-family:var(--mono);font-weight:700;font-size:17px;line-height:1.05;color:var(--white)}
+.sm .v small{font-size:9px;color:var(--dim)}
+.sm .k{font-size:8.5px;text-transform:uppercase;letter-spacing:.4px;color:var(--dim);margin-top:3px}
+.sm .v.g{color:var(--green)} .sm .v.a{color:var(--amber)} .sm .v.r{color:var(--redsoft)}
+
 /* Brief */
-.brief{margin-top:10px;background:#181818;border:1px solid var(--line);border-left:3px solid var(--red);
-  border-radius:10px;padding:10px 12px;font-size:12.5px;color:#D8D8D8}
+.brief{background:#181818;border:1px solid var(--line);border-left:3px solid var(--red);
+  border-radius:10px;padding:10px 12px;font-size:12.5px;color:#D8D8D8;margin-bottom:12px}
 .brief .lbl{font-family:var(--cond);text-transform:uppercase;letter-spacing:.6px;font-size:10px;color:var(--red);margin-bottom:3px}
 
 /* Layout */
@@ -130,32 +138,29 @@ body{font-family:'Roboto',system-ui,sans-serif;background:var(--bg);color:var(--
   <!-- HEADER -->
   <div class="top">
     <div class="brandrow">
-      <div class="brand">DVN <b>LIFE</b></div>
+      <div class="brand">DVN <b>Life Design</b></div>
       <div class="datenav">
         <button id="prevDay">‹</button>
         <span id="dateLabel">Today</span>
         <button id="nextDay">›</button>
       </div>
     </div>
-    <div class="brief">
-      <div class="lbl">5 AM Life Brief</div>
-      <span id="briefText">Recovery 71% — green. Slept 7h12m (88%). Weight trend −0.4 lb. Yesterday: 142 calls / 28 contacts, 2 appts set / 2 kept. GCI pace 96% of plan. Push prospecting today.</span>
+    <!-- persistent cross-life summary -->
+    <div class="summary">
+      <div class="sm" data-jump="biz"><div class="v a">96<small>%</small></div><div class="k">GCI Pace</div></div>
+      <div class="sm" data-jump="today"><div class="v" id="gCalls">0<small>%</small></div><div class="k">Calls</div></div>
+      <div class="sm" data-jump="today"><div class="v" id="gKept">—</div><div class="k">Kept</div></div>
+      <div class="sm" data-jump="body"><div class="v g">71<small>%</small></div><div class="k">Recovery</div></div>
     </div>
   </div>
 
   <!-- ===== TODAY VIEW ===== -->
-  <div class="view active" id="view-today">
+  <div class="view" id="view-today">
     <div class="wrap">
 
-      <!-- AT A GLANCE (cross-life) -->
-      <div class="section-title">Today at a glance</div>
-      <div class="card" style="padding:12px">
-        <div class="stats" style="grid-template-columns:repeat(4,1fr);gap:8px">
-          <div class="stat" data-jump="body" style="cursor:pointer"><div class="v g">71<small>%</small></div><div class="k">Recovery</div></div>
-          <div class="stat" data-jump="body" style="cursor:pointer"><div class="v g">7:12</div><div class="k">Sleep</div></div>
-          <div class="stat"><div class="v" id="gCalls">0<small>%</small></div><div class="k">Calls Pace</div></div>
-          <div class="stat"><div class="v" id="gKept">—</div><div class="k">Kept-rate</div></div>
-        </div>
+      <div class="brief">
+        <div class="lbl">5 AM Life Brief</div>
+        <span id="briefText">Recovery 71% — green. Slept 7h12m (88%). Weight trend −0.4 lb. Yesterday: 142 calls / 28 contacts, 2 appts set / 2 kept. GCI pace 96% of plan. Push prospecting today.</span>
       </div>
 
       <!-- MANUAL DAILY LOG -->
@@ -272,7 +277,7 @@ body{font-family:'Roboto',system-ui,sans-serif;background:var(--bg);color:var(--
   </div>
 
   <!-- ===== BUSINESS VIEW ===== -->
-  <div class="view" id="view-biz">
+  <div class="view active" id="view-biz">
     <div class="wrap">
       <div class="section-title">Production vs 2026 Plan</div>
       <div class="card">
@@ -358,9 +363,9 @@ body{font-family:'Roboto',system-ui,sans-serif;background:var(--bg);color:var(--
 
 <!-- BOTTOM NAV -->
 <nav class="nav">
-  <button class="active" data-view="today"><span class="ni">📋</span>Today</button>
+  <button class="active" data-view="biz"><span class="ni">🏠</span>Business</button>
+  <button data-view="today"><span class="ni">📋</span>Daily</button>
   <button data-view="body"><span class="ni">❤️</span>Body</button>
-  <button data-view="biz"><span class="ni">🏠</span>Business</button>
   <button data-view="money"><span class="ni">💵</span>Money</button>
 </nav>
 
