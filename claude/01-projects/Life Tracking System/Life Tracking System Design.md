@@ -68,10 +68,15 @@ Legend: 🟢 already connected in your Claude environment · 🟡 you own it, ne
 |---|---|---|
 | Hours, sleep performance %, need vs got, debt, consistency, stages, disturbances | **Whoop API** | 🔵 |
 
-### Diet & macros
+### Diet & macros — conversational logging (no app)
 | Metric | Source | Status |
 |---|---|---|
-| Calories vs target, protein/carb/fat, fiber, water, alcohol, adherence days | **MacroFactor** (export) | 🔵 add (~$6/mo) — dynamic TDEE, frictionless logging, auto-adjusts targets off the weight trend |
+| Calories vs target, protein/carb/fat, fiber, water, alcohol, adherence days | **`macro-log` skill** — text or photo a meal to Claude → it estimates macros and writes them to the warehouse | 🔵 build |
+
+> **How it works:** "had 3 eggs, oatmeal, and a banana" or a photo of the plate → Claude
+> estimates calories/protein/carb/fat → confirms → writes a row to `diet.entries`. Running
+> daily totals roll up against the target. No MacroFactor, no manual app — the chat *is* the
+> logger. Macro target is set from the Whoop/Withings weight trend and your goal rate, recomputed weekly.
 
 ### Work / business — VNRE
 | Metric | Source | Status |
@@ -117,7 +122,7 @@ Legend: 🟢 already connected in your Claude environment · 🟡 you own it, ne
 
 These become the dashboard tiles. Targets pulled from your operating manual where they exist.
 
-**Body** — Recovery (green-day %), RHR trend ↓, workouts/wk (target set with you), weight → target, BP in range.
+**Body** — Recovery (green-day %), RHR trend ↓, **4 workouts/wk**, weight → target, BP in range.
 **Sleep** — 7.5 h actual · sleep performance >85% · consistency >80% · debt trending to zero.
 **Diet** — calories within band · protein target hit · adherence days/wk · weight trend vs goal rate.
 **Prospecting** — 150 calls/day · 30 contacts/day · 3 hrs in the chair · block-adherence %.
@@ -149,8 +154,8 @@ Ranked by payoff for the money.
 
 1. **Whoop 5.0** — body/sleep/recovery spine. *The API is the reason.* (~$20/mo)
 2. **Withings Body scale + BPM Connect** — automated weight, body-fat, blood pressure. No manual entry, both have APIs. (~$200 once)
-3. **MacroFactor** — macros that manage themselves off your weight trend. (~$6/mo)
-4. **Monarch Money** — personal net worth + budget aggregation via Plaid. (~$8/mo)
+3. **`macro-log` skill** — conversational/photo macro logging straight to the warehouse. No app, no fee.
+4. **Monarch Money** *(deferred — your call)* — personal net worth + budget aggregation via Plaid. (~$8/mo)
 5. **Supabase + n8n + Vercel** — the plumbing that makes it one system. (~$30/mo all-in)
 6. *(optional)* **CGM (Stelo/Lingo)** — metabolic/glucose response to food and stress. Run a 2–4 week experiment, not forever. (~$50/mo when worn)
 7. *(optional)* **RescueTime** — digital/screen time if you want to police focus. (~$12/mo)
@@ -164,10 +169,11 @@ Ranked by payoff for the money.
 | | Item | Cost |
 |---|---|---|
 | One-time | Whoop band + Withings scale + BP monitor | ~$300 |
-| Monthly | Whoop $20 · MacroFactor $6 · Monarch $8 · Supabase $25 · VPS/n8n $6 · Vercel $0 · domain ~$1 | **~$66/mo** |
+| Monthly | Whoop $20 · macro-log $0 · Supabase $25 · VPS/n8n $6 · Vercel $0 · domain ~$1 | **~$52/mo** |
+| Deferred | Monarch (personal net worth) — add when you decide | +$8/mo |
 | Optional | CGM ~$50/mo (when running) · RescueTime $12/mo | as desired |
 
-Roughly **$66/mo + ~$300 hardware** for the full automated system. Optional layers on top.
+Roughly **$52/mo + ~$300 hardware** for the full automated system. Monarch (+$8) and CGM are optional add-ons.
 
 ---
 
@@ -192,16 +198,20 @@ Roughly **$66/mo + ~$300 hardware** for the full automated system. Optional laye
 - Project brief: `claude/01-projects/Life Tracking System/CLAUDE.md`
 - This spec: `claude/01-projects/Life Tracking System/Life Tracking System Design.md`
 - Pipeline code (when built): `tools/life/` — mirrors the existing `tools/vnre/` skill pattern.
-- New skill: `life-brief` — joins the 5 AM scheduled-tasks set.
+- New skills: `life-brief` (5 AM roll-up, joins scheduled-tasks) · `macro-log` (text/photo a meal → estimate → write to `diet.entries`).
 
 ---
 
-## 10. Open decisions (need your call before Phase 0)
+## 10. Decisions
 
-1. **Whoop** — confirm go (recommended) vs Apple-Watch-only fallback.
-2. **Macro app** — MacroFactor (recommended, dynamic) vs Cronometer (deeper micronutrients/labs).
-3. **Personal aggregator** — Monarch (recommended, cross-platform) vs Copilot (iOS-only, slicker).
-4. **Orchestration** — n8n self-host (recommended, own data) vs Make.com (zero-ops, pricier).
-5. **CGM** — run a metabolic experiment now, or defer.
-6. **Workout target** — set the weekly training target so the Body tile has a line to hold.
-7. **Personal-finance accounts** — willing to link banks via Plaid/Monarch? (required for net worth.)
+**Locked:**
+- Body spine = **Whoop 5.0** (Apple Watch secondary).
+- Diet = **`macro-log` skill** — conversational/photo logging to Claude, no app.
+- Orchestration = **n8n self-hosted**.
+- Workout target = **4×/week** (recovery-gated by Whoop).
+- Finances = personal + business, **kept separate**.
+
+**Still open before Phase 0:**
+1. **Whoop** — final confirm to buy (recommended) vs Apple-Watch-only fallback.
+2. **Personal net worth** — add **Monarch** (link banks via Plaid) or stay Credit-Karma-only for now. *Deferred per your note — flip to "add Monarch" whenever you're ready and Phase 3 lights up.*
+3. **CGM** — run a 2–4 week metabolic experiment, or skip.

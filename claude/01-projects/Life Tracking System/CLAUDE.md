@@ -12,17 +12,20 @@ hourly/realtime business feeds; weekly financial + coaching roll-up.
 
 **Locked decisions (2026-06-14):**
 - Body spine = **Whoop 5.0** (chosen for its official API; Apple Watch secondary).
+- Diet = **`macro-log` skill** — text/photo a meal to Claude → it estimates and writes macros. No app.
 - Dashboard = **mobile-first PWA** (Next.js on Vercel; reuses the `vannoy_dashboard.html` look).
+- Orchestration = **n8n self-hosted**.
+- Workout target = **4×/week** (recovery-gated by Whoop).
 - Finances tracked **personal + business, kept separate** — no combined net-worth roll-up.
-- Spend posture = **premium but justified** (~$66/mo + ~$300 hardware).
-- Stack: Supabase (warehouse) · n8n (orchestration) · Vercel (PWA) · Claude `life-brief` skill (brain).
+- Spend posture = **premium but justified** (~$52/mo + ~$300 hardware; Monarch +$8 if added).
+- Stack: Supabase (warehouse) · n8n (orchestration) · Vercel (PWA) · Claude `life-brief` + `macro-log` skills.
 
-**Inputs:** Whoop · Withings (scale + BP) · MacroFactor · Google Calendar/Gmail/Drive · FUB ·
-Mojo · Upfirst · QBO · Monarch · Credit Karma · Granola · Audible.
+**Inputs:** Whoop · Withings (scale + BP) · `macro-log` (conversational) · Google Calendar/Gmail/Drive ·
+FUB · Mojo · Upfirst · QBO · Credit Karma · Granola · Audible · *(Monarch — deferred)*.
 
 **Outputs:** mobile PWA dashboard · `YYYY-MM-DD Life Brief.md` (daily) · warehouse tables · alerts.
 
-**Status:** Design complete, awaiting DVN's call on the 7 open decisions (§10 of the spec) to start Phase 0.
+**Status:** Design complete. 3 open items (Whoop buy confirm · Monarch yes/no · CGM yes/no — §10 of the spec).
 
-**Next step:** DVN answers open decisions → Phase 1 (wire the already-connected business feeds
-into the warehouse — value before hardware arrives).
+**Next step:** Phase 1 — wire the already-connected business feeds (FUB, Calendar, QBO, Granola)
+into the warehouse. Delivers value before any hardware arrives; doesn't depend on the open items.
