@@ -147,6 +147,17 @@ body{font-family:'Roboto',system-ui,sans-serif;background:var(--bg);color:var(--
   <div class="view active" id="view-today">
     <div class="wrap">
 
+      <!-- AT A GLANCE (cross-life) -->
+      <div class="section-title">Today at a glance</div>
+      <div class="card" style="padding:12px">
+        <div class="stats" style="grid-template-columns:repeat(4,1fr);gap:8px">
+          <div class="stat" data-jump="body" style="cursor:pointer"><div class="v g">71<small>%</small></div><div class="k">Recovery</div></div>
+          <div class="stat" data-jump="body" style="cursor:pointer"><div class="v g">7:12</div><div class="k">Sleep</div></div>
+          <div class="stat"><div class="v" id="gCalls">0<small>%</small></div><div class="k">Calls Pace</div></div>
+          <div class="stat"><div class="v" id="gKept">—</div><div class="k">Kept-rate</div></div>
+        </div>
+      </div>
+
       <!-- MANUAL DAILY LOG -->
       <div class="section-title">Daily Log — manual entry</div>
       <div class="card logcard">
@@ -213,6 +224,17 @@ body{font-family:'Roboto',system-ui,sans-serif;background:var(--bg);color:var(--
           </div>
         </div>
       </div>
+      <div class="section-title">Sleep</div>
+      <div class="card">
+        <div class="card-h"><div class="t"><div class="ic">😴</div> Last Night</div><span class="pill auto">Auto · Whoop</span></div>
+        <div class="stats">
+          <div class="stat"><div class="v g">7:12</div><div class="k">Hours</div></div>
+          <div class="stat"><div class="v g">88<small>%</small></div><div class="k">Performance</div></div>
+          <div class="stat"><div class="v a">82<small>%</small></div><div class="k">Consistency</div></div>
+        </div>
+        <div class="bar"><i class="g" style="width:88%"></i></div>
+        <div class="meta"><span>Need 8:10 · got 7:12</span><span>Debt 0:34</span></div>
+      </div>
       <div class="section-title">Workouts</div>
       <div class="card">
         <div class="card-h"><div class="t"><div class="ic">🏋️</div> This Week</div><span class="pill auto">Auto · Whoop</span></div>
@@ -232,17 +254,6 @@ body{font-family:'Roboto',system-ui,sans-serif;background:var(--bg);color:var(--
           <div class="stat"><div class="v g">122/78</div><div class="k">BP</div></div>
         </div>
         <div class="meta" style="margin-top:8px"><span>7-day weight trend</span><span style="color:var(--green)">−0.4 lb</span></div>
-      </div>
-      <div class="section-title">Sleep</div>
-      <div class="card">
-        <div class="card-h"><div class="t"><div class="ic">😴</div> Last Night</div><span class="pill auto">Auto · Whoop</span></div>
-        <div class="stats">
-          <div class="stat"><div class="v g">7:12</div><div class="k">Hours</div></div>
-          <div class="stat"><div class="v g">88<small>%</small></div><div class="k">Performance</div></div>
-          <div class="stat"><div class="v a">82<small>%</small></div><div class="k">Consistency</div></div>
-        </div>
-        <div class="bar"><i class="g" style="width:88%"></i></div>
-        <div class="meta"><span>Need 8:10 · got 7:12</span><span>Debt 0:34</span></div>
       </div>
       <div class="section-title">Diet — conversational logging</div>
       <div class="card">
@@ -428,6 +439,12 @@ function renderProspecting(){
   document.getElementById('keptRate').textContent = set>0 ? Math.round(kept/set*100)+'%  ('+kept+'/'+set+')' : '—';
   document.getElementById('contactRatio').textContent = set>0 ? Math.round(contacts/set)+' : 1' : (contacts>0? contacts+' : 0' : '—');
   document.getElementById('prospSrc').textContent = cursor===0 ? 'Manual + FUB' : 'Manual';
+  // glance strip
+  const gc=document.getElementById('gCalls');
+  gc.innerHTML=pct+'<small>%</small>'; gc.className='v '+(pct>=100?'g':pct>=60?'a':'r');
+  const gk=document.getElementById('gKept');
+  gk.textContent = set>0 ? Math.round(kept/set*100)+'%' : '—';
+  gk.className='v '+(set>0 && kept/set>=0.7 ? 'g':'');
 }
 
 /* ---------- date nav ---------- */
@@ -444,6 +461,9 @@ document.querySelectorAll('.nav button').forEach(b=>{
     document.getElementById('view-'+b.dataset.view).classList.add('active');
     window.scrollTo(0,0);
   };
+});
+document.querySelectorAll('[data-jump]').forEach(el=>{
+  el.onclick=()=>document.querySelector('.nav button[data-view="'+el.dataset.jump+'"]').click();
 });
 document.getElementById('fab').onclick=()=>{
   document.querySelector('.nav button[data-view="today"]').click();
