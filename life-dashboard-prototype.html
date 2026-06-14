@@ -257,9 +257,9 @@ body{font-family:'Roboto',system-ui,sans-serif;background:var(--bg);color:var(--
         </div>
         <div class="section-title">Labs — Function Health</div>
         <div class="card">
-          <div class="card-h"><div class="t"><div class="ic">🩸</div> Biomarkers</div><span class="pill auto">Auto · Function</span></div>
-          <div class="stats two"><div class="stat"><div class="v g">94</div><div class="k">In Range</div></div><div class="stat"><div class="v a">12</div><div class="k">Out of Range</div></div></div>
-          <div class="lrow" style="margin-top:8px"><span>Flagged to watch</span><span class="tag warn">ApoB · Vit D</span></div>
+          <div class="card-h"><div class="t"><div class="ic">🩸</div> Biomarkers</div><span class="pill auto" id="labsPill">Auto · Function</span></div>
+          <div class="stats two"><div class="stat"><div class="v g" id="labsIn">94</div><div class="k">In Range</div></div><div class="stat"><div class="v a" id="labsOut">12</div><div class="k">Out of Range</div></div></div>
+          <div class="lrow" style="margin-top:8px"><span>Total biomarkers tested</span><span class="rv" id="labsTotal">—</span></div>
         </div>
         <div class="section-title">Diet — conversational logging</div>
         <div class="card">
@@ -280,10 +280,11 @@ body{font-family:'Roboto',system-ui,sans-serif;background:var(--bg);color:var(--
       <div id="snap-money">
         <div class="section-title">Business — QuickBooks</div>
         <div class="card">
-          <div class="card-h"><div class="t"><div class="ic">🏦</div> P&amp;L</div><span class="pill auto">Auto · QBO</span></div>
-          <div class="stats"><div class="stat"><div class="v g">$612K</div><div class="k">Revenue</div></div><div class="stat"><div class="v">$214K</div><div class="k">Expenses</div></div><div class="stat"><div class="v g">35<small>%</small></div><div class="k">Margin</div></div></div>
-          <div class="lrow" style="margin-top:8px"><span>AR aging &gt; 30 days</span><span class="tag warn">$9.2K</span></div>
-          <div class="lrow"><span>Cash position</span><span class="rv">$148K</span></div>
+          <div class="card-h"><div class="t"><div class="ic">🏦</div> P&amp;L · YTD</div><span class="pill auto" id="pnlPill">Auto · QBO</span></div>
+          <div class="stats"><div class="stat"><div class="v g" id="qboRevenue">$612K</div><div class="k">Revenue</div></div><div class="stat"><div class="v" id="qboNet">$214K</div><div class="k">Net Income</div></div><div class="stat"><div class="v g" id="qboMargin">35<small>%</small></div><div class="k">Margin</div></div></div>
+          <div class="lrow" style="margin-top:8px"><span>AR aging &gt; 30 days</span><span class="tag warn" id="qboAR">$9.2K</span></div>
+          <div class="lrow"><span>Cash position</span><span class="rv" id="qboCash">$148K</span></div>
+          <div class="note" id="qboFlag" style="display:none"><span>⚠️</span><span></span></div>
         </div>
         <div class="section-title">Personal — kept separate</div>
         <div class="card">
@@ -470,7 +471,31 @@ document.querySelectorAll('.rangebar button').forEach(b=>b.onclick=()=>{currentR
 document.querySelectorAll('[data-jump]').forEach(el=>el.onclick=()=>{currentView=el.dataset.jump;render();});
 document.getElementById('fab').onclick=()=>{currentView='today';currentRange='snap';cursor=0;refreshDay();render();const i=document.getElementById('in_calls');if(i){i.focus();i.select();}window.scrollTo({top:160,behavior:'smooth'});};
 
-refreshDay();render();
+/* ===================== LIVE DATA (Phase 1 warehouse snapshot, pulled 2026-06-14) ===================== */
+const LIVE={
+  meta:{generated_at:"2026-06-14"},
+  finance_biz:{revenue_ytd:446501.03,net_income_ytd:82462.81,margin:0.185,ar_over_30:11500,cash:25888.38,
+    flags:["Balance-sheet net income ($285,929) ≠ P&L net income ($82,463) — reconcile basis."]},
+  labs:{total:123,in_range:104,out_of_range:5}
+};
+function money(n){const a=Math.abs(n);const s=n<0?'−':'';if(a>=1e6)return s+'$'+(a/1e6).toFixed(1)+'M';if(a>=1e3)return s+'$'+Math.round(a/1e3)+'K';return s+'$'+Math.round(a);}
+function hydrate(){
+  const f=LIVE.finance_biz;
+  if(f){
+    document.getElementById('qboRevenue').textContent=money(f.revenue_ytd);
+    const n=document.getElementById('qboNet');n.textContent=money(f.net_income_ytd);n.className='v '+(f.net_income_ytd>=0?'g':'r');
+    document.getElementById('qboMargin').innerHTML=Math.round(f.margin*100)+'<small>%</small>';
+    document.getElementById('qboAR').textContent=money(f.ar_over_30);
+    document.getElementById('qboCash').textContent=money(f.cash);
+    const p=document.getElementById('pnlPill');p.textContent='Live · QBO ✓';
+    if(f.flags&&f.flags[0]){const fl=document.getElementById('qboFlag');fl.style.display='';fl.querySelector('span:last-child').textContent=f.flags[0];}
+  }
+  const l=LIVE.labs;
+  if(l){document.getElementById('labsIn').textContent=l.in_range;document.getElementById('labsOut').textContent=l.out_of_range;document.getElementById('labsTotal').textContent=l.total;document.getElementById('labsPill').textContent='Live · Function ✓';}
+  const ft=document.querySelector('.foot');if(ft)ft.innerHTML='LIVE wired: QBO · Function Health · Credit Karma — pulled '+LIVE.meta.generated_at+'<br>Trend/forecast + unconnected tiles use placeholder series · VNRE — DVN Life Design';
+}
+
+refreshDay();render();hydrate();
 </script>
 </body>
 </html>

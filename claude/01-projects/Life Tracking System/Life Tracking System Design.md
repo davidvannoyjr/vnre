@@ -183,7 +183,7 @@ Roughly **$52/mo + ~$300 hardware** for the full automated system. Monarch (+$8)
 
 **Phase 0 — Decide & provision (week 1).** Confirm the open decisions (§10), buy hardware, open Supabase/n8n/Vercel, create Whoop/Monarch/MacroFactor accounts and developer keys.
 
-**Phase 1 — Business layer first (fastest win).** Wire the feeds you already have — FUB, Calendar, QBO, Granola — into the warehouse. Stand up the prospecting + production + calls/appointments tiles. You get value before any hardware arrives.
+**Phase 1 — Business layer first (fastest win). ◀ STARTED 2026-06-14.** Warehouse schema, ingestion code, and the first **real** snapshot are in `tools/life/`. Live-wired today: **QuickBooks** (P&L, balance sheet, A/R), **Function Health** (labs), **Credit Karma** (bands), **Google Calendar**, **Granola**. The dashboard's QBO + Labs tiles now show real numbers. **Gap: Follow Up Boss is not connected in the web session** — prospecting stays on the manual Daily Log until FUB is wired (Phase 1.5, top priority).
 
 **Phase 2 — Body layer.** Whoop API + Withings + MacroFactor into the warehouse. Body / sleep / diet tiles live.
 

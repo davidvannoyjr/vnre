@@ -1,0 +1,90 @@
+{
+  "meta": {
+    "generated_at": "2026-06-14T17:05:00Z",
+    "environment": "claude-code-web",
+    "note": "First real warehouse snapshot. Values pulled live from connected MCP sources on 2026-06-14. Pending sources carry no data yet.",
+    "sources": {
+      "quickbooks":      { "status": "live", "pulled": "P&L YTD, balance sheet, A/R aging" },
+      "function_health": { "status": "live", "pulled": "biomarker in/out-of-range summary" },
+      "credit_karma":    { "status": "live", "pulled": "score band + factor standings (no numeric score exposed)" },
+      "google_calendar": { "status": "live", "pulled": "today's events" },
+      "granola":         { "status": "live", "pulled": "meeting count (this week)" },
+      "follow_up_boss":  { "status": "pending", "reason": "custom MCP not connected in web session — Phase 1.5 target" },
+      "whoop":           { "status": "pending", "reason": "device not yet purchased" },
+      "withings":        { "status": "pending", "reason": "device not yet purchased" },
+      "macro_log":       { "status": "pending", "reason": "skill not yet built" },
+      "monarch":         { "status": "deferred", "reason": "personal net worth — DVN deciding" }
+    }
+  },
+
+  "finance_biz": {
+    "as_of": "2026-06-14",
+    "revenue_ytd": 446501.03,
+    "gross_profit_ytd": 349572.73,
+    "opex_ytd": 267109.92,
+    "net_income_ytd": 82462.81,
+    "margin": 0.185,
+    "cash": 25888.38,
+    "cash_accounts": { "Brokerage": 13009.56, "Coaching": 1895.71, "Operating": 5686.48, "Tax Savings": 5296.63 },
+    "accounts_receivable": 16050.0,
+    "ar_over_30": 11500.0,
+    "ar_1_30": 4550.0,
+    "ar_91_plus_customer": "All Western Mortgage ($11,500)",
+    "equity": 57423.94,
+    "liabilities": 70642.09,
+    "current_ratio": 1.81,
+    "monthly": [
+      { "month": "2026-01", "revenue": 144949.73, "net": 3798.35 },
+      { "month": "2026-02", "revenue": 50495.25,  "net": -53312.86 },
+      { "month": "2026-03", "revenue": 86492.22,  "net": -38152.39 },
+      { "month": "2026-04", "revenue": 101995.38, "net": -5949.90 },
+      { "month": "2026-05", "revenue": 34223.85,  "net": -41480.25 },
+      { "month": "2026-06", "revenue": 19594.60,  "net": -18198.63 }
+    ],
+    "flags": [
+      "Balance-sheet Net Income ($285,929) does not match P&L Net Income ($82,463) — reconcile accounting basis/categorization before trusting either as the headline.",
+      "Monthly net income is negative Feb–Jun while YTD P&L net is positive — monthly 'expenses' include COGS/commission payouts; headline opex excludes them. Confirm mapping."
+    ]
+  },
+
+  "labs": {
+    "as_of": "2026-06-14",
+    "provider": "Function Health",
+    "total": 123,
+    "in_range": 104,
+    "out_of_range": 5,
+    "uncategorized": 14
+  },
+
+  "credit": {
+    "as_of": "2026-06-14",
+    "band": "GOOD",
+    "model": "VantageScore 3.0 (TransUnion)",
+    "note": "Credit Karma exposes rating bands and factor standings only — not the numeric score.",
+    "factors": [
+      { "factor": "Payment history",   "impact": "HIGH",   "standing": "GOOD" },
+      { "factor": "Card utilization",  "impact": "HIGH",   "standing": "EXCELLENT" },
+      { "factor": "Derogatory marks",  "impact": "HIGH",   "standing": "EXCELLENT" },
+      { "factor": "Credit age",        "impact": "MEDIUM", "standing": "FAIR" },
+      { "factor": "Total accounts",    "impact": "LOW",    "standing": "EXCELLENT" },
+      { "factor": "Hard inquiries",    "impact": "LOW",    "standing": "GOOD" }
+    ]
+  },
+
+  "calendar_today": [
+    { "start": "05:15", "end": "10:15", "summary": "Focus time", "type": "FOCUS_TIME", "category": "admin" },
+    { "start": "10:30", "end": "11:15", "summary": "LIFT",       "type": "DEFAULT",    "category": "workout" },
+    { "start": "12:00", "end": "12:15", "summary": "Check Out",  "type": "OUT_OF_OFFICE", "category": "personal" },
+    { "start": "13:00", "end": "14:30", "summary": "DRIVE",      "type": "OUT_OF_OFFICE", "category": "personal" }
+  ],
+
+  "granola": { "this_week_count": 0 },
+
+  "pending": {
+    "follow_up_boss": "calls / contacts / appts set+kept — manual log covers this until connected",
+    "whoop": "recovery / sleep / strain / HRV",
+    "withings": "weight / body fat / blood pressure",
+    "macro_log": "calories / macros",
+    "monarch": "personal net worth / budget"
+  }
+}

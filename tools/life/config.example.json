@@ -1,0 +1,30 @@
+{
+  "warehouse": {
+    "url": "postgresql://USER:PASSWORD@db.PROJECT.supabase.co:5432/postgres",
+    "rest_url": "https://PROJECT.supabase.co/rest/v1",
+    "service_key": "SUPABASE_SERVICE_ROLE_KEY"
+  },
+  "sources": {
+    "quickbooks": {
+      "enabled": true,
+      "client_id": "QBO_CLIENT_ID",
+      "client_secret": "QBO_CLIENT_SECRET",
+      "realm_id": "QBO_REALM_ID",
+      "refresh_token": "QBO_REFRESH_TOKEN",
+      "environment": "production"
+    },
+    "function_health": { "enabled": true, "api_token": "FUNCTION_HEALTH_TOKEN" },
+    "credit_karma":    { "enabled": true, "note": "bands only via connector; no numeric score" },
+    "google_calendar": {
+      "enabled": true,
+      "calendar_id": "david@vannoyre.com",
+      "service_account_json": "path/to/google-service-account.json"
+    },
+    "granola":         { "enabled": true, "api_token": "GRANOLA_TOKEN" },
+    "follow_up_boss":  { "enabled": false, "api_key": "FUB_API_KEY", "note": "Phase 1.5 — primary prospecting source" },
+    "whoop":           { "enabled": false, "client_id": "WHOOP_ID", "client_secret": "WHOOP_SECRET", "refresh_token": "WHOOP_REFRESH" },
+    "withings":        { "enabled": false, "client_id": "WITHINGS_ID", "client_secret": "WITHINGS_SECRET", "refresh_token": "WITHINGS_REFRESH" },
+    "macro_log":       { "enabled": false, "note": "written directly by the macro-log Claude skill" },
+    "monarch":         { "enabled": false, "note": "deferred — personal net worth" }
+  }
+}
