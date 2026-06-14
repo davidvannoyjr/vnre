@@ -6,7 +6,7 @@
 <meta name="theme-color" content="#1C1C1C">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
-<title>DVN Life Dashboard</title>
+<title>DVN Life Design</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Roboto+Condensed:wght@700&family=Roboto+Mono:wght@500;700&display=swap" rel="stylesheet">
 <style>
@@ -14,29 +14,23 @@
   --red:#C8102E; --charcoal:#1C1C1C; --gray:#6E6E6E; --white:#FFFFFF;
   --bg:#0E0E0E; --card:#1A1A1A; --card2:#222; --line:#2E2E2E;
   --txt:#F4F4F4; --dim:#9A9A9A; --green:#2FBF71; --amber:#F2B441; --redsoft:#E5546A;
-  --mono:'Roboto Mono',ui-monospace,monospace;
-  --cond:'Roboto Condensed',sans-serif;
+  --mono:'Roboto Mono',ui-monospace,monospace; --cond:'Roboto Condensed',sans-serif;
 }
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-body{font-family:'Roboto',system-ui,sans-serif;background:var(--bg);color:var(--txt);
-  font-size:14px;line-height:1.45;padding-bottom:84px;
-  padding-left:env(safe-area-inset-left);padding-right:env(safe-area-inset-right)}
+body{font-family:'Roboto',system-ui,sans-serif;background:var(--bg);color:var(--txt);font-size:14px;line-height:1.45;
+  padding-bottom:84px;padding-left:env(safe-area-inset-left);padding-right:env(safe-area-inset-right)}
 .app{max-width:480px;margin:0 auto;min-height:100vh;background:var(--bg)}
 
-/* Header */
 .top{position:sticky;top:0;z-index:30;background:linear-gradient(180deg,#161616,#101010);
-  border-bottom:1px solid var(--line);padding:14px 16px calc(12px + env(safe-area-inset-top));
-  padding-top:max(14px,env(safe-area-inset-top))}
+  border-bottom:1px solid var(--line);padding:max(12px,env(safe-area-inset-top)) 14px 11px}
 .brandrow{display:flex;align-items:center;justify-content:space-between}
 .brand{font-family:var(--cond);font-weight:700;letter-spacing:.5px;font-size:15px;text-transform:uppercase}
 .brand b{color:var(--red)}
 .datenav{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--dim)}
-.datenav button{background:var(--card2);border:1px solid var(--line);color:var(--txt);
-  width:26px;height:26px;border-radius:7px;font-size:14px;cursor:pointer}
+.datenav button{background:var(--card2);border:1px solid var(--line);color:var(--txt);width:26px;height:26px;border-radius:7px;font-size:14px;cursor:pointer}
 .datenav button:active{background:var(--red)}
-#dateLabel{min-width:96px;text-align:center;font-weight:500;color:var(--txt)}
+#dateLabel{min-width:92px;text-align:center;font-weight:500;color:var(--txt)}
 
-/* Summary row (persistent top) */
 .summary{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:10px}
 .sm{background:#202020;border:1px solid var(--line);border-radius:9px;padding:7px 4px 6px;text-align:center}
 .sm .v{font-family:var(--mono);font-weight:700;font-size:17px;line-height:1.05;color:var(--white)}
@@ -44,26 +38,23 @@ body{font-family:'Roboto',system-ui,sans-serif;background:var(--bg);color:var(--
 .sm .k{font-size:8.5px;text-transform:uppercase;letter-spacing:.4px;color:var(--dim);margin-top:3px}
 .sm .v.g{color:var(--green)} .sm .v.a{color:var(--amber)} .sm .v.r{color:var(--redsoft)}
 
-/* Brief */
-.brief{background:#181818;border:1px solid var(--line);border-left:3px solid var(--red);
-  border-radius:10px;padding:10px 12px;font-size:12.5px;color:#D8D8D8;margin-bottom:12px}
-.brief .lbl{font-family:var(--cond);text-transform:uppercase;letter-spacing:.6px;font-size:10px;color:var(--red);margin-bottom:3px}
+.rangebar{display:flex;gap:5px;margin-top:9px;overflow-x:auto}
+.rangebar button{flex:1;min-width:52px;white-space:nowrap;background:#202020;border:1px solid var(--line);color:var(--dim);
+  font-family:var(--cond);text-transform:uppercase;letter-spacing:.5px;font-size:10px;padding:6px 4px;border-radius:8px;cursor:pointer}
+.rangebar button.active{background:var(--red);border-color:var(--red);color:#fff}
 
-/* Layout */
 .wrap{padding:14px 14px 0}
-.section-title{font-family:var(--cond);text-transform:uppercase;letter-spacing:.8px;
-  font-size:11px;color:var(--gray);margin:18px 4px 8px}
+.section-title{font-family:var(--cond);text-transform:uppercase;letter-spacing:.8px;font-size:11px;color:var(--gray);margin:18px 4px 8px}
+.section-title:first-child{margin-top:4px}
 .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;margin-bottom:12px}
 .card-h{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
 .card-h .t{display:flex;align-items:center;gap:8px;font-weight:700;font-size:14px}
 .ic{width:26px;height:26px;border-radius:8px;display:grid;place-items:center;font-size:14px;background:#262626}
-.pill{font-size:9px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;
-  padding:3px 7px;border-radius:20px}
+.pill{font-size:9px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;padding:3px 7px;border-radius:20px}
 .pill.auto{background:rgba(47,191,113,.14);color:var(--green)}
 .pill.manual{background:rgba(242,180,65,.16);color:var(--amber)}
 .pill.soon{background:#262626;color:var(--dim)}
 
-/* Stat grids */
 .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
 .stats.two{grid-template-columns:repeat(2,1fr)}
 .stat{background:var(--card2);border-radius:10px;padding:10px;text-align:center}
@@ -72,41 +63,31 @@ body{font-family:'Roboto',system-ui,sans-serif;background:var(--bg);color:var(--
 .stat .k{font-size:9.5px;text-transform:uppercase;letter-spacing:.5px;color:var(--dim);margin-top:4px}
 .stat .v.g{color:var(--green)} .stat .v.a{color:var(--amber)} .stat .v.r{color:var(--redsoft)}
 
-/* progress */
 .bar{height:7px;background:#2A2A2A;border-radius:5px;overflow:hidden;margin:8px 0 4px}
 .bar > i{display:block;height:100%;border-radius:5px;background:linear-gradient(90deg,var(--red),#E5546A);transition:width .5s}
 .bar > i.g{background:linear-gradient(90deg,#1f9d59,var(--green))}
 .meta{display:flex;justify-content:space-between;font-size:10.5px;color:var(--dim)}
 
-/* Ring */
 .ring-row{display:flex;align-items:center;gap:14px}
-.ring{--p:0;--c:var(--green);width:74px;height:74px;border-radius:50%;flex:none;
-  background:conic-gradient(var(--c) calc(var(--p)*1%),#2A2A2A 0);display:grid;place-items:center}
+.ring{width:74px;height:74px;border-radius:50%;flex:none;display:grid;place-items:center}
 .ring::before{content:"";position:absolute;width:58px;height:58px;border-radius:50%;background:var(--card)}
-.ring span{position:relative;font-family:var(--mono);font-weight:700;font-size:17px}
 .ring-wrap{position:relative;display:grid;place-items:center}
 .ring-side{flex:1}
-.ring-side .big{font-family:var(--mono);font-weight:700;font-size:15px}
-.ring-side .sub{font-size:11px;color:var(--dim)}
 
-/* Manual entry */
 .logcard{border:1px solid #3a2f12;background:linear-gradient(180deg,#1d1a12,#1a1a1a)}
 .logrow{display:flex;align-items:center;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--line)}
 .logrow:last-child{border-bottom:none}
 .logrow .lk{font-size:12.5px}
 .logrow .lk small{display:block;color:var(--dim);font-size:10px}
 .stepper{display:flex;align-items:center;gap:8px}
-.stepper button{width:30px;height:30px;border-radius:9px;border:1px solid var(--line);
-  background:var(--card2);color:var(--txt);font-size:18px;font-weight:700;cursor:pointer;line-height:1}
+.stepper button{width:30px;height:30px;border-radius:9px;border:1px solid var(--line);background:var(--card2);color:var(--txt);font-size:18px;font-weight:700;cursor:pointer;line-height:1}
 .stepper button:active{background:var(--red);border-color:var(--red)}
-.stepper input{width:54px;height:30px;text-align:center;background:#0E0E0E;border:1px solid var(--line);
-  color:var(--white);border-radius:8px;font-family:var(--mono);font-weight:700;font-size:15px}
+.stepper input{width:54px;height:30px;text-align:center;background:#0E0E0E;border:1px solid var(--line);color:var(--white);border-radius:8px;font-family:var(--mono);font-weight:700;font-size:15px}
 .stepper input:focus{outline:none;border-color:var(--red)}
 .note{font-size:10.5px;color:var(--dim);margin-top:10px;display:flex;gap:6px;align-items:flex-start}
 .savedflash{font-size:10px;color:var(--green);opacity:0;transition:opacity .3s}
 .savedflash.show{opacity:1}
 
-/* list rows */
 .lrow{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid var(--line);font-size:13px}
 .lrow:last-child{border-bottom:none}
 .lrow .rv{font-family:var(--mono);font-weight:700}
@@ -114,254 +95,218 @@ body{font-family:'Roboto',system-ui,sans-serif;background:var(--bg);color:var(--
 .tag.ok{background:rgba(47,191,113,.14);color:var(--green)}
 .tag.warn{background:rgba(242,180,65,.16);color:var(--amber)}
 
-/* bottom nav */
-.nav{position:fixed;bottom:0;left:0;right:0;z-index:40;background:#141414;border-top:1px solid var(--line);
-  display:flex;max-width:480px;margin:0 auto;padding-bottom:env(safe-area-inset-bottom)}
-.nav button{flex:1;background:none;border:none;color:var(--dim);padding:9px 0 11px;font-size:10px;cursor:pointer;
-  display:flex;flex-direction:column;align-items:center;gap:3px;font-family:var(--cond);text-transform:uppercase;letter-spacing:.5px}
+.brief{background:#181818;border:1px solid var(--line);border-left:3px solid var(--red);border-radius:10px;padding:10px 12px;font-size:12.5px;color:#D8D8D8;margin-bottom:12px}
+.brief .lbl{font-family:var(--cond);text-transform:uppercase;letter-spacing:.6px;font-size:10px;color:var(--red);margin-bottom:3px}
+
+/* Trend + Forecast */
+.tc-h{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:2px}
+.tc-h .lab{font-size:12.5px;font-weight:500}
+.tc-h .cur{font-family:var(--mono);font-weight:700;font-size:17px}
+.delta{font-family:var(--mono);font-weight:700;font-size:11px}
+.delta.up{color:var(--green)} .delta.down{color:var(--redsoft)}
+.spark{width:100%;height:48px;display:block;margin-top:6px}
+.tc-foot{display:flex;justify-content:space-between;font-size:10px;color:var(--dim);margin-top:5px}
+.legend{display:flex;flex-wrap:wrap;gap:12px;font-size:9.5px;color:var(--dim);margin:0 4px 10px}
+.legend span{display:flex;align-items:center;gap:4px}
+.legend i{display:inline-block;width:14px;height:0;border-top:2px solid var(--red)}
+.legend i.proj{border-top:2px dashed var(--redsoft)} .legend i.tgt{border-top:1.5px dotted var(--gray)}
+.imp{background:linear-gradient(180deg,#1d1410,#1a1a1a);border:1px solid #3a2412;border-left:3px solid var(--red);border-radius:12px;padding:13px;margin-bottom:12px}
+.imp h4{font-family:var(--cond);text-transform:uppercase;letter-spacing:.6px;font-size:11px;color:var(--red);margin-bottom:7px}
+.imp p{font-size:12.5px;color:#DCDCDC;margin-bottom:6px}
+.imp p:last-child{margin-bottom:0}
+.imp .k{color:var(--white);font-weight:700}
+.fcrow{display:flex;justify-content:space-between;align-items:center;margin:4px 0 2px}
+.fcrow .blk{text-align:center;flex:1}
+.fcrow .blk .v{font-family:var(--mono);font-weight:700;font-size:16px}
+.fcrow .blk .k{font-size:8.5px;text-transform:uppercase;letter-spacing:.4px;color:var(--dim);margin-top:2px}
+.fcrow .arrow{color:var(--gray);font-size:15px;padding:0 6px}
+
+.nav{position:fixed;bottom:0;left:0;right:0;z-index:40;background:#141414;border-top:1px solid var(--line);display:flex;max-width:480px;margin:0 auto;padding-bottom:env(safe-area-inset-bottom)}
+.nav button{flex:1;background:none;border:none;color:var(--dim);padding:9px 0 11px;font-size:10px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:3px;font-family:var(--cond);text-transform:uppercase;letter-spacing:.5px}
 .nav button .ni{font-size:18px}
 .nav button.active{color:var(--red)}
-
-/* FAB */
-.fab{position:fixed;right:calc(50% - 240px + 16px);bottom:84px;z-index:45;width:54px;height:54px;border-radius:50%;
-  background:var(--red);color:#fff;border:none;font-size:26px;box-shadow:0 6px 20px rgba(200,16,46,.5);cursor:pointer}
+.fab{position:fixed;right:calc(50% - 240px + 16px);bottom:84px;z-index:45;width:54px;height:54px;border-radius:50%;background:var(--red);color:#fff;border:none;font-size:26px;box-shadow:0 6px 20px rgba(200,16,46,.5);cursor:pointer}
 @media(max-width:512px){.fab{right:16px}}
-
 .view{display:none}.view.active{display:block}
 .foot{text-align:center;color:var(--gray);font-size:10px;padding:18px 0 8px}
-.hidden{display:none}
 </style>
 </head>
 <body>
 <div class="app">
 
-  <!-- HEADER -->
   <div class="top">
     <div class="brandrow">
       <div class="brand">DVN <b>Life Design</b></div>
-      <div class="datenav">
-        <button id="prevDay">‹</button>
-        <span id="dateLabel">Today</span>
-        <button id="nextDay">›</button>
-      </div>
+      <div class="datenav"><button id="prevDay">‹</button><span id="dateLabel">Today</span><button id="nextDay">›</button></div>
     </div>
-    <!-- persistent cross-life summary -->
     <div class="summary">
       <div class="sm" data-jump="biz"><div class="v a">96<small>%</small></div><div class="k">GCI Pace</div></div>
       <div class="sm" data-jump="today"><div class="v" id="gCalls">0<small>%</small></div><div class="k">Calls</div></div>
       <div class="sm" data-jump="today"><div class="v" id="gKept">—</div><div class="k">Kept</div></div>
       <div class="sm" data-jump="body"><div class="v g">71<small>%</small></div><div class="k">Recovery</div></div>
     </div>
-  </div>
-
-  <!-- ===== TODAY VIEW ===== -->
-  <div class="view" id="view-today">
-    <div class="wrap">
-
-      <div class="brief">
-        <div class="lbl">5 AM Life Brief</div>
-        <span id="briefText">Recovery 71% — green. Slept 7h12m (88%). Weight trend −0.4 lb. Yesterday: 142 calls / 28 contacts, 2 appts set / 2 kept. GCI pace 96% of plan. Push prospecting today.</span>
-      </div>
-
-      <!-- MANUAL DAILY LOG -->
-      <div class="section-title">Daily Log — manual entry</div>
-      <div class="card logcard">
-        <div class="card-h">
-          <div class="t"><div class="ic">✍️</div> Worked Activity</div>
-          <span class="pill manual">Manual</span>
-        </div>
-        <div id="logRows"></div>
-        <div class="note">
-          <span>↳</span>
-          <span>Log here when FUB, Mojo, Upfirst or the calendar don't capture it automatically. Saved to this device per day — survives refresh. These feed the Prospecting card live.</span>
-        </div>
-        <div style="text-align:right;margin-top:6px"><span class="savedflash" id="savedFlash">Saved ✓</span></div>
-      </div>
-
-      <!-- PROSPECTING (manual + auto blend) -->
-      <div class="section-title">Prospecting &amp; Conversion</div>
-      <div class="card">
-        <div class="card-h">
-          <div class="t"><div class="ic">📞</div> Prospecting</div>
-          <span class="pill manual" id="prospSrc">Manual + FUB</span>
-        </div>
-        <div class="stats">
-          <div class="stat"><div class="v" id="pCalls">0<small>/150</small></div><div class="k">Calls</div></div>
-          <div class="stat"><div class="v" id="pContacts">0<small>/30</small></div><div class="k">Contacts</div></div>
-          <div class="stat"><div class="v" id="pHours">0<small>/3</small></div><div class="k">Hrs</div></div>
-        </div>
-        <div class="bar"><i id="pCallsBar" style="width:0%"></i></div>
-        <div class="meta"><span>Daily call target</span><span id="pCallsPct">0%</span></div>
-        <div class="stats two" style="margin-top:12px">
-          <div class="stat"><div class="v" id="pSet">0</div><div class="k">Appts Set</div></div>
-          <div class="stat"><div class="v g" id="pKept">0</div><div class="k">Appts Kept</div></div>
-        </div>
-        <div class="lrow" style="margin-top:8px"><span>Appointment kept-rate</span><span class="rv" id="keptRate">—</span></div>
-        <div class="lrow"><span>Contacts → appt (target ~50:1)</span><span class="rv" id="contactRatio">—</span></div>
-      </div>
-
-      <!-- TIME / CALENDAR -->
-      <div class="card">
-        <div class="card-h">
-          <div class="t"><div class="ic">🗓️</div> Time Structure</div>
-          <span class="pill auto">Auto · Calendar</span>
-        </div>
-        <div class="lrow"><span>Prospecting block held</span><span class="tag ok">3.0 / 3.0 h</span></div>
-        <div class="lrow"><span>Appointments</span><span class="rv">2</span></div>
-        <div class="lrow"><span>Admin / reactive</span><span class="rv">1.5 h</span></div>
-        <div class="lrow"><span>Revenue-producing %</span><span class="rv" style="color:var(--green)">64%</span></div>
-      </div>
+    <div class="rangebar">
+      <button class="active" data-range="snap">Now</button>
+      <button data-range="30d">30D</button>
+      <button data-range="90d">90D</button>
+      <button data-range="6m">6M</button>
+      <button data-range="fc">Forecast</button>
     </div>
   </div>
 
-  <!-- ===== BODY VIEW ===== -->
-  <div class="view" id="view-body">
-    <div class="wrap">
-      <div class="section-title">Recovery &amp; Strain</div>
-      <div class="card">
-        <div class="card-h"><div class="t"><div class="ic">❤️</div> Whoop Recovery</div><span class="pill auto">Auto · Whoop</span></div>
-        <div class="ring-row">
-          <div class="ring-wrap"><div class="ring" style="--p:71;--c:var(--green)"></div><span style="position:absolute;font-family:var(--mono);font-weight:700">71%</span></div>
-          <div class="ring-side">
-            <div class="lrow"><span>HRV</span><span class="rv">68 ms</span></div>
-            <div class="lrow"><span>Resting HR</span><span class="rv">54 bpm</span></div>
-            <div class="lrow"><span>Day strain</span><span class="rv">9.4</span></div>
-          </div>
-        </div>
-      </div>
-      <div class="section-title">Sleep</div>
-      <div class="card">
-        <div class="card-h"><div class="t"><div class="ic">😴</div> Last Night</div><span class="pill auto">Auto · Whoop</span></div>
-        <div class="stats">
-          <div class="stat"><div class="v g">7:12</div><div class="k">Hours</div></div>
-          <div class="stat"><div class="v g">88<small>%</small></div><div class="k">Performance</div></div>
-          <div class="stat"><div class="v a">82<small>%</small></div><div class="k">Consistency</div></div>
-        </div>
-        <div class="bar"><i class="g" style="width:88%"></i></div>
-        <div class="meta"><span>Need 8:10 · got 7:12</span><span>Debt 0:34</span></div>
-      </div>
-      <div class="section-title">Workouts</div>
-      <div class="card">
-        <div class="card-h"><div class="t"><div class="ic">🏋️</div> This Week</div><span class="pill auto">Auto · Whoop</span></div>
-        <div class="stats two">
-          <div class="stat"><div class="v g" id="woCount">3<small>/4</small></div><div class="k">Workouts</div></div>
-          <div class="stat"><div class="v">312</div><div class="k">Avg Cal</div></div>
-        </div>
-        <div class="bar"><i class="g" style="width:75%"></i></div>
-        <div class="meta"><span>Target 4×/week</span><span>75%</span></div>
-      </div>
-      <div class="section-title">Body Measurements</div>
-      <div class="card">
-        <div class="card-h"><div class="t"><div class="ic">⚖️</div> Withings</div><span class="pill soon">Pending device</span></div>
-        <div class="stats">
-          <div class="stat"><div class="v">198<small>lb</small></div><div class="k">Weight</div></div>
-          <div class="stat"><div class="v">21<small>%</small></div><div class="k">Body Fat</div></div>
-          <div class="stat"><div class="v g">122/78</div><div class="k">BP</div></div>
-        </div>
-        <div class="meta" style="margin-top:8px"><span>7-day weight trend</span><span style="color:var(--green)">−0.4 lb</span></div>
-      </div>
-      <div class="section-title">Diet — conversational logging</div>
-      <div class="card">
-        <div class="card-h"><div class="t"><div class="ic">🍽️</div> Macros</div><span class="pill manual">macro-log</span></div>
-        <div class="stats">
-          <div class="stat"><div class="v" id="mCal">1480<small>/2200</small></div><div class="k">Calories</div></div>
-          <div class="stat"><div class="v g" id="mPro">142<small>/180</small></div><div class="k">Protein g</div></div>
-          <div class="stat"><div class="v" id="mWater">48<small>oz</small></div><div class="k">Water</div></div>
-        </div>
-        <div class="bar"><i style="width:67%"></i></div>
-        <div class="meta"><span>Calories vs target</span><span>67%</span></div>
-        <div class="note"><span>💬</span><span>In production: "had 6oz salmon + rice" or a meal photo → Claude estimates and logs it here.</span></div>
-        <button class="stepper" style="margin-top:10px;width:100%"><span style="flex:1;text-align:center;padding:9px;border:1px dashed var(--line);border-radius:9px;color:var(--dim);font-size:12px">＋ Log a meal (demo)</span></button>
-      </div>
-    </div>
-  </div>
-
-  <!-- ===== BUSINESS VIEW ===== -->
+  <!-- ===== BUSINESS ===== -->
   <div class="view active" id="view-biz">
     <div class="wrap">
-      <div class="section-title">Production vs 2026 Plan</div>
-      <div class="card">
-        <div class="card-h"><div class="t"><div class="ic">🏠</div> Listings</div><span class="pill auto">Auto · FUB</span></div>
-        <div class="stats">
-          <div class="stat"><div class="v">9</div><div class="k">Active</div></div>
-          <div class="stat"><div class="v a">6</div><div class="k">Pending</div></div>
-          <div class="stat"><div class="v g">31</div><div class="k">Closed YTD</div></div>
+      <div id="snap-biz">
+        <div class="section-title">Production vs 2026 Plan</div>
+        <div class="card">
+          <div class="card-h"><div class="t"><div class="ic">🏠</div> Listings</div><span class="pill auto">Auto · FUB</span></div>
+          <div class="stats"><div class="stat"><div class="v">9</div><div class="k">Active</div></div><div class="stat"><div class="v a">6</div><div class="k">Pending</div></div><div class="stat"><div class="v g">31</div><div class="k">Closed YTD</div></div></div>
+          <div class="bar"><i class="g" style="width:62%"></i></div>
+          <div class="meta"><span>Listings taken vs 75/yr</span><span>46 · 96% of pace</span></div>
         </div>
-        <div class="bar"><i class="g" style="width:62%"></i></div>
-        <div class="meta"><span>Listings taken vs 75/yr</span><span>46 · 96% of pace</span></div>
-      </div>
-      <div class="card">
-        <div class="card-h"><div class="t"><div class="ic">💵</div> GCI</div><span class="pill auto">Auto · QBO</span></div>
-        <div class="stats two">
-          <div class="stat"><div class="v">$612K</div><div class="k">GCI YTD</div></div>
-          <div class="stat"><div class="v a">$284K</div><div class="k">Pipeline</div></div>
+        <div class="card">
+          <div class="card-h"><div class="t"><div class="ic">💵</div> GCI</div><span class="pill auto">Auto · QBO</span></div>
+          <div class="stats two"><div class="stat"><div class="v">$612K</div><div class="k">GCI YTD</div></div><div class="stat"><div class="v a">$284K</div><div class="k">Pipeline</div></div></div>
+          <div class="bar"><i style="width:71%"></i></div>
+          <div class="meta"><span>vs annual plan</span><span>71%</span></div>
         </div>
-        <div class="bar"><i style="width:71%"></i></div>
-        <div class="meta"><span>vs annual plan</span><span>71%</span></div>
-      </div>
-      <div class="section-title">Coaching — DVN</div>
-      <div class="card">
-        <div class="card-h"><div class="t"><div class="ic">🎯</div> Clients</div><span class="pill auto">Auto · QBO/FUB</span></div>
-        <div class="stats">
-          <div class="stat"><div class="v g">11<small>/12</small></div><div class="k">Active</div></div>
-          <div class="stat"><div class="v">$11K</div><div class="k">MRR</div></div>
-          <div class="stat"><div class="v g">0</div><div class="k">Churn</div></div>
+        <div class="section-title">Coaching — DVN</div>
+        <div class="card">
+          <div class="card-h"><div class="t"><div class="ic">🎯</div> Clients</div><span class="pill auto">Auto · QBO/FUB</span></div>
+          <div class="stats"><div class="stat"><div class="v g">11<small>/12</small></div><div class="k">Active</div></div><div class="stat"><div class="v">$11K</div><div class="k">MRR</div></div><div class="stat"><div class="v g">0</div><div class="k">Churn</div></div></div>
+          <div class="lrow" style="margin-top:8px"><span>Lowest 22-Point avg (book)</span><span class="tag warn">Pt 6 · Follow-Up 5.8</span></div>
         </div>
-        <div class="lrow" style="margin-top:8px"><span>Lowest 22-Point avg (book)</span><span class="tag warn">Pt 6 · Follow-Up 5.8</span></div>
+        <div class="section-title">Call Quality</div>
+        <div class="card">
+          <div class="card-h"><div class="t"><div class="ic">🎧</div> Granola → Call-Coach</div><span class="pill auto">Auto · Granola</span></div>
+          <div class="lrow"><span>Calls scored this week</span><span class="rv">7</span></div>
+          <div class="lrow"><span>Avg script adherence</span><span class="rv" style="color:var(--green)">82%</span></div>
+          <div class="lrow"><span>Weakest stage</span><span class="tag warn">Objection handling</span></div>
+        </div>
       </div>
-      <div class="section-title">Call Quality</div>
-      <div class="card">
-        <div class="card-h"><div class="t"><div class="ic">🎧</div> Granola → Call-Coach</div><span class="pill auto">Auto · Granola</span></div>
-        <div class="lrow"><span>Calls scored this week</span><span class="rv">7</span></div>
-        <div class="lrow"><span>Avg script adherence</span><span class="rv" style="color:var(--green)">82%</span></div>
-        <div class="lrow"><span>Weakest stage</span><span class="tag warn">Objection handling</span></div>
-      </div>
+      <div id="an-biz"></div>
     </div>
   </div>
 
-  <!-- ===== MONEY VIEW ===== -->
-  <div class="view" id="view-money">
+  <!-- ===== DAILY ===== -->
+  <div class="view" id="view-today">
     <div class="wrap">
-      <div class="section-title">Business — QuickBooks</div>
-      <div class="card">
-        <div class="card-h"><div class="t"><div class="ic">🏦</div> P&amp;L</div><span class="pill auto">Auto · QBO</span></div>
-        <div class="stats">
-          <div class="stat"><div class="v g">$612K</div><div class="k">Revenue</div></div>
-          <div class="stat"><div class="v">$214K</div><div class="k">Expenses</div></div>
-          <div class="stat"><div class="v g">35<small>%</small></div><div class="k">Margin</div></div>
+      <div id="snap-today">
+        <div class="brief"><div class="lbl">5 AM Life Brief</div><span>Recovery 71% — green. Slept 7h12m (88%). Weight trend −0.4 lb. Yesterday: 142 calls / 28 contacts, 2 appts set / 2 kept. GCI pace 96% of plan. Push prospecting today.</span></div>
+        <div class="section-title">Daily Log — manual entry</div>
+        <div class="card logcard">
+          <div class="card-h"><div class="t"><div class="ic">✍️</div> Worked Activity</div><span class="pill manual">Manual</span></div>
+          <div id="logRows"></div>
+          <div class="note"><span>↳</span><span>Log here when FUB, Mojo, Upfirst or the calendar don't capture it automatically. Saved per day on this device. Feeds the Prospecting card + summary live.</span></div>
+          <div style="text-align:right;margin-top:6px"><span class="savedflash" id="savedFlash">Saved ✓</span></div>
         </div>
-        <div class="lrow" style="margin-top:8px"><span>AR aging &gt; 30 days</span><span class="tag warn">$9.2K</span></div>
-        <div class="lrow"><span>Cash position</span><span class="rv">$148K</span></div>
-      </div>
-      <div class="section-title">Personal — kept separate</div>
-      <div class="card">
-        <div class="card-h"><div class="t"><div class="ic">📈</div> Net Worth</div><span class="pill soon">Pending Monarch</span></div>
-        <div class="stat" style="text-align:left;background:none;padding:0">
-          <div class="v" style="font-size:15px;color:var(--dim)">Link banks via Monarch/Plaid to activate</div>
-          <div class="k">Deferred per your call — flip on in Phase 3</div>
+        <div class="section-title">Prospecting &amp; Conversion</div>
+        <div class="card">
+          <div class="card-h"><div class="t"><div class="ic">📞</div> Prospecting</div><span class="pill manual" id="prospSrc">Manual + FUB</span></div>
+          <div class="stats"><div class="stat"><div class="v" id="pCalls">0<small>/150</small></div><div class="k">Calls</div></div><div class="stat"><div class="v" id="pContacts">0<small>/30</small></div><div class="k">Contacts</div></div><div class="stat"><div class="v" id="pHours">0<small>/3</small></div><div class="k">Hrs</div></div></div>
+          <div class="bar"><i id="pCallsBar" style="width:0%"></i></div>
+          <div class="meta"><span>Daily call target</span><span id="pCallsPct">0%</span></div>
+          <div class="stats two" style="margin-top:12px"><div class="stat"><div class="v" id="pSet">0</div><div class="k">Appts Set</div></div><div class="stat"><div class="v g" id="pKept">0</div><div class="k">Appts Kept</div></div></div>
+          <div class="lrow" style="margin-top:8px"><span>Appointment kept-rate</span><span class="rv" id="keptRate">—</span></div>
+          <div class="lrow"><span>Contacts → appt (target ~50:1)</span><span class="rv" id="contactRatio">—</span></div>
+        </div>
+        <div class="card">
+          <div class="card-h"><div class="t"><div class="ic">🗓️</div> Time Structure</div><span class="pill auto">Auto · Calendar</span></div>
+          <div class="lrow"><span>Prospecting block held</span><span class="tag ok">3.0 / 3.0 h</span></div>
+          <div class="lrow"><span>Appointments</span><span class="rv">2</span></div>
+          <div class="lrow"><span>Admin / reactive</span><span class="rv">1.5 h</span></div>
+          <div class="lrow"><span>Revenue-producing %</span><span class="rv" style="color:var(--green)">64%</span></div>
         </div>
       </div>
-      <div class="card">
-        <div class="card-h"><div class="t"><div class="ic">💳</div> Credit</div><span class="pill auto">Auto · Credit Karma</span></div>
-        <div class="ring-row">
-          <div class="ring-wrap"><div class="ring" style="--p:79;--c:var(--green)"></div><span style="position:absolute;font-family:var(--mono);font-weight:700;font-size:15px">781</span></div>
-          <div class="ring-side">
-            <div class="lrow"><span>Utilization</span><span class="rv" style="color:var(--green)">8%</span></div>
-            <div class="lrow"><span>Payment history</span><span class="rv" style="color:var(--green)">100%</span></div>
-            <div class="lrow"><span>New inquiries</span><span class="rv">1</span></div>
+      <div id="an-today"></div>
+    </div>
+  </div>
+
+  <!-- ===== BODY ===== -->
+  <div class="view" id="view-body">
+    <div class="wrap">
+      <div id="snap-body">
+        <div class="section-title">Recovery &amp; Strain</div>
+        <div class="card">
+          <div class="card-h"><div class="t"><div class="ic">❤️</div> Whoop Recovery</div><span class="pill auto">Auto · Whoop</span></div>
+          <div class="ring-row">
+            <div class="ring-wrap"><div class="ring" style="background:conic-gradient(var(--green) 71%,#2A2A2A 0)"></div><span style="position:absolute;font-family:var(--mono);font-weight:700">71%</span></div>
+            <div class="ring-side"><div class="lrow"><span>HRV</span><span class="rv">68 ms</span></div><div class="lrow"><span>Resting HR</span><span class="rv">54 bpm</span></div><div class="lrow"><span>Day strain</span><span class="rv">9.4</span></div></div>
           </div>
         </div>
+        <div class="section-title">Sleep</div>
+        <div class="card">
+          <div class="card-h"><div class="t"><div class="ic">😴</div> Last Night</div><span class="pill auto">Auto · Whoop</span></div>
+          <div class="stats"><div class="stat"><div class="v g">7:12</div><div class="k">Hours</div></div><div class="stat"><div class="v g">88<small>%</small></div><div class="k">Performance</div></div><div class="stat"><div class="v a">82<small>%</small></div><div class="k">Consistency</div></div></div>
+          <div class="bar"><i class="g" style="width:88%"></i></div>
+          <div class="meta"><span>Need 8:10 · got 7:12</span><span>Debt 0:34</span></div>
+        </div>
+        <div class="section-title">Workouts</div>
+        <div class="card">
+          <div class="card-h"><div class="t"><div class="ic">🏋️</div> This Week</div><span class="pill auto">Auto · Whoop</span></div>
+          <div class="stats two"><div class="stat"><div class="v g">3<small>/4</small></div><div class="k">Workouts</div></div><div class="stat"><div class="v">312</div><div class="k">Avg Cal</div></div></div>
+          <div class="bar"><i class="g" style="width:75%"></i></div>
+          <div class="meta"><span>Target 4×/week</span><span>75%</span></div>
+        </div>
+        <div class="section-title">Body Measurements</div>
+        <div class="card">
+          <div class="card-h"><div class="t"><div class="ic">⚖️</div> Withings</div><span class="pill soon">Pending device</span></div>
+          <div class="stats"><div class="stat"><div class="v">198<small>lb</small></div><div class="k">Weight</div></div><div class="stat"><div class="v">21<small>%</small></div><div class="k">Body Fat</div></div><div class="stat"><div class="v g">122/78</div><div class="k">BP</div></div></div>
+          <div class="meta" style="margin-top:8px"><span>7-day weight trend</span><span style="color:var(--green)">−0.4 lb</span></div>
+        </div>
+        <div class="section-title">Labs — Function Health</div>
+        <div class="card">
+          <div class="card-h"><div class="t"><div class="ic">🩸</div> Biomarkers</div><span class="pill auto">Auto · Function</span></div>
+          <div class="stats two"><div class="stat"><div class="v g">94</div><div class="k">In Range</div></div><div class="stat"><div class="v a">12</div><div class="k">Out of Range</div></div></div>
+          <div class="lrow" style="margin-top:8px"><span>Flagged to watch</span><span class="tag warn">ApoB · Vit D</span></div>
+        </div>
+        <div class="section-title">Diet — conversational logging</div>
+        <div class="card">
+          <div class="card-h"><div class="t"><div class="ic">🍽️</div> Macros</div><span class="pill manual">macro-log</span></div>
+          <div class="stats"><div class="stat"><div class="v">1480<small>/2200</small></div><div class="k">Calories</div></div><div class="stat"><div class="v g">142<small>/180</small></div><div class="k">Protein g</div></div><div class="stat"><div class="v">48<small>oz</small></div><div class="k">Water</div></div></div>
+          <div class="bar"><i style="width:67%"></i></div>
+          <div class="meta"><span>Calories vs target</span><span>67%</span></div>
+          <div class="note"><span>💬</span><span>In production: "had 6oz salmon + rice" or a meal photo → Claude estimates and logs it here.</span></div>
+        </div>
       </div>
+      <div id="an-body"></div>
     </div>
   </div>
 
-  <div class="foot">Prototype · sample data on AUTO tiles · manual entries persist on this device<br>VNRE — Life Tracking System</div>
+  <!-- ===== MONEY ===== -->
+  <div class="view" id="view-money">
+    <div class="wrap">
+      <div id="snap-money">
+        <div class="section-title">Business — QuickBooks</div>
+        <div class="card">
+          <div class="card-h"><div class="t"><div class="ic">🏦</div> P&amp;L</div><span class="pill auto">Auto · QBO</span></div>
+          <div class="stats"><div class="stat"><div class="v g">$612K</div><div class="k">Revenue</div></div><div class="stat"><div class="v">$214K</div><div class="k">Expenses</div></div><div class="stat"><div class="v g">35<small>%</small></div><div class="k">Margin</div></div></div>
+          <div class="lrow" style="margin-top:8px"><span>AR aging &gt; 30 days</span><span class="tag warn">$9.2K</span></div>
+          <div class="lrow"><span>Cash position</span><span class="rv">$148K</span></div>
+        </div>
+        <div class="section-title">Personal — kept separate</div>
+        <div class="card">
+          <div class="card-h"><div class="t"><div class="ic">📈</div> Net Worth</div><span class="pill soon">Pending Monarch</span></div>
+          <div class="stat" style="text-align:left;background:none;padding:0"><div class="v" style="font-size:15px;color:var(--dim)">Link banks via Monarch/Plaid to activate</div><div class="k">Deferred per your call — flip on in Phase 3</div></div>
+        </div>
+        <div class="card">
+          <div class="card-h"><div class="t"><div class="ic">💳</div> Credit</div><span class="pill auto">Auto · Credit Karma</span></div>
+          <div class="ring-row">
+            <div class="ring-wrap"><div class="ring" style="background:conic-gradient(var(--green) 79%,#2A2A2A 0)"></div><span style="position:absolute;font-family:var(--cond);font-weight:700;font-size:13px">GOOD</span></div>
+            <div class="ring-side"><div class="lrow"><span>Utilization</span><span class="rv" style="color:var(--green)">Excellent</span></div><div class="lrow"><span>Payment history</span><span class="rv" style="color:var(--green)">Good</span></div><div class="lrow"><span>Credit age</span><span class="rv" style="color:var(--amber)">Fair</span></div></div>
+          </div>
+          <div class="note"><span>ℹ️</span><span>Credit Karma exposes rating bands, not the numeric score (VantageScore 3.0 · TransUnion).</span></div>
+        </div>
+      </div>
+      <div id="an-money"></div>
+    </div>
+  </div>
+
+  <div class="foot">Prototype · trend &amp; forecast on placeholder series · manual entries persist on this device<br>VNRE — DVN Life Design</div>
 </div>
 
-<!-- FAB -->
 <button class="fab" id="fab" title="Quick log">＋</button>
-
-<!-- BOTTOM NAV -->
 <nav class="nav">
   <button class="active" data-view="biz"><span class="ni">🏠</span>Business</button>
   <button data-view="today"><span class="ni">📋</span>Daily</button>
@@ -370,114 +315,162 @@ body{font-family:'Roboto',system-ui,sans-serif;background:var(--bg);color:var(--
 </nav>
 
 <script>
-/* ---------- Manual log model ---------- */
-const FIELDS = [
-  {key:'hours',    label:'Hours worked',      sub:'Time in the business',          step:0.5, target:null},
-  {key:'calls',    label:'Calls made',        sub:'Dials not captured by Mojo',    step:5,   target:150},
-  {key:'contacts', label:'Contacts reached',  sub:'Live conversations',            step:1,   target:30},
-  {key:'apptsSet', label:'Appointments set',  sub:'When FUB didn’t log it',   step:1,   target:null},
-  {key:'apptsKept',label:'Appointments kept', sub:'Showed / completed',            step:1,   target:null},
+/* ===================== MANUAL LOG ===================== */
+const FIELDS=[
+  {key:'hours',label:'Hours worked',sub:'Time in the business',step:0.5},
+  {key:'calls',label:'Calls made',sub:'Dials not captured by Mojo',step:5},
+  {key:'contacts',label:'Contacts reached',sub:'Live conversations',step:1},
+  {key:'apptsSet',label:'Appointments set',sub:'When FUB didn’t log it',step:1},
+  {key:'apptsKept',label:'Appointments kept',sub:'Showed / completed',step:1},
 ];
-const KEY='dvnLife';
-let cursor=0; // 0 = today, -1 = yesterday ...
-
-function dayKey(off){const d=new Date();d.setDate(d.getDate()+off);return d.toISOString().slice(0,10);}
-function dayLabel(off){
-  if(off===0)return 'Today'; if(off===-1)return 'Yesterday';
-  const d=new Date();d.setDate(d.getDate()+off);
-  return d.toLocaleDateString(undefined,{weekday:'short',month:'short',day:'numeric'});
-}
-function loadAll(){try{return JSON.parse(localStorage.getItem(KEY))||{}}catch(e){return {}}}
+const KEY='dvnLife'; let cursor=0;
+function dayKey(o){const d=new Date();d.setDate(d.getDate()+o);return d.toISOString().slice(0,10);}
+function dayLabel(o){if(o===0)return'Today';if(o===-1)return'Yesterday';const d=new Date();d.setDate(d.getDate()+o);return d.toLocaleDateString(undefined,{weekday:'short',month:'short',day:'numeric'});}
+function loadAll(){try{return JSON.parse(localStorage.getItem(KEY))||{}}catch(e){return{}}}
 function saveAll(o){localStorage.setItem(KEY,JSON.stringify(o))}
-function getDay(off){const all=loadAll();return all[dayKey(off)]||{hours:0,calls:0,contacts:0,apptsSet:0,apptsKept:0}}
-function setDay(off,data){const all=loadAll();all[dayKey(off)]=data;saveAll(all)}
-
-/* sample auto values that blend with manual (FUB-pulled) */
-const AUTO={calls:118, contacts:22, apptsSet:2, apptsKept:2}; // pretend FUB already has these for today
-
+function getDay(o){return loadAll()[dayKey(o)]||{hours:0,calls:0,contacts:0,apptsSet:0,apptsKept:0}}
+function setDay(o,d){const a=loadAll();a[dayKey(o)]=d;saveAll(a)}
+const AUTO={calls:118,contacts:22,apptsSet:2,apptsKept:2};
 function flash(){const f=document.getElementById('savedFlash');f.classList.add('show');setTimeout(()=>f.classList.remove('show'),900);}
-
 function renderLog(){
-  const data=getDay(cursor);
-  const host=document.getElementById('logRows');
-  host.innerHTML='';
-  FIELDS.forEach(f=>{
-    const row=document.createElement('div');row.className='logrow';
-    row.innerHTML=`<div class="lk">${f.label}<small>${f.sub}</small></div>
-      <div class="stepper">
-        <button data-k="${f.key}" data-d="-1">−</button>
-        <input type="number" inputmode="decimal" id="in_${f.key}" value="${data[f.key]||0}" step="${f.step}">
-        <button data-k="${f.key}" data-d="1">＋</button>
-      </div>`;
-    host.appendChild(row);
-  });
-  host.querySelectorAll('button').forEach(b=>{
-    b.onclick=()=>{
-      const k=b.dataset.k, dir=+b.dataset.d, f=FIELDS.find(x=>x.key===k);
-      const d=getDay(cursor); d[k]=Math.max(0,Math.round(((d[k]||0)+dir*f.step)*100)/100);
-      setDay(cursor,d); document.getElementById('in_'+k).value=d[k]; flash(); renderProspecting();
-    };
-  });
-  host.querySelectorAll('input').forEach(inp=>{
-    inp.onchange=()=>{
-      const k=inp.id.replace('in_',''); const d=getDay(cursor);
-      d[k]=Math.max(0,+inp.value||0); setDay(cursor,d); flash(); renderProspecting();
-    };
-  });
+  const data=getDay(cursor),host=document.getElementById('logRows');host.innerHTML='';
+  FIELDS.forEach(f=>{const r=document.createElement('div');r.className='logrow';
+    r.innerHTML=`<div class="lk">${f.label}<small>${f.sub}</small></div><div class="stepper"><button data-k="${f.key}" data-d="-1">−</button><input type="number" inputmode="decimal" id="in_${f.key}" value="${data[f.key]||0}" step="${f.step}"><button data-k="${f.key}" data-d="1">＋</button></div>`;
+    host.appendChild(r);});
+  host.querySelectorAll('button').forEach(b=>b.onclick=()=>{const k=b.dataset.k,dir=+b.dataset.d,f=FIELDS.find(x=>x.key===k),d=getDay(cursor);d[k]=Math.max(0,Math.round(((d[k]||0)+dir*f.step)*100)/100);setDay(cursor,d);document.getElementById('in_'+k).value=d[k];flash();renderProspecting();});
+  host.querySelectorAll('input').forEach(inp=>inp.onchange=()=>{const k=inp.id.replace('in_',''),d=getDay(cursor);d[k]=Math.max(0,+inp.value||0);setDay(cursor,d);flash();renderProspecting();});
 }
-
 function renderProspecting(){
-  const m=getDay(cursor);
-  // blend: only today merges live FUB sample; past days use manual only
-  const a = cursor===0 ? AUTO : {calls:0,contacts:0,apptsSet:0,apptsKept:0};
-  const calls=(m.calls||0)+a.calls, contacts=(m.contacts||0)+a.contacts,
-        set=(m.apptsSet||0)+a.apptsSet, kept=(m.apptsKept||0)+a.apptsKept, hours=(m.hours||0);
-  document.getElementById('pCalls').innerHTML=calls+'<small>/150</small>';
-  document.getElementById('pContacts').innerHTML=contacts+'<small>/30</small>';
-  document.getElementById('pHours').innerHTML=hours+'<small>/3</small>';
-  document.getElementById('pSet').textContent=set;
-  document.getElementById('pKept').textContent=kept;
+  const m=getDay(cursor),a=cursor===0?AUTO:{calls:0,contacts:0,apptsSet:0,apptsKept:0};
+  const calls=(m.calls||0)+a.calls,contacts=(m.contacts||0)+a.contacts,set=(m.apptsSet||0)+a.apptsSet,kept=(m.apptsKept||0)+a.apptsKept,hours=(m.hours||0);
+  const $=id=>document.getElementById(id);
+  $('pCalls').innerHTML=calls+'<small>/150</small>';$('pContacts').innerHTML=contacts+'<small>/30</small>';$('pHours').innerHTML=hours+'<small>/3</small>';
+  $('pSet').textContent=set;$('pKept').textContent=kept;
   const pct=Math.min(100,Math.round(calls/150*100));
-  document.getElementById('pCallsBar').style.width=pct+'%';
-  document.getElementById('pCallsBar').className = pct>=100?'g':'';
-  document.getElementById('pCallsPct').textContent=pct+'%';
-  document.getElementById('keptRate').textContent = set>0 ? Math.round(kept/set*100)+'%  ('+kept+'/'+set+')' : '—';
-  document.getElementById('contactRatio').textContent = set>0 ? Math.round(contacts/set)+' : 1' : (contacts>0? contacts+' : 0' : '—');
-  document.getElementById('prospSrc').textContent = cursor===0 ? 'Manual + FUB' : 'Manual';
-  // glance strip
-  const gc=document.getElementById('gCalls');
-  gc.innerHTML=pct+'<small>%</small>'; gc.className='v '+(pct>=100?'g':pct>=60?'a':'r');
-  const gk=document.getElementById('gKept');
-  gk.textContent = set>0 ? Math.round(kept/set*100)+'%' : '—';
-  gk.className='v '+(set>0 && kept/set>=0.7 ? 'g':'');
+  $('pCallsBar').style.width=pct+'%';$('pCallsBar').className=pct>=100?'g':'';$('pCallsPct').textContent=pct+'%';
+  $('keptRate').textContent=set>0?Math.round(kept/set*100)+'%  ('+kept+'/'+set+')':'—';
+  $('contactRatio').textContent=set>0?Math.round(contacts/set)+' : 1':(contacts>0?contacts+' : 0':'—');
+  $('prospSrc').textContent=cursor===0?'Manual + FUB':'Manual';
+  const gc=$('gCalls');gc.innerHTML=pct+'<small>%</small>';gc.className='v '+(pct>=100?'g':pct>=60?'a':'r');
+  const gk=$('gKept');gk.textContent=set>0?Math.round(kept/set*100)+'%':'—';gk.className='v '+(set>0&&kept/set>=0.7?'g':'');
 }
 
-/* ---------- date nav ---------- */
-function refresh(){document.getElementById('dateLabel').textContent=dayLabel(cursor);renderLog();renderProspecting();}
-document.getElementById('prevDay').onclick=()=>{cursor--;refresh()};
-document.getElementById('nextDay').onclick=()=>{if(cursor<0){cursor++;refresh()}};
-
-/* ---------- nav tabs ---------- */
-document.querySelectorAll('.nav button').forEach(b=>{
-  b.onclick=()=>{
-    document.querySelectorAll('.nav button').forEach(x=>x.classList.remove('active'));
-    document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
-    b.classList.add('active');
-    document.getElementById('view-'+b.dataset.view).classList.add('active');
-    window.scrollTo(0,0);
-  };
-});
-document.querySelectorAll('[data-jump]').forEach(el=>{
-  el.onclick=()=>document.querySelector('.nav button[data-view="'+el.dataset.jump+'"]').click();
-});
-document.getElementById('fab').onclick=()=>{
-  document.querySelector('.nav button[data-view="today"]').click();
-  cursor=0;refresh();
-  const inp=document.getElementById('in_calls'); if(inp){inp.focus();inp.select();}
-  window.scrollTo({top:120,behavior:'smooth'});
+/* ===================== TREND + FORECAST ENGINE ===================== */
+const DOMAINS={
+  biz:{title:'Business',metrics:[
+    {key:'gci',label:'GCI run-rate',unit:'$K/mo',dec:0,base:82,drift:3,vol:9,target:72,good:'up'},
+    {key:'listings',label:'Listings / mo',unit:'/mo',dec:1,base:6.1,drift:0.2,vol:1.1,target:6.25,good:'up'},
+    {key:'kept',label:'Appt kept-rate',unit:'%',dec:0,base:78,drift:1,vol:4,target:85,good:'up'},
+    {key:'mrr',label:'Coaching MRR',unit:'$K',dec:1,base:11,drift:0.3,vol:0.5,target:12,good:'up'},
+  ]},
+  today:{title:'Prospecting',metrics:[
+    {key:'calls',label:'Calls / day',unit:'',dec:0,base:138,drift:3,vol:13,target:150,good:'up'},
+    {key:'contacts',label:'Contacts / day',unit:'',dec:0,base:27,drift:0.6,vol:4,target:30,good:'up'},
+    {key:'apptsWk',label:'Appts set / wk',unit:'/wk',dec:1,base:5.5,drift:0.3,vol:1.2,target:7,good:'up'},
+    {key:'hrs',label:'Prospecting hrs / day',unit:'h',dec:1,base:2.7,drift:0.05,vol:0.5,target:3,good:'up'},
+  ]},
+  body:{title:'Body',metrics:[
+    {key:'recovery',label:'Recovery',unit:'%',dec:0,base:67,drift:-1.5,vol:6,target:60,good:'up'},
+    {key:'sleep',label:'Sleep',unit:'h',dec:1,base:7.0,drift:-0.05,vol:0.35,target:7.5,good:'up'},
+    {key:'weight',label:'Weight',unit:' lb',dec:0,base:198,drift:-1.2,vol:1.0,target:190,good:'down'},
+    {key:'rhr',label:'Resting HR',unit:' bpm',dec:0,base:54,drift:0.4,vol:1.4,target:52,good:'down'},
+  ]},
+  money:{title:'Money',metrics:[
+    {key:'cash',label:'Business cash',unit:'$K',dec:0,base:148,drift:9,vol:12,target:200,good:'up'},
+    {key:'margin',label:'Profit margin',unit:'%',dec:0,base:35,drift:0.6,vol:3,target:40,good:'up'},
+    {key:'ar',label:'AR > 30 days',unit:'$K',dec:1,base:9.2,drift:-0.4,vol:1.4,target:5,good:'down'},
+  ]},
 };
+const RANGES={'30d':{months:1,n:30,lab:'30-day'},'90d':{months:3,n:16,lab:'90-day'},'6m':{months:6,n:24,lab:'6-month'}};
+function hash(s){let h=2166136261>>>0;for(let i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619);}return (h>>>0)/4294967296;}
+function mval(m,t,proj){const amp=(proj?0.4:1)*m.vol;const idx=Math.round(t*4);return m.base+m.drift*t+(hash(m.key+':'+idx)*2-1)*amp;}
+function pastSeries(m,months,n){const a=[];for(let k=0;k<n;k++){a.push(mval(m,-months+months*(k/(n-1)),false));}return a;}
+function futSeries(m,months,n){const a=[];for(let k=1;k<=n;k++){a.push(mval(m,months*(k/n),true));}return a;}
+function fmt(m,v){const r=m.dec?(+v).toFixed(m.dec):Math.round(v);if(m.unit==='$K')return'$'+r+'K';if(m.unit==='$K/mo')return'$'+r+'K/mo';return r+m.unit;}
+function chart(past,future,target){
+  const W=100,H=30,pad=3,all=past.concat(future||[],target!=null?[target]:[]);
+  let mn=Math.min(...all),mx=Math.max(...all);if(mx===mn){mx+=1;mn-=1;}const span=mx-mn;
+  const total=past.length+(future?future.length:0);
+  const X=i=>total<=1?0:i/(total-1)*W,Y=v=>pad+(H-2*pad)-(v-mn)/span*(H-2*pad);
+  let s=`<svg class="spark" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none">`;
+  if(target!=null)s+=`<line x1="0" y1="${Y(target).toFixed(1)}" x2="${W}" y2="${Y(target).toFixed(1)}" stroke="#6E6E6E" stroke-width="0.6" stroke-dasharray="1.5 1.5"/>`;
+  s+=`<path d="${past.map((v,k)=>(k?'L':'M')+X(k).toFixed(1)+' '+Y(v).toFixed(1)).join(' ')}" fill="none" stroke="${future?'#7a7a7a':'#C8102E'}" stroke-width="1.4"/>`;
+  if(future){
+    s+=`<path d="M${X(past.length-1).toFixed(1)} ${Y(past[past.length-1]).toFixed(1)} ${future.map((v,k)=>'L'+X(past.length+k).toFixed(1)+' '+Y(v).toFixed(1)).join(' ')}" fill="none" stroke="#E5546A" stroke-width="1.4" stroke-dasharray="2 1.6"/>`;
+    s+=`<circle cx="${X(total-1).toFixed(1)}" cy="${Y(future[future.length-1]).toFixed(1)}" r="1.5" fill="#E5546A"/>`;
+  }else{s+=`<circle cx="${X(past.length-1).toFixed(1)}" cy="${Y(past[past.length-1]).toFixed(1)}" r="1.5" fill="#C8102E"/>`;}
+  return s+'</svg>';
+}
+function renderTrend(key,cfg){
+  const D=DOMAINS[key];let h=`<div class="section-title">${D.title} · ${cfg.lab} trend</div>`;
+  h+=`<div class="legend"><span><i></i>Actual</span><span><i class="tgt"></i>Target</span></div>`;
+  D.metrics.forEach(m=>{
+    const p=pastSeries(m,cfg.months,cfg.n),cur=p[p.length-1],start=p[0],d=cur-start;
+    const good=(m.good==='up')?d>=0:d<=0,arrow=d>=0?'▲':'▼';
+    h+=`<div class="card"><div class="tc-h"><span class="lab">${m.label}</span><span class="cur">${fmt(m,cur)}</span></div>
+      <div class="tc-h"><span class="delta ${good?'up':'down'}">${arrow} ${d>=0?'+':'−'}${fmt(m,Math.abs(d))}</span><span style="font-size:10px;color:var(--dim)">over ${cfg.lab}</span></div>
+      ${chart(p,null,m.target)}<div class="tc-foot"><span>Target ${fmt(m,m.target)}</span><span>${good?'Trending right way':'Watch this'}</span></div></div>`;
+  });
+  return h;
+}
+function impHTML(key){
+  const M=k=>DOMAINS[key].metrics.find(x=>x.key===k),p6=m=>m.base+m.drift*6;
+  if(key==='biz'){const g=M('gci'),l=M('listings'),k=M('kept');
+    return `<div class="imp"><h4>Business implications · next 6 months</h4>
+      <p>GCI run-rate projects to <span class="k">$${Math.round(p6(g))}K/mo</span> → ~<span class="k">$${(p6(g)*12/1000).toFixed(1)}M</span> annualized.</p>
+      <p>Listings pace lands near <span class="k">${Math.round(p6(l)*12)}/yr</span> vs the 75 plan — close, not clear.</p>
+      <p>Appt kept-rate climbing toward <span class="k">${Math.round(p6(k))}%</span>; every +5 pts ≈ +3–4 listings/yr. <span class="k">Biggest lever — drive it.</span></p></div>`;}
+  if(key==='today'){const c=M('calls'),ct=M('contacts'),a=M('apptsWk');
+    return `<div class="imp"><h4>Prospecting implications · next 6 months</h4>
+      <p>Calls trend through the <span class="k">150 cap</span> with contacts to <span class="k">~${Math.round(p6(ct))}/day</span> → about <span class="k">${(p6(a)).toFixed(1)} appts set/wk</span>.</p>
+      <p>At a 78%→85% kept-rate that's roughly <span class="k">6 listings/mo</span> of supply.</p>
+      <p>The <span class="k">3-hour block</span> is the binding constraint — defend it or the whole chain shrinks.</p></div>`;}
+  if(key==='body'){const r=M('recovery'),s=M('sleep'),w=M('weight'),h=M('rhr');
+    return `<div class="imp"><h4>Health implications · next 6 months</h4>
+      <p>Recovery projects to <span class="k">${Math.round(p6(r))}%</span> (under your 60% floor) while resting HR drifts to <span class="k">${Math.round(p6(h))} bpm</span> — an <span class="k">under-recovery trend</span>.</p>
+      <p>Weight tracks to <span class="k">~${Math.round(p6(w))} lb</span> and sleep slips to <span class="k">${p6(s).toFixed(1)}h</span>.</p>
+      <p>Hold sleep at 7.5h and the <span class="k">4×/wk cap</span>, or recovery erodes and prospecting output follows it down.</p></div>`;}
+  const ca=M('cash'),mg=M('margin'),ar=M('ar');
+  return `<div class="imp"><h4>Money implications · next 6 months</h4>
+    <p>Business cash projects to <span class="k">~$${Math.round(p6(ca))}K</span> with margin near <span class="k">${Math.round(p6(mg))}%</span>.</p>
+    <p>AR &gt; 30 days falls to <span class="k">~$${p6(ar).toFixed(1)}K</span> — collections healthy.</p>
+    <p>Runway supports <span class="k">reinvestment</span> into prospecting capacity (VA/ISA) without cash stress.</p></div>`;
+}
+function renderForecast(key){
+  const D=DOMAINS[key];let h=`<div class="section-title">${D.title} · 6-month forecast</div>`+impHTML(key);
+  h+=`<div class="legend"><span><i></i>Actual (6 mo)</span><span><i class="proj"></i>Projected</span><span><i class="tgt"></i>Target</span></div>`;
+  D.metrics.forEach(m=>{
+    const p=pastSeries(m,6,18),f=futSeries(m,6,18),cur=p[p.length-1],proj=f[f.length-1];
+    const onTrack=(m.good==='up')?proj>=m.target:proj<=m.target;
+    h+=`<div class="card"><div class="tc-h"><span class="lab">${m.label}</span>${onTrack?'<span class="tag ok">On track</span>':'<span class="tag warn">Off target</span>'}</div>
+      <div class="fcrow"><div class="blk"><div class="v">${fmt(m,cur)}</div><div class="k">Now</div></div><div class="arrow">→</div><div class="blk"><div class="v" style="color:${onTrack?'var(--green)':'var(--redsoft)'}">${fmt(m,proj)}</div><div class="k">+6 mo</div></div><div class="arrow">·</div><div class="blk"><div class="v" style="color:var(--dim)">${fmt(m,m.target)}</div><div class="k">Target</div></div></div>
+      ${chart(p,f,m.target)}</div>`;
+  });
+  return h+`<div class="note" style="padding:0 4px 4px"><span>📈</span><span>Projection = current trend extended on placeholder data. Wire APIs and these forecasts run on your real history.</span></div>`;
+}
 
-refresh();
+/* ===================== STATE / RENDER ===================== */
+let currentView='biz',currentRange='snap';
+function render(){
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  document.getElementById('view-'+currentView).classList.add('active');
+  document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.view===currentView));
+  document.querySelectorAll('.rangebar button').forEach(b=>b.classList.toggle('active',b.dataset.range===currentRange));
+  const snap=document.getElementById('snap-'+currentView),an=document.getElementById('an-'+currentView);
+  if(currentRange==='snap'){snap.style.display='';an.style.display='none';an.innerHTML='';}
+  else{snap.style.display='none';an.style.display='';an.innerHTML=currentRange==='fc'?renderForecast(currentView):renderTrend(currentView,RANGES[currentRange]);}
+  window.scrollTo(0,0);
+}
+function refreshDay(){document.getElementById('dateLabel').textContent=dayLabel(cursor);renderLog();renderProspecting();}
+
+document.getElementById('prevDay').onclick=()=>{cursor--;refreshDay();};
+document.getElementById('nextDay').onclick=()=>{if(cursor<0){cursor++;refreshDay();}};
+document.querySelectorAll('.nav button').forEach(b=>b.onclick=()=>{currentView=b.dataset.view;render();});
+document.querySelectorAll('.rangebar button').forEach(b=>b.onclick=()=>{currentRange=b.dataset.range;render();});
+document.querySelectorAll('[data-jump]').forEach(el=>el.onclick=()=>{currentView=el.dataset.jump;render();});
+document.getElementById('fab').onclick=()=>{currentView='today';currentRange='snap';cursor=0;refreshDay();render();const i=document.getElementById('in_calls');if(i){i.focus();i.select();}window.scrollTo({top:160,behavior:'smooth'});};
+
+refreshDay();render();
 </script>
 </body>
 </html>

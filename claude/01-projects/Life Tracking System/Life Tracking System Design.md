@@ -17,6 +17,7 @@ Four layers. Data flows up; the dashboard and the morning brief read down.
 ```
    ┌─────────────────────────────────────────────────────────────┐
 4  │  SURFACE        Mobile-first PWA dashboard  +  5 AM Life Brief │
+   │                 Snapshot · 30/90/180-day trends · 6-mo forecast│
    │                 (glance on phone · home-screen install)        │
    ├─────────────────────────────────────────────────────────────┤
 3  │  WAREHOUSE      One datastore (Supabase / Postgres)            │
@@ -61,6 +62,7 @@ Legend: 🟢 already connected in your Claude environment · 🟡 you own it, ne
 | Day strain, workouts (type, duration, HR zones), steps, active energy | Whoop + Apple Watch | 🔵 / 🟡 |
 | Weight, body-fat %, lean mass | **Withings Body smart scale** (API) | 🔵 add (~$100 once) |
 | Blood pressure | **Withings BPM Connect** (API) | 🔵 add (~$100 once) — age-appropriate, fully automated |
+| Bloodwork / biomarkers (in-range vs out-of-range, trends) | **Function Health** (MCP — confirmed live) | 🟢 already connected |
 | *(optional)* glucose / metabolic | Stelo or Lingo CGM | 🔵 optional, 14-day sensors |
 
 ### Sleep
