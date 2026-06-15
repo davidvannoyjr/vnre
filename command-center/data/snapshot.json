@@ -1,0 +1,209 @@
+{
+  "meta": {
+    "company": "Van Noy Real Estate",
+    "tagline": "Operations Command Center",
+    "geo": "Johnson County KS · Jackson County MO",
+    "asOf": "2026-06-15",
+    "generated": "2026-06-15T04:00:00Z",
+    "fiscalYear": 2026,
+    "periodStart": "2026-01-01",
+    "periodEnd": "2026-06-15",
+    "schemaVersion": "1.0",
+    "sources": [
+      { "name": "QuickBooks Online", "feeds": "P&L, Balance Sheet, A/R aging", "status": "live", "asOf": "2026-06-15" },
+      { "name": "2026 Listing Appointments Tracking", "feeds": "Listing funnel, sources", "status": "live", "asOf": "2026-04-30", "fileId": "1C1rIRf8jZxKv1Ob-hoiN3jMIWPAHm8OS" },
+      { "name": "VNRE Commercial Pipeline Tracker", "feeds": "Active deals", "status": "live", "asOf": "2026-05-20", "fileId": "1CmGGcBeq_kLg_h1Pi-jnYGNJzpggY23f" },
+      { "name": "VNRE EOS System", "feeds": "Scorecard KPIs, VTO, accountability", "status": "live", "asOf": "2026-03-26", "fileId": "1ruv-7TMg4BvXUkJ2pE-zDsN2CnKfLNXQ" },
+      { "name": "Commission Tracker", "feeds": "Closed deals", "status": "live", "asOf": "2026-05-27", "fileId": "1FV6Z1fbdml6Eoy6NBoh_8nU9LUxE--ua" },
+      { "name": "Follow Up Boss (CRM)", "feeds": "Database, leads, COI", "status": "manual", "asOf": "2026-06-15" }
+    ]
+  },
+
+  "finance": {
+    "pl": {
+      "periodStart": "2026-01-01",
+      "periodEnd": "2026-06-15",
+      "basis": "accrual",
+      "income": 446501.03,
+      "cogs": 96928.30,
+      "grossProfit": 349572.73,
+      "expenses": 267109.92,
+      "net": 82462.81,
+      "margin": 0.1847,
+      "yoyTrend": "down"
+    },
+    "plan2026": {
+      "revenueTarget": 1250000,
+      "opexTarget": 537500,
+      "netTarget": 625000,
+      "marginTarget": 0.50,
+      "note": "From the 2026 Strategic Business Plan. 50% net margin is the stretch standard the CEO dashboard guards against."
+    },
+    "incomeMix": [
+      { "label": "Commission — KS", "amount": 227888.78 },
+      { "label": "Commission — MO", "amount": 125830.90 },
+      { "label": "Commission — KCMO", "amount": 58986.50 },
+      { "label": "RE Systems Design", "amount": 19000 },
+      { "label": "Rental Income", "amount": 8750 },
+      { "label": "Digital Marketing", "amount": 6000 },
+      { "label": "Interest", "amount": 44.85 }
+    ],
+    "expenseTop": [
+      { "label": "Payroll (staff)", "amount": 85523.73 },
+      { "label": "General Admin & Office", "amount": 54318.17 },
+      { "label": "Officers Compensation", "amount": 47378.83 },
+      { "label": "Advertising & Marketing", "amount": 18768.29 },
+      { "label": "Insurance", "amount": 12681.69 },
+      { "label": "Travel", "amount": 12121.84 },
+      { "label": "Taxes & Licenses", "amount": 10891.03 },
+      { "label": "Charitable Contributions", "amount": 8399.88 },
+      { "label": "Legal & Accounting", "amount": 5488.25 },
+      { "label": "Utilities / Telephone", "amount": 3138.59 },
+      { "label": "Repairs & Maintenance", "amount": 3011.76 },
+      { "label": "Other / Dues / Auto / Meals", "amount": 5388.86 }
+    ],
+    "balance": {
+      "asOf": "2026-06-15",
+      "cash": 25888.38,
+      "accountsReceivable": 16050,
+      "totalAssets": 128066.03,
+      "totalLiabilities": 70642.09,
+      "equity": 57423.94,
+      "workingCapital": 18956.64,
+      "currentRatio": 1.81,
+      "debtToEquity": 1.23,
+      "creditCards": 14196.30,
+      "autoNote": 47149.47
+    },
+    "ar": {
+      "total": 16050,
+      "overdue": 16050,
+      "overduePct": 1.0,
+      "buckets": { "current": 0, "1-30": 4550, "31-60": 0, "61-90": 0, "91+": 11500 },
+      "atRisk": { "amount": 11500, "customer": "All Western Mortgage", "bucket": "91+" },
+      "customers": [
+        { "name": "All Western Mortgage", "amount": 11500, "bucket": "91+" },
+        { "name": "Brady Sandahl Real Estate Group", "amount": 2000, "bucket": "1-30" },
+        { "name": "HomeSmart Encore", "amount": 2000, "bucket": "1-30" },
+        { "name": "First Funding Source, LLC", "amount": 550, "bucket": "1-30" }
+      ]
+    }
+  },
+
+  "funnel": {
+    "goalPerMonth": 25,
+    "goalYear": 300,
+    "ytd": { "set": 41, "held": 26, "taken": 9 },
+    "dataThrough": "2026-04-30",
+    "monthly": [
+      { "month": "Jan", "set": 15, "held": 10, "goal": 25 },
+      { "month": "Feb", "set": 8, "held": 5, "goal": 25 },
+      { "month": "Mar", "set": 13, "held": 10, "goal": 25 },
+      { "month": "Apr", "set": 5, "held": 1, "goal": 25 },
+      { "month": "May", "set": null, "held": null, "goal": 25 },
+      { "month": "Jun", "set": null, "held": null, "goal": 25 }
+    ],
+    "conversion": {
+      "contactsPerAppt": 50,
+      "apptToListing": 0.70,
+      "dailyCalls": 150,
+      "dailyContacts": 30,
+      "dailyProspectingHours": 3
+    },
+    "sourceMix": [
+      { "source": "Homelight", "count": 13 },
+      { "source": "Home Value Leads (HVL)", "count": 9 },
+      { "source": "kchomelistings.com", "count": 8 },
+      { "source": "COI / Sphere", "count": 6 },
+      { "source": "Sign-Call", "count": 3 },
+      { "source": "Past Client", "count": 2 },
+      { "source": "Referral", "count": 1 },
+      { "source": "Expired / FSBO", "count": 2 }
+    ],
+    "prior2025": { "set": 241, "held": 111, "goal": 300 },
+    "targetSides": { "low": 70, "high": 75, "avgPriceLow": 450000, "avgPriceHigh": 550000 }
+  },
+
+  "pipeline": {
+    "residentialListingStatus": { "taken": 9, "appointmentsHeld": 26, "appointmentsSet": 41 },
+    "deals": [
+      { "name": "Pine Ridge / 22 Helm", "address": "7957 Bond St, Lenexa KS", "side": "Landlord", "type": "Lease", "stage": "Marketing", "prob": 0.40, "source": "Existing Client", "target": "2026-Q2" },
+      { "name": "H2I Space", "address": "11515 W 79th, Lenexa KS", "side": "Landlord", "type": "Lease", "stage": "Listing Prep", "prob": 0.30, "source": "Owner Referral", "target": "2026-Q3" },
+      { "name": "Braun Intertec", "address": "11529 W 79th, Lenexa KS", "side": "Tenant", "type": "Lease", "stage": "Closed", "prob": 1.0, "source": "Direct", "target": "2026-02-19" }
+    ]
+  },
+
+  "database": {
+    "totalCOI": 3000,
+    "note": "3,000+ COI contacts, tiered A/B/C in Follow Up Boss. The under-contacted segment is the #1 growth opportunity.",
+    "tiers": [
+      { "tier": "A", "label": "Advocates / high-value", "cadence": "Monthly touch" },
+      { "tier": "B", "label": "Warm sphere", "cadence": "Quarterly touch" },
+      { "tier": "C", "label": "Broad database", "cadence": "Bi-annual + market emails" }
+    ]
+  },
+
+  "eos": {
+    "tenYearTarget": "4,000 doors under management & $150MM syndicated real estate portfolio (by 12/31/2034)",
+    "coreValues": ["Driven", "Coachable", "Innovative", "Loyal", "Do the Right Thing"],
+    "scorecard": [
+      { "group": "Listings", "kpi": "Listing Appointments Set", "owner": "DVN", "goal": ">= 4 / wk" },
+      { "group": "Listings", "kpi": "Listing Appointments Held", "owner": "DVN", "goal": ">= 3 / wk" },
+      { "group": "Listings", "kpi": "Listings Taken", "owner": "DVN", "goal": ">= 2 / wk" },
+      { "group": "Listings", "kpi": "Listings Closed", "owner": "DVN", "goal": ">= 2 / wk" },
+      { "group": "Listings", "kpi": "Avg Days on Market", "owner": "DVN", "goal": "<= 30" },
+      { "group": "Listings", "kpi": "Avg SP/LP Ratio", "owner": "DVN", "goal": ">= 98%" },
+      { "group": "Prospecting", "kpi": "Written Outreach", "owner": "ISA", "goal": ">= 100 / wk" },
+      { "group": "Prospecting", "kpi": "Conversations > 1 min", "owner": "ISA", "goal": ">= 25 / wk" },
+      { "group": "Prospecting", "kpi": "Meetings Booked", "owner": "ISA", "goal": ">= 8 / wk" },
+      { "group": "Operations", "kpi": "Follow Up Boss Tasks Overdue", "owner": "EA", "goal": "= 0" },
+      { "group": "Operations", "kpi": "Dotloop Compliance Rate", "owner": "EA", "goal": "= 100%" },
+      { "group": "Operations", "kpi": "New Reviews Received", "owner": "EA", "goal": "track" }
+    ],
+    "accountability": [
+      { "seat": "Visionary", "owner": "David Van Noy", "status": "filled" },
+      { "seat": "Integrator", "owner": "David Van Noy (acting)", "status": "acting" },
+      { "seat": "Listing Specialist", "owner": "David Van Noy", "status": "filled" },
+      { "seat": "BDM", "owner": "David Van Noy", "status": "filled" },
+      { "seat": "Operations / EA", "owner": "Stephanie", "status": "filled" },
+      { "seat": "ISA", "owner": "Stephanie / Danya", "status": "filled" },
+      { "seat": "Marketing Manager", "owner": "TBD", "status": "open" },
+      { "seat": "Buyer Agent", "owner": "TBD", "status": "open" }
+    ]
+  },
+
+  "systems": {
+    "stack": [
+      { "name": "Follow Up Boss", "role": "CRM / database", "status": "active" },
+      { "name": "Dotloop / Skyslope", "role": "Transaction mgmt", "status": "active" },
+      { "name": "Heartland MLS / BrokerBay", "role": "MLS / showings", "status": "active" },
+      { "name": "Mojo", "role": "Dialer", "status": "active" },
+      { "name": "Upfirst (Alex / Jordan)", "role": "Voice agents", "status": "active" },
+      { "name": "QuickBooks Online", "role": "Accounting", "status": "active" },
+      { "name": "Google Workspace", "role": "Email / Drive / Calendar", "status": "active" },
+      { "name": "DocuSeal", "role": "E-signature (ERS)", "status": "active" },
+      { "name": "Canva", "role": "Design / graphics", "status": "active" },
+      { "name": "Granola", "role": "Call transcripts", "status": "active" },
+      { "name": "Asana", "role": "Project tasks", "status": "limited" }
+    ],
+    "automations": [
+      { "stage": "01 Prospect", "module": "active-hunter + book-appointment", "status": "live" },
+      { "stage": "02 Attraction", "module": "content-engine", "status": "live" },
+      { "stage": "03 Prep", "module": "plp-build + plp-presentation", "status": "live" },
+      { "stage": "04 Closing", "module": "offer-to-spreadsheet", "status": "live" },
+      { "stage": "05 Operations", "module": "send-ers-agreement", "status": "live" },
+      { "stage": "06 Compliance", "module": "compliance-auditor", "status": "live" },
+      { "stage": "07 Finance", "module": "ceo-dashboard", "status": "live" },
+      { "stage": "08 Database/COI", "module": "database-coi + clv-sync", "status": "live" },
+      { "stage": "09 Scale", "module": "call-coach", "status": "live" }
+    ],
+    "schedules": [
+      { "task": "daily-lead-attention", "when": "Daily 5:00 AM" },
+      { "task": "active-hunter", "when": "Daily 5:15 AM" },
+      { "task": "plp-folder-build", "when": "Daily 7:00 AM" },
+      { "task": "clv-sync", "when": "1st Mon 5:45 AM" },
+      { "task": "database-coi", "when": "Mon 6:00 AM" },
+      { "task": "ceo-dashboard", "when": "Mon 6:30 AM" }
+    ]
+  }
+}

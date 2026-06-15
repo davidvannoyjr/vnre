@@ -1,0 +1,1220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>VNRE Operations Command Center</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&family=Roboto:wght@400;500;700&family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --red:#C8102E; --charcoal:#1C1C1C; --steel:#2A2A2A; --gray:#6E6E6E;
+    --line:#33373B; --line2:#3F444A; --bg:#15171A; --panel:#1E2125; --panel2:#23272C;
+    --ink:#EDEDED; --ink-dim:#A7AEB6; --ink-faint:#727A83;
+    --green:#2FB179; --amber:#E0A100; --hilite:#FBE3E6; --tbd:#FFF3B0;
+    --mono:'Roboto Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+    --cond:'Roboto Condensed',sans-serif; --body:'Roboto',system-ui,sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:14px;line-height:1.45}
+  a{color:inherit}
+  .wrap{max-width:1440px;margin:0 auto;padding:0 22px 60px}
+
+  /* Header */
+  header.bar{position:sticky;top:0;z-index:40;background:linear-gradient(180deg,#101214,#15171A);border-bottom:1px solid var(--line)}
+  .bar-inner{max-width:1440px;margin:0 auto;padding:14px 22px;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+  .brand{display:flex;align-items:center;gap:12px}
+  .brand .mark{width:42px;height:42px;border-radius:8px;background:var(--red);display:flex;align-items:center;justify-content:center;font-family:var(--cond);font-weight:700;font-size:18px;letter-spacing:.5px;color:#fff;box-shadow:0 0 0 1px rgba(255,255,255,.06) inset}
+  .brand h1{font-family:var(--cond);font-weight:700;font-size:20px;letter-spacing:.4px;line-height:1}
+  .brand .sub{font-size:11px;color:var(--ink-faint);text-transform:uppercase;letter-spacing:1.6px;margin-top:3px}
+  .asof{margin-left:auto;text-align:right;font-size:11px;color:var(--ink-dim)}
+  .asof b{font-family:var(--mono);color:var(--ink);font-size:13px}
+  .asof .live{display:inline-flex;align-items:center;gap:6px;color:var(--green);font-weight:700;text-transform:uppercase;letter-spacing:1px;font-size:10px}
+  .dot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 0 0 rgba(47,177,121,.6);animation:pulse 2.2s infinite}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(47,177,121,.5)}70%{box-shadow:0 0 0 7px rgba(47,177,121,0)}100%{box-shadow:0 0 0 0 rgba(47,177,121,0)}}
+
+  /* Tabs */
+  nav.tabs{display:flex;gap:2px;max-width:1440px;margin:0 auto;padding:0 14px;overflow-x:auto}
+  nav.tabs button{font-family:var(--cond);font-weight:700;font-size:13.5px;letter-spacing:.5px;text-transform:uppercase;color:var(--ink-faint);background:none;border:none;padding:12px 16px;cursor:pointer;border-bottom:2.5px solid transparent;white-space:nowrap;transition:color .15s}
+  nav.tabs button:hover{color:var(--ink-dim)}
+  nav.tabs button.active{color:#fff;border-bottom-color:var(--red)}
+
+  /* Alert strip */
+  .alerts{margin:18px 0 4px;display:flex;flex-direction:column;gap:8px}
+  .alert{display:flex;align-items:flex-start;gap:11px;padding:11px 14px;border-radius:8px;background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--gray);font-size:13px}
+  .alert.red{border-left-color:var(--red);background:linear-gradient(90deg,rgba(200,16,46,.10),var(--panel) 60%)}
+  .alert.amber{border-left-color:var(--amber)}
+  .alert.green{border-left-color:var(--green)}
+  .alert .tag{font-family:var(--cond);font-weight:700;text-transform:uppercase;letter-spacing:.6px;font-size:11px;padding:2px 7px;border-radius:4px;background:var(--steel);color:var(--ink-dim);flex:none;margin-top:1px}
+  .alert.red .tag{background:var(--red);color:#fff}
+  .alert b{color:#fff}
+
+  section.tabpane{display:none;animation:fade .25s ease}
+  section.tabpane.active{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+
+  .secthead{display:flex;align-items:baseline;gap:12px;margin:26px 0 12px}
+  .secthead h2{font-family:var(--cond);font-weight:700;font-size:17px;letter-spacing:.5px;text-transform:uppercase}
+  .secthead .hint{font-size:11.5px;color:var(--ink-faint)}
+
+  .grid{display:grid;gap:14px}
+  .g2{grid-template-columns:repeat(2,1fr)}
+  .g3{grid-template-columns:repeat(3,1fr)}
+  .g4{grid-template-columns:repeat(4,1fr)}
+  .g6{grid-template-columns:repeat(6,1fr)}
+  @media(max-width:1100px){.g4,.g6{grid-template-columns:repeat(2,1fr)}.g3{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:680px){.g2,.g3,.g4,.g6{grid-template-columns:1fr}}
+
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:16px 17px;position:relative;overflow:hidden}
+  .card.span2{grid-column:span 2}
+  @media(max-width:680px){.card.span2{grid-column:span 1}}
+  .card h3{font-family:var(--cond);font-weight:700;font-size:13px;letter-spacing:.6px;text-transform:uppercase;color:var(--ink-dim);margin-bottom:10px;display:flex;align-items:center;gap:8px}
+  .card h3 .ic{font-size:14px}
+
+  /* KPI */
+  .kpi .val{font-family:var(--mono);font-weight:700;font-size:30px;line-height:1.05;letter-spacing:-.5px}
+  .kpi .val.accent{color:var(--red)}
+  .kpi .lbl{font-size:11px;color:var(--ink-faint);text-transform:uppercase;letter-spacing:1px;margin-top:6px}
+  .kpi .meta{font-size:12px;color:var(--ink-dim);margin-top:9px}
+  .kpi .meta .mono{font-family:var(--mono)}
+  .stat-flag{position:absolute;top:14px;right:15px;font-size:11px;font-family:var(--cond);font-weight:700;text-transform:uppercase;letter-spacing:.6px;padding:3px 8px;border-radius:5px}
+  .f-green{background:rgba(47,177,121,.16);color:var(--green)}
+  .f-amber{background:rgba(224,161,0,.16);color:var(--amber)}
+  .f-red{background:rgba(200,16,46,.18);color:#ff6076}
+  .f-info{background:var(--steel);color:var(--ink-dim)}
+
+  /* progress */
+  .bar-track{height:7px;border-radius:4px;background:#2c3036;overflow:hidden;margin-top:11px}
+  .bar-fill{height:100%;border-radius:4px;background:var(--red);transition:width .9s ease}
+  .bar-fill.green{background:var(--green)} .bar-fill.amber{background:var(--amber)}
+  .barlabels{display:flex;justify-content:space-between;font-size:11px;color:var(--ink-faint);margin-top:6px;font-family:var(--mono)}
+
+  /* table */
+  table{width:100%;border-collapse:collapse;font-size:13px}
+  th{font-family:var(--cond);font-weight:700;text-transform:uppercase;letter-spacing:.5px;font-size:11px;color:var(--ink-faint);text-align:left;padding:8px 10px;border-bottom:1px solid var(--line2)}
+  td{padding:9px 10px;border-bottom:1px solid var(--line)}
+  tr:last-child td{border-bottom:none}
+  td.num,th.num{text-align:right;font-family:var(--mono)}
+  tr:hover td{background:rgba(255,255,255,.02)}
+  .pill{display:inline-block;font-size:11px;font-weight:700;font-family:var(--cond);letter-spacing:.4px;text-transform:uppercase;padding:2px 8px;border-radius:20px}
+  .p-live{background:rgba(47,177,121,.16);color:var(--green)}
+  .p-warn{background:rgba(224,161,0,.16);color:var(--amber)}
+  .p-open{background:rgba(200,16,46,.16);color:#ff6076}
+  .p-mut{background:var(--steel);color:var(--ink-dim)}
+
+  /* hbars list */
+  .hb{display:flex;align-items:center;gap:10px;margin:9px 0}
+  .hb .name{width:150px;font-size:12.5px;color:var(--ink-dim);flex:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .hb .track{flex:1;height:9px;border-radius:5px;background:#2c3036;overflow:hidden}
+  .hb .fill{height:100%;background:var(--red);opacity:.85;border-radius:5px}
+  .hb .v{width:62px;text-align:right;font-family:var(--mono);font-size:12px;color:var(--ink);flex:none}
+
+  .legend{font-size:11px;color:var(--ink-faint);margin-top:10px}
+  .src-foot{margin-top:7px;font-size:10.5px;color:var(--ink-faint);font-style:italic}
+
+  /* funnel */
+  .funnel{display:flex;flex-direction:column;gap:8px;margin-top:4px}
+  .fstep{display:flex;align-items:center;gap:12px}
+  .fstep .fl{width:130px;font-size:12.5px;color:var(--ink-dim);flex:none}
+  .fstep .fbar{height:30px;border-radius:6px;background:linear-gradient(90deg,var(--red),#9d0c24);display:flex;align-items:center;padding:0 11px;font-family:var(--mono);font-weight:700;color:#fff;font-size:14px;min-width:54px}
+  .fstep .fconv{font-size:11.5px;color:var(--ink-faint);font-family:var(--mono)}
+
+  /* month bars */
+  .months{display:flex;align-items:flex-end;gap:10px;height:150px;margin-top:8px;padding-top:8px}
+  .mcol{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;gap:6px}
+  .mcol .stack{width:100%;max-width:42px;display:flex;flex-direction:column;justify-content:flex-end;height:100%;position:relative}
+  .mcol .goalline{position:absolute;left:-2px;right:-2px;border-top:1.5px dashed var(--ink-faint);opacity:.5}
+  .mcol .set{background:#3a4048;border-radius:4px 4px 0 0;width:100%}
+  .mcol .held{background:var(--red);border-radius:4px 4px 0 0;width:100%}
+  .mcol .mname{font-size:11px;color:var(--ink-faint);font-family:var(--cond);text-transform:uppercase;letter-spacing:.5px}
+  .mcol .mval{font-family:var(--mono);font-size:11px;color:var(--ink-dim)}
+
+  /* chips */
+  .chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:4px}
+  .chip{font-size:12px;padding:5px 10px;border-radius:7px;background:var(--panel2);border:1px solid var(--line);color:var(--ink-dim)}
+  .chip b{color:#fff;font-family:var(--cond);letter-spacing:.4px}
+
+  .donut-wrap{display:flex;align-items:center;gap:18px}
+  .stat-row{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--line);font-size:13px}
+  .stat-row:last-child{border-bottom:none}
+  .stat-row .k{color:var(--ink-dim)}
+  .stat-row .v{font-family:var(--mono);color:#fff}
+  .stat-row .v.red{color:#ff6076}
+
+  footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-size:11.5px;color:var(--ink-faint);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+  .note{background:var(--panel2);border:1px solid var(--line);border-radius:9px;padding:13px 15px;font-size:12.5px;color:var(--ink-dim);line-height:1.55}
+  .note b{color:var(--ink)}
+  .big-target{font-family:var(--cond);font-size:15px;color:var(--ink);letter-spacing:.3px}
+</style>
+</head>
+<body>
+<header class="bar">
+  <div class="bar-inner">
+    <div class="brand">
+      <div class="mark">VN</div>
+      <div>
+        <h1>Van Noy Real Estate</h1>
+        <div class="sub">Operations Command Center</div>
+      </div>
+    </div>
+    <div class="asof">
+      <div class="live"><span class="dot"></span> Live snapshot</div>
+      <div>As of <b id="asof-date">—</b> · <span id="geo">—</span></div>
+    </div>
+  </div>
+  <nav class="tabs" id="tabs"></nav>
+</header>
+
+<div class="wrap">
+  <div class="alerts" id="alerts"></div>
+
+  <!-- PULSE -->
+  <section class="tabpane" data-tab="pulse">
+    <div class="secthead"><h2>Command Pulse</h2><span class="hint">The whole operation on one screen — actuals vs the 2026 plan, pace, and what needs attention.</span></div>
+    <div class="grid g4" id="pulse-kpis"></div>
+    <div class="grid g2" style="margin-top:14px">
+      <div class="card">
+        <h3><span class="ic">📈</span> Revenue & Profit vs 2026 Plan</h3>
+        <div id="pulse-plan"></div>
+      </div>
+      <div class="card">
+        <h3><span class="ic">🎯</span> 10-Year Target & Core Values</h3>
+        <p class="big-target" id="tenyear">—</p>
+        <div class="chips" id="corevalues" style="margin-top:12px"></div>
+        <div class="src-foot">Source: VNRE EOS / VTO</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MONEY -->
+  <section class="tabpane" data-tab="money">
+    <div class="secthead"><h2>Money</h2><span class="hint">QuickBooks — live. P&amp;L Jan 1 → as-of, balance sheet, and A/R collections.</span></div>
+    <div class="grid g4" id="money-kpis"></div>
+    <div class="grid g2" style="margin-top:14px">
+      <div class="card"><h3><span class="ic">💵</span> Income Mix — YTD</h3><div id="income-mix"></div><div class="src-foot">Source: QuickBooks P&amp;L (accrual)</div></div>
+      <div class="card"><h3><span class="ic">🧾</span> Top Operating Expenses — YTD</h3><div id="expense-top"></div><div class="src-foot">Source: QuickBooks P&amp;L (accrual)</div></div>
+    </div>
+    <div class="grid g2" style="margin-top:14px">
+      <div class="card">
+        <h3><span class="ic">⚠️</span> A/R & Collections</h3>
+        <div id="ar-block"></div>
+      </div>
+      <div class="card">
+        <h3><span class="ic">🏦</span> Balance Sheet Position</h3>
+        <div id="balance-block"></div>
+        <div class="src-foot">Source: QuickBooks Balance Sheet (as-of)</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LISTINGS -->
+  <section class="tabpane" data-tab="listings">
+    <div class="secthead"><h2>Listing Engine</h2><span class="hint">The funnel that drives GCI: appointments → held → taken. Goal 25 appts/mo · 70–75 sides/yr.</span></div>
+    <div class="grid g4" id="listing-kpis"></div>
+    <div class="grid g2" style="margin-top:14px">
+      <div class="card">
+        <h3><span class="ic">🛎️</span> Appointments by Month (2026)</h3>
+        <div class="months" id="months"></div>
+        <div class="legend"><span style="color:#3a4048">■</span> Set &nbsp; <span style="color:var(--red)">■</span> Held &nbsp; ┄ Monthly goal (25)</div>
+        <div class="src-foot" id="funnel-through"></div>
+      </div>
+      <div class="card">
+        <h3><span class="ic">🔻</span> Conversion Funnel — YTD</h3>
+        <div class="funnel" id="funnel"></div>
+        <div class="note" style="margin-top:12px" id="conv-note"></div>
+      </div>
+    </div>
+    <div class="grid g2" style="margin-top:14px">
+      <div class="card"><h3><span class="ic">📍</span> Lead Source Mix — 2026 Appointments</h3><div id="source-mix"></div><div class="src-foot">Parsed from 2026 Listing Appointments Tracking</div></div>
+      <div class="card"><h3><span class="ic">🗓️</span> Prior Year & Pace</h3><div id="prior-block"></div></div>
+    </div>
+  </section>
+
+  <!-- PIPELINE -->
+  <section class="tabpane" data-tab="pipeline">
+    <div class="secthead"><h2>Active Pipeline</h2><span class="hint">Commercial deals + residential listing status. Update weekly.</span></div>
+    <div class="grid g3" id="pipe-kpis"></div>
+    <div class="card" style="margin-top:14px">
+      <h3><span class="ic">🏢</span> Commercial Deal Pipeline</h3>
+      <table id="deals"></table>
+      <div class="src-foot">Source: VNRE Commercial Pipeline Tracker</div>
+    </div>
+  </section>
+
+  <!-- DATABASE -->
+  <section class="tabpane" data-tab="database">
+    <div class="secthead"><h2>Database &amp; COI</h2><span class="hint">3,000+ contacts in Follow Up Boss. The under-contacted segment is the #1 growth lever.</span></div>
+    <div class="grid g3" id="db-kpis"></div>
+    <div class="grid g2" style="margin-top:14px">
+      <div class="card"><h3><span class="ic">🏷️</span> Tier Cadence</h3><table id="tiers"></table></div>
+      <div class="card"><h3><span class="ic">💡</span> The Database Is the Business</h3><div class="note" id="db-note"></div></div>
+    </div>
+  </section>
+
+  <!-- TEAM & EOS -->
+  <section class="tabpane" data-tab="eos">
+    <div class="secthead"><h2>Team &amp; EOS Scorecard</h2><span class="hint">Weekly measurables, accountability seats, and open chairs.</span></div>
+    <div class="grid g2">
+      <div class="card span2"><h3><span class="ic">📊</span> Weekly Scorecard — Measurables &amp; Goals</h3><table id="scorecard"></table><div class="src-foot">Source: VNRE EOS System · enter weekly actuals at L10</div></div>
+    </div>
+    <div class="grid g2" style="margin-top:14px">
+      <div class="card"><h3><span class="ic">🪑</span> Accountability Chart</h3><table id="accountability"></table></div>
+      <div class="card"><h3><span class="ic">🧭</span> EOS Operating Rhythm</h3><div class="note" id="eos-note"></div></div>
+    </div>
+  </section>
+
+  <!-- SYSTEMS -->
+  <section class="tabpane" data-tab="systems">
+    <div class="secthead"><h2>Systems &amp; Automation</h2><span class="hint">The tech stack and the aiDrVN 9-stage automation suite that runs the brokerage.</span></div>
+    <div class="grid g2">
+      <div class="card"><h3><span class="ic">🧩</span> Tech Stack</h3><table id="stack"></table></div>
+      <div class="card"><h3><span class="ic">🤖</span> aiDrVN Automation Suite (9 Stages)</h3><table id="automations"></table></div>
+    </div>
+    <div class="card" style="margin-top:14px">
+      <h3><span class="ic">⏰</span> Standing Automated Schedules</h3>
+      <div class="chips" id="schedules"></div>
+    </div>
+  </section>
+
+  <footer>
+    <div>Van Noy Real Estate · Operations Command Center · Generated <span id="gen-ts">—</span></div>
+    <div>Data sources: <span id="src-list">—</span></div>
+  </footer>
+</div>
+
+<script type="application/json" id="vnre-snapshot">
+/*VNRE_SNAPSHOT_START*/
+{
+  "meta": {
+    "company": "Van Noy Real Estate",
+    "tagline": "Operations Command Center",
+    "geo": "Johnson County KS \u00b7 Jackson County MO",
+    "asOf": "2026-06-15",
+    "generated": "2026-06-15T04:00:00Z",
+    "fiscalYear": 2026,
+    "periodStart": "2026-01-01",
+    "periodEnd": "2026-06-15",
+    "schemaVersion": "1.0",
+    "sources": [
+      {
+        "name": "QuickBooks Online",
+        "feeds": "P&L, Balance Sheet, A/R aging",
+        "status": "live",
+        "asOf": "2026-06-15"
+      },
+      {
+        "name": "2026 Listing Appointments Tracking",
+        "feeds": "Listing funnel, sources",
+        "status": "live",
+        "asOf": "2026-04-30",
+        "fileId": "1C1rIRf8jZxKv1Ob-hoiN3jMIWPAHm8OS"
+      },
+      {
+        "name": "VNRE Commercial Pipeline Tracker",
+        "feeds": "Active deals",
+        "status": "live",
+        "asOf": "2026-05-20",
+        "fileId": "1CmGGcBeq_kLg_h1Pi-jnYGNJzpggY23f"
+      },
+      {
+        "name": "VNRE EOS System",
+        "feeds": "Scorecard KPIs, VTO, accountability",
+        "status": "live",
+        "asOf": "2026-03-26",
+        "fileId": "1ruv-7TMg4BvXUkJ2pE-zDsN2CnKfLNXQ"
+      },
+      {
+        "name": "Commission Tracker",
+        "feeds": "Closed deals",
+        "status": "live",
+        "asOf": "2026-05-27",
+        "fileId": "1FV6Z1fbdml6Eoy6NBoh_8nU9LUxE--ua"
+      },
+      {
+        "name": "Follow Up Boss (CRM)",
+        "feeds": "Database, leads, COI",
+        "status": "manual",
+        "asOf": "2026-06-15"
+      }
+    ]
+  },
+  "finance": {
+    "pl": {
+      "periodStart": "2026-01-01",
+      "periodEnd": "2026-06-15",
+      "basis": "accrual",
+      "income": 446501.03,
+      "cogs": 96928.3,
+      "grossProfit": 349572.73,
+      "expenses": 267109.92,
+      "net": 82462.81,
+      "margin": 0.1847,
+      "yoyTrend": "down"
+    },
+    "plan2026": {
+      "revenueTarget": 1250000,
+      "opexTarget": 537500,
+      "netTarget": 625000,
+      "marginTarget": 0.5,
+      "note": "From the 2026 Strategic Business Plan. 50% net margin is the stretch standard the CEO dashboard guards against."
+    },
+    "incomeMix": [
+      {
+        "label": "Commission \u2014 KS",
+        "amount": 227888.78
+      },
+      {
+        "label": "Commission \u2014 MO",
+        "amount": 125830.9
+      },
+      {
+        "label": "Commission \u2014 KCMO",
+        "amount": 58986.5
+      },
+      {
+        "label": "RE Systems Design",
+        "amount": 19000
+      },
+      {
+        "label": "Rental Income",
+        "amount": 8750
+      },
+      {
+        "label": "Digital Marketing",
+        "amount": 6000
+      },
+      {
+        "label": "Interest",
+        "amount": 44.85
+      }
+    ],
+    "expenseTop": [
+      {
+        "label": "Payroll (staff)",
+        "amount": 85523.73
+      },
+      {
+        "label": "General Admin & Office",
+        "amount": 54318.17
+      },
+      {
+        "label": "Officers Compensation",
+        "amount": 47378.83
+      },
+      {
+        "label": "Advertising & Marketing",
+        "amount": 18768.29
+      },
+      {
+        "label": "Insurance",
+        "amount": 12681.69
+      },
+      {
+        "label": "Travel",
+        "amount": 12121.84
+      },
+      {
+        "label": "Taxes & Licenses",
+        "amount": 10891.03
+      },
+      {
+        "label": "Charitable Contributions",
+        "amount": 8399.88
+      },
+      {
+        "label": "Legal & Accounting",
+        "amount": 5488.25
+      },
+      {
+        "label": "Utilities / Telephone",
+        "amount": 3138.59
+      },
+      {
+        "label": "Repairs & Maintenance",
+        "amount": 3011.76
+      },
+      {
+        "label": "Other / Dues / Auto / Meals",
+        "amount": 5388.86
+      }
+    ],
+    "balance": {
+      "asOf": "2026-06-15",
+      "cash": 25888.38,
+      "accountsReceivable": 16050,
+      "totalAssets": 128066.03,
+      "totalLiabilities": 70642.09,
+      "equity": 57423.94,
+      "workingCapital": 18956.64,
+      "currentRatio": 1.81,
+      "debtToEquity": 1.23,
+      "creditCards": 14196.3,
+      "autoNote": 47149.47
+    },
+    "ar": {
+      "total": 16050,
+      "overdue": 16050,
+      "overduePct": 1.0,
+      "buckets": {
+        "current": 0,
+        "1-30": 4550,
+        "31-60": 0,
+        "61-90": 0,
+        "91+": 11500
+      },
+      "atRisk": {
+        "amount": 11500,
+        "customer": "All Western Mortgage",
+        "bucket": "91+"
+      },
+      "customers": [
+        {
+          "name": "All Western Mortgage",
+          "amount": 11500,
+          "bucket": "91+"
+        },
+        {
+          "name": "Brady Sandahl Real Estate Group",
+          "amount": 2000,
+          "bucket": "1-30"
+        },
+        {
+          "name": "HomeSmart Encore",
+          "amount": 2000,
+          "bucket": "1-30"
+        },
+        {
+          "name": "First Funding Source, LLC",
+          "amount": 550,
+          "bucket": "1-30"
+        }
+      ]
+    }
+  },
+  "funnel": {
+    "goalPerMonth": 25,
+    "goalYear": 300,
+    "ytd": {
+      "set": 41,
+      "held": 26,
+      "taken": 9
+    },
+    "dataThrough": "2026-04-30",
+    "monthly": [
+      {
+        "month": "Jan",
+        "set": 15,
+        "held": 10,
+        "goal": 25
+      },
+      {
+        "month": "Feb",
+        "set": 8,
+        "held": 5,
+        "goal": 25
+      },
+      {
+        "month": "Mar",
+        "set": 13,
+        "held": 10,
+        "goal": 25
+      },
+      {
+        "month": "Apr",
+        "set": 5,
+        "held": 1,
+        "goal": 25
+      },
+      {
+        "month": "May",
+        "set": null,
+        "held": null,
+        "goal": 25
+      },
+      {
+        "month": "Jun",
+        "set": null,
+        "held": null,
+        "goal": 25
+      }
+    ],
+    "conversion": {
+      "contactsPerAppt": 50,
+      "apptToListing": 0.7,
+      "dailyCalls": 150,
+      "dailyContacts": 30,
+      "dailyProspectingHours": 3
+    },
+    "sourceMix": [
+      {
+        "source": "Homelight",
+        "count": 13
+      },
+      {
+        "source": "Home Value Leads (HVL)",
+        "count": 9
+      },
+      {
+        "source": "kchomelistings.com",
+        "count": 8
+      },
+      {
+        "source": "COI / Sphere",
+        "count": 6
+      },
+      {
+        "source": "Sign-Call",
+        "count": 3
+      },
+      {
+        "source": "Past Client",
+        "count": 2
+      },
+      {
+        "source": "Referral",
+        "count": 1
+      },
+      {
+        "source": "Expired / FSBO",
+        "count": 2
+      }
+    ],
+    "prior2025": {
+      "set": 241,
+      "held": 111,
+      "goal": 300
+    },
+    "targetSides": {
+      "low": 70,
+      "high": 75,
+      "avgPriceLow": 450000,
+      "avgPriceHigh": 550000
+    }
+  },
+  "pipeline": {
+    "residentialListingStatus": {
+      "taken": 9,
+      "appointmentsHeld": 26,
+      "appointmentsSet": 41
+    },
+    "deals": [
+      {
+        "name": "Pine Ridge / 22 Helm",
+        "address": "7957 Bond St, Lenexa KS",
+        "side": "Landlord",
+        "type": "Lease",
+        "stage": "Marketing",
+        "prob": 0.4,
+        "source": "Existing Client",
+        "target": "2026-Q2"
+      },
+      {
+        "name": "H2I Space",
+        "address": "11515 W 79th, Lenexa KS",
+        "side": "Landlord",
+        "type": "Lease",
+        "stage": "Listing Prep",
+        "prob": 0.3,
+        "source": "Owner Referral",
+        "target": "2026-Q3"
+      },
+      {
+        "name": "Braun Intertec",
+        "address": "11529 W 79th, Lenexa KS",
+        "side": "Tenant",
+        "type": "Lease",
+        "stage": "Closed",
+        "prob": 1.0,
+        "source": "Direct",
+        "target": "2026-02-19"
+      }
+    ]
+  },
+  "database": {
+    "totalCOI": 3000,
+    "note": "3,000+ COI contacts, tiered A/B/C in Follow Up Boss. The under-contacted segment is the #1 growth opportunity.",
+    "tiers": [
+      {
+        "tier": "A",
+        "label": "Advocates / high-value",
+        "cadence": "Monthly touch"
+      },
+      {
+        "tier": "B",
+        "label": "Warm sphere",
+        "cadence": "Quarterly touch"
+      },
+      {
+        "tier": "C",
+        "label": "Broad database",
+        "cadence": "Bi-annual + market emails"
+      }
+    ]
+  },
+  "eos": {
+    "tenYearTarget": "4,000 doors under management & $150MM syndicated real estate portfolio (by 12/31/2034)",
+    "coreValues": [
+      "Driven",
+      "Coachable",
+      "Innovative",
+      "Loyal",
+      "Do the Right Thing"
+    ],
+    "scorecard": [
+      {
+        "group": "Listings",
+        "kpi": "Listing Appointments Set",
+        "owner": "DVN",
+        "goal": ">= 4 / wk"
+      },
+      {
+        "group": "Listings",
+        "kpi": "Listing Appointments Held",
+        "owner": "DVN",
+        "goal": ">= 3 / wk"
+      },
+      {
+        "group": "Listings",
+        "kpi": "Listings Taken",
+        "owner": "DVN",
+        "goal": ">= 2 / wk"
+      },
+      {
+        "group": "Listings",
+        "kpi": "Listings Closed",
+        "owner": "DVN",
+        "goal": ">= 2 / wk"
+      },
+      {
+        "group": "Listings",
+        "kpi": "Avg Days on Market",
+        "owner": "DVN",
+        "goal": "<= 30"
+      },
+      {
+        "group": "Listings",
+        "kpi": "Avg SP/LP Ratio",
+        "owner": "DVN",
+        "goal": ">= 98%"
+      },
+      {
+        "group": "Prospecting",
+        "kpi": "Written Outreach",
+        "owner": "ISA",
+        "goal": ">= 100 / wk"
+      },
+      {
+        "group": "Prospecting",
+        "kpi": "Conversations > 1 min",
+        "owner": "ISA",
+        "goal": ">= 25 / wk"
+      },
+      {
+        "group": "Prospecting",
+        "kpi": "Meetings Booked",
+        "owner": "ISA",
+        "goal": ">= 8 / wk"
+      },
+      {
+        "group": "Operations",
+        "kpi": "Follow Up Boss Tasks Overdue",
+        "owner": "EA",
+        "goal": "= 0"
+      },
+      {
+        "group": "Operations",
+        "kpi": "Dotloop Compliance Rate",
+        "owner": "EA",
+        "goal": "= 100%"
+      },
+      {
+        "group": "Operations",
+        "kpi": "New Reviews Received",
+        "owner": "EA",
+        "goal": "track"
+      }
+    ],
+    "accountability": [
+      {
+        "seat": "Visionary",
+        "owner": "David Van Noy",
+        "status": "filled"
+      },
+      {
+        "seat": "Integrator",
+        "owner": "David Van Noy (acting)",
+        "status": "acting"
+      },
+      {
+        "seat": "Listing Specialist",
+        "owner": "David Van Noy",
+        "status": "filled"
+      },
+      {
+        "seat": "BDM",
+        "owner": "David Van Noy",
+        "status": "filled"
+      },
+      {
+        "seat": "Operations / EA",
+        "owner": "Stephanie",
+        "status": "filled"
+      },
+      {
+        "seat": "ISA",
+        "owner": "Stephanie / Danya",
+        "status": "filled"
+      },
+      {
+        "seat": "Marketing Manager",
+        "owner": "TBD",
+        "status": "open"
+      },
+      {
+        "seat": "Buyer Agent",
+        "owner": "TBD",
+        "status": "open"
+      }
+    ]
+  },
+  "systems": {
+    "stack": [
+      {
+        "name": "Follow Up Boss",
+        "role": "CRM / database",
+        "status": "active"
+      },
+      {
+        "name": "Dotloop / Skyslope",
+        "role": "Transaction mgmt",
+        "status": "active"
+      },
+      {
+        "name": "Heartland MLS / BrokerBay",
+        "role": "MLS / showings",
+        "status": "active"
+      },
+      {
+        "name": "Mojo",
+        "role": "Dialer",
+        "status": "active"
+      },
+      {
+        "name": "Upfirst (Alex / Jordan)",
+        "role": "Voice agents",
+        "status": "active"
+      },
+      {
+        "name": "QuickBooks Online",
+        "role": "Accounting",
+        "status": "active"
+      },
+      {
+        "name": "Google Workspace",
+        "role": "Email / Drive / Calendar",
+        "status": "active"
+      },
+      {
+        "name": "DocuSeal",
+        "role": "E-signature (ERS)",
+        "status": "active"
+      },
+      {
+        "name": "Canva",
+        "role": "Design / graphics",
+        "status": "active"
+      },
+      {
+        "name": "Granola",
+        "role": "Call transcripts",
+        "status": "active"
+      },
+      {
+        "name": "Asana",
+        "role": "Project tasks",
+        "status": "limited"
+      }
+    ],
+    "automations": [
+      {
+        "stage": "01 Prospect",
+        "module": "active-hunter + book-appointment",
+        "status": "live"
+      },
+      {
+        "stage": "02 Attraction",
+        "module": "content-engine",
+        "status": "live"
+      },
+      {
+        "stage": "03 Prep",
+        "module": "plp-build + plp-presentation",
+        "status": "live"
+      },
+      {
+        "stage": "04 Closing",
+        "module": "offer-to-spreadsheet",
+        "status": "live"
+      },
+      {
+        "stage": "05 Operations",
+        "module": "send-ers-agreement",
+        "status": "live"
+      },
+      {
+        "stage": "06 Compliance",
+        "module": "compliance-auditor",
+        "status": "live"
+      },
+      {
+        "stage": "07 Finance",
+        "module": "ceo-dashboard",
+        "status": "live"
+      },
+      {
+        "stage": "08 Database/COI",
+        "module": "database-coi + clv-sync",
+        "status": "live"
+      },
+      {
+        "stage": "09 Scale",
+        "module": "call-coach",
+        "status": "live"
+      }
+    ],
+    "schedules": [
+      {
+        "task": "daily-lead-attention",
+        "when": "Daily 5:00 AM"
+      },
+      {
+        "task": "active-hunter",
+        "when": "Daily 5:15 AM"
+      },
+      {
+        "task": "plp-folder-build",
+        "when": "Daily 7:00 AM"
+      },
+      {
+        "task": "clv-sync",
+        "when": "1st Mon 5:45 AM"
+      },
+      {
+        "task": "database-coi",
+        "when": "Mon 6:00 AM"
+      },
+      {
+        "task": "ceo-dashboard",
+        "when": "Mon 6:30 AM"
+      }
+    ]
+  }
+}
+/*VNRE_SNAPSHOT_END*/
+</script>
+
+<script>
+//============================================================ helpers
+const $=(s,r=document)=>r.querySelector(s);
+const el=(t,c,h)=>{const e=document.createElement(t);if(c)e.className=c;if(h!=null)e.innerHTML=h;return e;};
+const usd=n=>n==null?'—':'$'+Math.round(n).toLocaleString('en-US');
+const usdShort=n=>{if(n==null)return'—';const a=Math.abs(n);if(a>=1e6)return'$'+(n/1e6).toFixed(2)+'M';if(a>=1e3)return'$'+(n/1e3).toFixed(0)+'K';return'$'+Math.round(n);};
+const pct=n=>n==null?'—':Math.round(n*100)+'%';
+const pct1=n=>n==null?'—':(n*100).toFixed(1)+'%';
+function rag(ratio,g=0.95,a=0.80){return ratio>=g?'green':ratio>=a?'amber':'red';}
+function flagEl(level,txt){const m={green:'f-green',amber:'f-amber',red:'f-red',info:'f-info'};return `<span class="stat-flag ${m[level]}">${txt}</span>`;}
+
+let D={};
+try{
+  const raw=$('#vnre-snapshot').textContent.replace('/*VNRE_SNAPSHOT_START*/','').replace('/*VNRE_SNAPSHOT_END*/','').trim();
+  D=JSON.parse(raw);
+}catch(e){console.error('snapshot parse failed',e);}
+
+const A=D.meta||{}, F=D.finance||{}, FU=D.funnel||{}, PI=D.pipeline||{}, DB=D.database||{}, EO=D.eos||{}, SY=D.systems||{};
+
+// elapsed fraction of fiscal year
+function frac(start,end){const s=new Date(start),e=new Date(end);return Math.max((e-s)/(1000*86400),1)/365;}
+const elapsed = frac(A.periodStart||'2026-01-01', A.periodEnd||A.asOf);
+const ann = v => v/elapsed;
+
+//============================================================ header
+$('#asof-date').textContent = A.asOf||'—';
+$('#geo').textContent = A.geo||'';
+$('#gen-ts').textContent = (A.generated||'').replace('T',' ').replace('Z',' UTC');
+$('#src-list').textContent = (A.sources||[]).map(s=>s.name).join(' · ');
+
+//============================================================ tabs
+const TABS=[['pulse','Pulse'],['money','Money'],['listings','Listings'],['pipeline','Pipeline'],['database','Database'],['eos','Team & EOS'],['systems','Systems']];
+const tabnav=$('#tabs');
+TABS.forEach(([id,label],i)=>{
+  const b=el('button',i===0?'active':'',label);
+  b.onclick=()=>{
+    document.querySelectorAll('nav.tabs button').forEach(x=>x.classList.remove('active'));
+    document.querySelectorAll('.tabpane').forEach(x=>x.classList.remove('active'));
+    b.classList.add('active');
+    $(`section[data-tab="${id}"]`).classList.add('active');
+    window.scrollTo({top:0,behavior:'smooth'});
+  };
+  tabnav.appendChild(b);
+});
+$('section[data-tab="pulse"]').classList.add('active');
+
+//============================================================ KPI card factory
+function kpi(parent,{val,lbl,meta,accent,flag}){
+  const c=el('div','card kpi');
+  if(flag)c.innerHTML=flagEl(flag.level,flag.txt);
+  c.innerHTML+=`<div class="val${accent?' accent':''}">${val}</div><div class="lbl">${lbl}</div>${meta?`<div class="meta">${meta}</div>`:''}`;
+  parent.appendChild(c);
+}
+
+//============================================================ PULSE
+(function(){
+  const pl=F.pl||{}, plan=F.plan2026||{}, ar=F.ar||{}, bal=F.balance||{};
+  const incPace=ann(pl.income)/plan.revenueTarget;
+  const netPace=ann(pl.net)/plan.netTarget;
+  const marginR=pl.margin/plan.marginTarget;
+  // listing pace vs goal-to-date (months of data)
+  const monthsData=(FU.monthly||[]).filter(m=>m.set!=null).length||1;
+  const setGoalTD=(FU.goalPerMonth||25)*monthsData;
+  const setPace=(FU.ytd?.set||0)/setGoalTD;
+
+  const p=$('#pulse-kpis');
+  kpi(p,{val:usdShort(pl.income),accent:true,lbl:'Income YTD',
+    meta:`Annualized <span class="mono">${usdShort(ann(pl.income))}</span> · ${pct(incPace)} of $1.25M plan`,
+    flag:{level:rag(incPace),txt:pct(incPace)+' pace'}});
+  kpi(p,{val:usdShort(pl.net),lbl:'Net Profit YTD',
+    meta:`Margin <span class="mono">${pct1(pl.margin)}</span> vs 50% target`,
+    flag:{level:rag(netPace),txt:pct(netPace)+' pace'}});
+  kpi(p,{val:(FU.ytd?.set||0),lbl:'Listing Appts Set (YTD)',
+    meta:`${FU.ytd?.held||0} held · ${FU.ytd?.taken||0} taken · goal ${setGoalTD} to date`,
+    flag:{level:rag(setPace),txt:pct(setPace)+' pace'}});
+  kpi(p,{val:usdShort(ar.atRisk?.amount),accent:true,lbl:'A/R 91+ Days at Risk',
+    meta:`${ar.atRisk?.customer||''} — collect now`,
+    flag:{level:'red',txt:'overdue'}});
+
+  // plan bars
+  const pp=$('#pulse-plan');
+  function planBar(label,ytd,annv,target,higher=true){
+    const r=higher?annv/target:2-(annv/target);
+    const lv=rag(r); const w=Math.min(100,Math.round((annv/target)*100));
+    pp.appendChild(el('div',null,
+      `<div style="display:flex;justify-content:space-between;font-size:12.5px;margin:12px 0 0">
+        <span style="color:var(--ink-dim)">${label}</span>
+        <span class="mono">${usdShort(ytd)} YTD → <b style="color:#fff">${usdShort(annv)}</b> ann. / ${usdShort(target)}</span>
+      </div>
+      <div class="bar-track"><div class="bar-fill ${lv}" style="width:${w}%"></div></div>`));
+  }
+  planBar('Revenue / Income', pl.income, ann(pl.income), plan.revenueTarget);
+  planBar('Net Profit', pl.net, ann(pl.net), plan.netTarget);
+  planBar('Operating Expenses', pl.expenses, ann(pl.expenses), plan.opexTarget, false);
+  const mlv=rag(marginR);
+  pp.appendChild(el('div',null,
+    `<div style="display:flex;justify-content:space-between;font-size:12.5px;margin:12px 0 0">
+      <span style="color:var(--ink-dim)">Net Margin</span>
+      <span class="mono"><b style="color:#fff">${pct1(pl.margin)}</b> / ${pct(plan.marginTarget)} target</span>
+    </div>
+    <div class="bar-track"><div class="bar-fill ${mlv}" style="width:${Math.min(100,Math.round(marginR*100))}%"></div></div>`));
+
+  $('#tenyear').textContent=EO.tenYearTarget||'';
+  const cv=$('#corevalues');
+  (EO.coreValues||[]).forEach(v=>cv.appendChild(el('span','chip',`<b>${v}</b>`)));
+})();
+
+//============================================================ MONEY
+(function(){
+  const pl=F.pl||{}, bal=F.balance||{}, ar=F.ar||{};
+  const m=$('#money-kpis');
+  kpi(m,{val:usdShort(pl.income),accent:true,lbl:'Income (Jan 1 → '+A.asOf+')'});
+  kpi(m,{val:usdShort(pl.grossProfit),lbl:'Gross Profit',meta:`COGS <span class="mono">${usdShort(pl.cogs)}</span>`});
+  kpi(m,{val:usdShort(pl.expenses),lbl:'Operating Expenses'});
+  kpi(m,{val:usdShort(pl.net),lbl:'Net Profit',meta:`Margin <span class="mono">${pct1(pl.margin)}</span>`,flag:{level:rag(pl.margin/(F.plan2026?.marginTarget||0.5)),txt:pct1(pl.margin)}});
+
+  // income mix hbars
+  const mix=F.incomeMix||[]; const maxI=Math.max(...mix.map(x=>x.amount));
+  const im=$('#income-mix');
+  mix.forEach(x=>im.appendChild(el('div','hb',
+    `<span class="name">${x.label}</span><span class="track"><span class="fill" style="width:${Math.round(x.amount/maxI*100)}%"></span></span><span class="v">${usdShort(x.amount)}</span>`)));
+
+  const exp=F.expenseTop||[]; const maxE=Math.max(...exp.map(x=>x.amount));
+  const et=$('#expense-top');
+  exp.forEach(x=>et.appendChild(el('div','hb',
+    `<span class="name">${x.label}</span><span class="track"><span class="fill" style="width:${Math.round(x.amount/maxE*100)}%"></span></span><span class="v">${usdShort(x.amount)}</span>`)));
+
+  // AR
+  const arb=$('#ar-block');
+  arb.innerHTML=`<div class="stat-row"><span class="k">Total receivables</span><span class="v">${usd(ar.total)}</span></div>
+    <div class="stat-row"><span class="k">Overdue</span><span class="v red">${usd(ar.overdue)} (${pct(ar.overduePct)})</span></div>`;
+  const bk=ar.buckets||{};
+  ['1-30','31-60','61-90','91+'].forEach(b=>{
+    if(bk[b])arb.innerHTML+=`<div class="stat-row"><span class="k">${b} days</span><span class="v${b==='91+'?' red':''}">${usd(bk[b])}</span></div>`;
+  });
+  const t=el('table',null,'<tr><th>Customer</th><th>Bucket</th><th class="num">Amount</th></tr>');
+  (ar.customers||[]).forEach(c=>{
+    t.innerHTML+=`<tr><td>${c.name}</td><td><span class="pill ${c.bucket==='91+'?'p-open':'p-warn'}">${c.bucket}</span></td><td class="num">${usd(c.amount)}</td></tr>`;
+  });
+  arb.appendChild(t);
+  arb.innerHTML+=`<div class="note" style="margin-top:11px"><b>Action:</b> ${usd(ar.atRisk?.amount)} from ${ar.atRisk?.customer} is 91+ days — collect this week. Source: QuickBooks A/R aging.</div>`;
+
+  // Balance
+  const bb=$('#balance-block');
+  bb.innerHTML=`
+    <div class="stat-row"><span class="k">Cash on hand</span><span class="v">${usd(bal.cash)}</span></div>
+    <div class="stat-row"><span class="k">Accounts receivable</span><span class="v">${usd(bal.accountsReceivable)}</span></div>
+    <div class="stat-row"><span class="k">Total assets</span><span class="v">${usd(bal.totalAssets)}</span></div>
+    <div class="stat-row"><span class="k">Total liabilities</span><span class="v">${usd(bal.totalLiabilities)}</span></div>
+    <div class="stat-row"><span class="k">Equity</span><span class="v">${usd(bal.equity)}</span></div>
+    <div class="stat-row"><span class="k">Working capital</span><span class="v">${usd(bal.workingCapital)}</span></div>
+    <div class="stat-row"><span class="k">Current ratio</span><span class="v">${bal.currentRatio}</span></div>
+    <div class="stat-row"><span class="k">Debt-to-equity</span><span class="v">${bal.debtToEquity}</span></div>`;
+})();
+
+//============================================================ LISTINGS
+(function(){
+  const m=$('#listing-kpis');
+  const monthsData=(FU.monthly||[]).filter(x=>x.set!=null).length||1;
+  const setGoalTD=(FU.goalPerMonth||25)*monthsData;
+  const setPace=(FU.ytd?.set||0)/setGoalTD;
+  const heldRate=(FU.ytd?.held||0)/(FU.ytd?.set||1);
+  const takenRate=(FU.ytd?.taken||0)/(FU.ytd?.held||1);
+  kpi(m,{val:(FU.ytd?.set||0),accent:true,lbl:'Appointments Set (YTD)',meta:`Goal ${setGoalTD} to date`,flag:{level:rag(setPace),txt:pct(setPace)}});
+  kpi(m,{val:(FU.ytd?.held||0),lbl:'Appointments Held',meta:`${pct(heldRate)} of set held`});
+  kpi(m,{val:(FU.ytd?.taken||0),lbl:'Listings Taken',meta:`${pct(takenRate)} held→taken`,flag:{level:rag(takenRate/(FU.conversion?.apptToListing||0.7)),txt:pct(takenRate)}});
+  kpi(m,{val:(FU.targetSides?.low||70)+'–'+(FU.targetSides?.high||75),lbl:'Annual Sides Target',meta:`@ ${usdShort(FU.targetSides?.avgPriceLow)}–${usdShort(FU.targetSides?.avgPriceHigh)} avg`,flag:{level:'info',txt:'plan'}});
+
+  // months
+  const mc=$('#months');
+  const all=(FU.monthly||[]); const maxV=Math.max(FU.goalPerMonth||25,...all.map(x=>x.set||0));
+  all.forEach(x=>{
+    const col=el('div','mcol');
+    const stack=el('div','stack');
+    const goalY=Math.round((x.goal/maxV)*100);
+    stack.innerHTML=`<div class="goalline" style="bottom:${goalY}%"></div>`;
+    if(x.set!=null){
+      const heldH=Math.round((x.held/maxV)*100);
+      const setExtra=Math.round(((x.set-x.held)/maxV)*100);
+      stack.innerHTML+=`<div class="set" title="Set ${x.set}" style="height:${setExtra}%"></div><div class="held" title="Held ${x.held}" style="height:${heldH}%"></div>`;
+    }else{
+      stack.innerHTML+=`<div style="height:3%;background:#272b30;border-radius:3px"></div>`;
+    }
+    col.appendChild(stack);
+    col.appendChild(el('div','mval',x.set!=null?`${x.set}/${x.held}`:'—'));
+    col.appendChild(el('div','mname',x.month));
+    mc.appendChild(col);
+  });
+  $('#funnel-through').textContent='Data through '+(FU.dataThrough||A.asOf)+' · format: set/held';
+
+  // funnel
+  const f=$('#funnel');
+  const steps=[
+    ['Appointments Set',FU.ytd?.set,null],
+    ['Appointments Held',FU.ytd?.held,FU.ytd?.set],
+    ['Listings Taken',FU.ytd?.taken,FU.ytd?.held]
+  ];
+  const top=FU.ytd?.set||1;
+  steps.forEach(([lbl,v,prev])=>{
+    const w=Math.max(14,Math.round((v/top)*100));
+    const conv=prev?` <span class="fconv">${pct(v/prev)} →</span>`:'';
+    f.appendChild(el('div','fstep',`<span class="fl">${lbl}</span><div class="fbar" style="width:${w}%">${v}</div>${conv}`));
+  });
+  const c=FU.conversion||{};
+  $('#conv-note').innerHTML=`<b>The math:</b> ~${c.contactsPerAppt} contacts → 1 appointment; ~${pct(c.apptToListing)} of appointments held convert to a listing. Daily discipline: ${c.dailyCalls} calls / ${c.dailyContacts} contacts / ${c.dailyProspectingHours} hrs prospecting.`;
+
+  // source mix
+  const sm=$('#source-mix'); const src=FU.sourceMix||[]; const maxS=Math.max(...src.map(x=>x.count));
+  src.sort((a,b)=>b.count-a.count).forEach(x=>sm.appendChild(el('div','hb',
+    `<span class="name">${x.source}</span><span class="track"><span class="fill" style="width:${Math.round(x.count/maxS*100)}%"></span></span><span class="v">${x.count}</span>`)));
+
+  // prior
+  const pr=FU.prior2025||{};
+  $('#prior-block').innerHTML=`
+    <div class="stat-row"><span class="k">2025 appts set</span><span class="v">${pr.set} / ${pr.goal} goal</span></div>
+    <div class="stat-row"><span class="k">2025 appts held</span><span class="v">${pr.held}</span></div>
+    <div class="stat-row"><span class="k">2025 set vs goal</span><span class="v">${pct(pr.set/pr.goal)}</span></div>
+    <div class="note" style="margin-top:11px">At 25 appts/mo the goal is 300/yr. 2025 finished at ${pct(pr.set/pr.goal)} of goal — protecting daily prospecting hours is the single biggest lever on GCI.</div>`;
+})();
+
+//============================================================ PIPELINE
+(function(){
+  const m=$('#pipe-kpis');
+  const rs=PI.residentialListingStatus||{};
+  const deals=PI.deals||[];
+  const openDeals=deals.filter(d=>d.stage!=='Closed');
+  kpi(m,{val:rs.taken||0,accent:true,lbl:'Residential Listings Taken (YTD)'});
+  kpi(m,{val:openDeals.length,lbl:'Open Commercial Deals'});
+  kpi(m,{val:deals.filter(d=>d.stage==='Closed').length,lbl:'Commercial Closed (YTD)'});
+  const t=$('#deals');
+  t.innerHTML='<tr><th>Deal</th><th>Address</th><th>Type</th><th>Stage</th><th class="num">Prob.</th><th>Target</th></tr>';
+  deals.forEach(d=>{
+    const cls=d.stage==='Closed'?'p-live':d.prob>=0.5?'p-warn':'p-mut';
+    t.innerHTML+=`<tr><td><b>${d.name}</b></td><td style="color:var(--ink-dim)">${d.address}</td><td>${d.side} · ${d.type}</td><td><span class="pill ${cls}">${d.stage}</span></td><td class="num">${pct(d.prob)}</td><td class="num">${d.target}</td></tr>`;
+  });
+})();
+
+//============================================================ DATABASE
+(function(){
+  const m=$('#db-kpis');
+  kpi(m,{val:(DB.totalCOI||0).toLocaleString()+'+',accent:true,lbl:'COI Contacts (Follow Up Boss)'});
+  kpi(m,{val:(DB.tiers||[]).length,lbl:'Database Tiers (A/B/C)'});
+  kpi(m,{val:'#1',lbl:'Under-contacted = Top Opportunity',flag:{level:'amber',txt:'lever'}});
+  const t=$('#tiers');
+  t.innerHTML='<tr><th>Tier</th><th>Segment</th><th>Touch Cadence</th></tr>';
+  (DB.tiers||[]).forEach(x=>t.innerHTML+=`<tr><td><b>${x.tier}</b></td><td>${x.label}</td><td style="color:var(--ink-dim)">${x.cadence}</td></tr>`);
+  $('#db-note').innerHTML=DB.note||'';
+})();
+
+//============================================================ EOS
+(function(){
+  const sc=$('#scorecard');
+  sc.innerHTML='<tr><th>Area</th><th>Measurable</th><th>Owner</th><th class="num">Goal</th><th>Status</th></tr>';
+  (EO.scorecard||[]).forEach(x=>{
+    sc.innerHTML+=`<tr><td><span class="pill p-mut">${x.group}</span></td><td>${x.kpi}</td><td style="color:var(--ink-dim)">${x.owner}</td><td class="num">${x.goal}</td><td><span class="pill p-warn">enter @ L10</span></td></tr>`;
+  });
+  const ac=$('#accountability');
+  ac.innerHTML='<tr><th>Seat</th><th>Owner</th><th>Status</th></tr>';
+  (EO.accountability||[]).forEach(x=>{
+    const cls=x.status==='open'?'p-open':x.status==='acting'?'p-warn':'p-live';
+    ac.innerHTML+=`<tr><td><b>${x.seat}</b></td><td style="color:var(--ink-dim)">${x.owner}</td><td><span class="pill ${cls}">${x.status}</span></td></tr>`;
+  });
+  $('#eos-note').innerHTML=`<b>Rhythm:</b> Weekly L10 (Scorecard → Rocks → Headlines → To-Dos → IDS). Quarterly Rocks &amp; review. Annual VTO refresh. <b>Two seats are open</b> — Marketing Manager and Buyer Agent — the constraint on scaling past a solo listing operation.`;
+})();
+
+//============================================================ SYSTEMS
+(function(){
+  const st=$('#stack');
+  st.innerHTML='<tr><th>System</th><th>Role</th><th>Status</th></tr>';
+  (SY.stack||[]).forEach(x=>{
+    const cls=x.status==='active'?'p-live':x.status==='limited'?'p-warn':'p-mut';
+    st.innerHTML+=`<tr><td><b>${x.name}</b></td><td style="color:var(--ink-dim)">${x.role}</td><td><span class="pill ${cls}">${x.status}</span></td></tr>`;
+  });
+  const au=$('#automations');
+  au.innerHTML='<tr><th>Stage</th><th>Module</th><th>Status</th></tr>';
+  (SY.automations||[]).forEach(x=>{
+    au.innerHTML+=`<tr><td>${x.stage}</td><td style="color:var(--ink-dim)">${x.module}</td><td><span class="pill p-live">${x.status}</span></td></tr>`;
+  });
+  const sch=$('#schedules');
+  (SY.schedules||[]).forEach(x=>sch.appendChild(el('span','chip',`<b>${x.task}</b> · ${x.when}`)));
+})();
+
+//============================================================ ALERTS (auto from flags)
+(function(){
+  const box=$('#alerts'); const pl=F.pl||{}, plan=F.plan2026||{}, ar=F.ar||{}, FUc=FU.conversion||{};
+  const out=[];
+  if(ar.atRisk?.amount)out.push(['red','Collections',`<b>${usd(ar.atRisk.amount)}</b> from ${ar.atRisk.customer} is 91+ days overdue — collect this week.`]);
+  if(pl.margin < plan.marginTarget*0.95){
+    const gap=(plan.marginTarget-pl.margin)*pl.income;
+    out.push(['red','Margin',`Net margin <b>${pct1(pl.margin)}</b> vs ${pct(plan.marginTarget)} target — a <b>${usd(gap)}</b> profit gap at current revenue. Lever the ${usdShort(pl.expenses)} opex and ${usdShort(pl.cogs)} cost-of-sales lines.`]);
+  }
+  const monthsData=(FU.monthly||[]).filter(m=>m.set!=null).length||1;
+  const setPace=(FU.ytd?.set||0)/((FU.goalPerMonth||25)*monthsData);
+  if(setPace<0.8)out.push(['amber','Pipeline',`Listing appointments at <b>${pct(setPace)}</b> of goal-to-date — protect the ${FUc.dailyProspectingHours}-hour daily prospecting block; the funnel is the GCI.`]);
+  const open=(EO.accountability||[]).filter(s=>s.status==='open').map(s=>s.seat);
+  if(open.length)out.push(['amber','Team',`Open seats: <b>${open.join(' & ')}</b> — the constraint on scaling beyond a solo listing operation.`]);
+  const incPace=ann(pl.income)/plan.revenueTarget;
+  if(incPace>=0.95)out.push(['green','Revenue',`Revenue annualizing at <b>${usdShort(ann(pl.income))}</b> — on pace to the $1.25M plan.`]);
+  out.forEach(([lv,tag,txt])=>{
+    box.appendChild(el('div','alert '+lv,`<span class="tag">${tag}</span><div>${txt}</div>`));
+  });
+})();
+</script>
+</body>
+</html>
