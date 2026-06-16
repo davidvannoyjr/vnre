@@ -1,0 +1,14 @@
+# Secrets & local state — never commit
+.env
+*.token
+tokens/
+data/
+*.xlsx
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+.pytest_cache/
+*.egg-info/
