@@ -135,7 +135,7 @@ Reject anything theoretical, complex without payoff, or dependent on motivation 
 | `dvn-voice` | all outbound copy | brand voice skill (see `02 Reference/Brand/`) |
 
 > Skill packages (`.skill` zips) and tool source live in Drive `04 Tools/` and are not mirrored to this repo. Install a `.skill` by opening it in Claude desktop → **Save skill**. Per-device setup for FUB-backed skills: `npm install` in the tool folder, quit Claude, run `04 Tools/followupboss-mcp/fix-claude-config.sh`, reopen.
-> **Standing schedules** for the newer skills: see `tools/vnre/scheduled-tasks/` — `daily-lead-attention` 5:00 daily, `active-hunter` 5:15 daily, `clv-sync` first Mon 5:45, `database-coi` Mon 6:00, `ceo-dashboard` Mon 6:30, `plp-folder-build` 7:00 daily. Full module index + 9-stage coverage map: `tools/README.md`.
+> **Standing schedules** for the newer skills: see `tools/vnre/scheduled-tasks/` — `morning-pull` 4:55 daily (shared FUB pull both AM tasks read), `daily-lead-attention` 5:00 daily, `active-hunter` 5:15 daily, `clv-sync` first Mon 5:45, `database-coi` Mon 6:00, `ceo-dashboard` Mon 6:30, `plp-folder-build` 7:00 daily, `meta-review` Sun 6:00 PM (weekly ops + cost rollup). Every task is governed by `tools/vnre/scheduled-tasks/GOVERNANCE.md` (autonomy level, named checker gate, machine-checkable stop, STATE ledger, cost model) and carries a filled-in `## Governance` block. Full module index + 9-stage coverage map: `tools/README.md`.
 
 ---
 
