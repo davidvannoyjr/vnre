@@ -24,6 +24,7 @@ In Claude desktop / Cowork → Scheduled Tasks → New:
 | 7:00 AM | daily | `plp-folder-build` (PLP prep) | existing |
 | 8:48 AM | daily | Team huddle | existing |
 | 6:00 PM | Sun | **`meta-review`** (weekly ops + cost rollup) | new → [meta-review.task.md](meta-review.task.md) |
+| 5:00 PM | 1st Sun/month | **`drive-hygiene`** (duplicate / conflict / drift scan) | new → [drive-hygiene.task.md](drive-hygiene.task.md) |
 
 **`morning-pull` (4:55)** pulls the union of pipeline + prospecting segments once; the 5:00
 lead brief and 5:15 hunter list **read it and filter** instead of each hitting FUB — one pull
@@ -56,7 +57,7 @@ machine-checkable stop condition, iteration ceiling, autonomy level, found→inb
 shell allowlist, cost model). Each `*.task.md` carries a filled-in `## Governance` block;
 the run ledger scaffold is **[STATE.template.md](STATE.template.md)**.
 
-- **Autonomy today:** `morning-pull`, `meta-review`, `ceo-dashboard` L1 (read-only) ·
+- **Autonomy today:** `morning-pull`, `meta-review`, `drive-hygiene`, `ceo-dashboard` L1 (read-only) ·
   `active-hunter`, `database-coi`, `clv-sync` L2 (stage drafts/dry-runs, nothing sends) ·
   `clv-sync` writeback L3-eligible.
 - **Worst-case day** (first Monday, all six fire): ≈ 365k input / 66k output tokens —
