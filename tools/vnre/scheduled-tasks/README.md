@@ -37,3 +37,19 @@ Mondays, the brief uses the last CLV sync.
   or writes automatically.
 - **clv-sync:** scheduled run produces the plan + **dry-run** only. It does **not** auto-write
   to FUB. Flip to auto-commit (add `--commit`) yourself once you've validated a few runs.
+
+## Governance (agent-ops standard)
+Every task here is governed by **[GOVERNANCE.md](GOVERNANCE.md)** — the agent-ops hygiene
+standard (trigger, STATE read-first/write-last, writer≠checker with a named hard gate,
+machine-checkable stop condition, iteration ceiling, autonomy level, found→inbox/none→silent,
+shell allowlist, cost model). Each `*.task.md` carries a filled-in `## Governance` block;
+the run ledger scaffold is **[STATE.template.md](STATE.template.md)**.
+
+- **Autonomy today:** `ceo-dashboard` L1 (read-only) · `active-hunter`, `database-coi`,
+  `clv-sync` L2 (stage drafts/dry-runs, nothing sends) · `clv-sync` writeback L3-eligible.
+- **Worst-case day** (first Monday, all six fire): ≈ 365k input / 66k output tokens —
+  low single-digit dollars at the ballpark Opus rate. Math + levers in GOVERNANCE §9.
+- **The one open box** across all tasks: run each 3–5× and record tokens/iteration in its
+  STATE ledger to replace the estimates. Everything else is satisfied by the suite design.
+- `daily-lead-attention` + `plp-folder-build` (defined in Drive) inherit this standard —
+  add the same block when you next edit them.

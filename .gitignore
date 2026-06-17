@@ -10,6 +10,9 @@ node_modules/
 config.json
 **/config.json
 _data/
+# Run-state ledgers (hold real CRM/financial counts) — keep the template, ignore live state
+_state/
+**/_state/
 
 # Binaries that belong in Drive, not git
 *.dmg
