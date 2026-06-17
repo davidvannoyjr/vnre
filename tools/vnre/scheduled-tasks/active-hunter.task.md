@@ -11,10 +11,12 @@
 ```
 Build today's Active-Hunter call list.
 
-1. Pull FUB prospecting contacts — FSBO, Expired, Aged Lead, Geo-farm, COI, Past
+1. Get the prospecting contacts — FSBO, Expired, Aged Lead, Geo-farm, COI, Past
    Client — with id, name, phone, address/city, tags/stage, lastAttemptDate,
-   attempts, and any signal. Include the DNC/Opt-Out tag so it can be filtered.
-   Save to _data/hunter-pull-<today>.json.
+   attempts, and any signal, including the DNC/Opt-Out tag so it can be filtered.
+   FIRST check for the shared pull "_data/fub-morning-pull-<today>.json" (pulledAt =
+   today): if present and fresh, filter the prospecting segments out of it — do not
+   re-pull. If absent/stale, self-pull from FUB and save to _data/hunter-pull-<today>.json.
 2. Run build_call_list.py --pull that file --out "Follow Up Boss Pipeline/<today>
    Call List.md" --today <today>.
 3. Present the list grouped by segment with the script reference per group. Note the

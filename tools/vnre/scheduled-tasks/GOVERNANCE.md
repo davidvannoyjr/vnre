@@ -161,16 +161,23 @@ Single-pass run shape (conservative ceiling per fire):
 
 | Task | Days/wk | In (k) | Out (k) |
 |---|---|---|---|
-| daily-lead-attention | 7 | 65 | 12 |
-| active-hunter | 7 | 65 | 12 |
+| morning-pull (shared pull) | 7 | 45 | 2 |
+| daily-lead-attention (reads shared pull) | 7 | 30 | 12 |
+| active-hunter (reads shared pull) | 7 | 30 | 12 |
 | plp-folder-build | 7 | 40 | 6 |
 | database-coi | 1 (Mon) | 65 | 12 |
 | ceo-dashboard | 1 (Mon) | 65 | 12 |
 | clv-sync | 1 (1st Mon) | 65 | 12 |
+| meta-review | 1 (Sun) | 25 | 8 |
 
-- **Typical weekday:** 3 tasks ≈ **170k in / 30k out**.
-- **Worst-case day (1st Monday):** 6 tasks ≈ **365k in / 66k out**.
-- **Worst-case month:** ~22 weekdays × ~200k + the Monday spikes ≈ **~5–6M in / ~1M out**.
+> The shared `morning-pull` does the one ~45k FUB pull; the two consumers then read a
+> filtered file (~30k each) instead of pulling ~65k each. Net daily input is roughly flat —
+> the win is **one consistent suppression snapshot**, not raw tokens. Real savings show once
+> `meta-review` replaces these estimates with measured ledgers.
+
+- **Typical weekday:** morning-pull + 3 consumers ≈ **145k in / 32k out**.
+- **Worst-case day (1st Monday):** all morning tasks + the Monday stack ≈ **340k in / 68k out**.
+- **Worst-case month:** ~22 weekdays × ~180k + the Monday spikes + 4 Sun reviews ≈ **~5M in / ~1M out**.
 
 > **Cost in dollars:** multiply by the current Opus input/output per-token rate
 > (confirm the live rate before quoting — do not assume). At the ballpark Opus rate
@@ -203,6 +210,8 @@ tokens/iteration in its STATE ledger.** Everything else is satisfied by the suit
 existing design (deterministic Python, dry-run/draft gating, no-network sandbox) plus
 the governance blocks now in each task file.
 
-> `daily-lead-attention` and `plp-folder-build` are pre-existing tasks whose
-> definitions live in Drive, not this repo. Apply the same `## Governance` block to
-> them when you next touch their files — they inherit this standard.
+> The table covers the four staging/writing tasks. `morning-pull` and `meta-review`
+> are L1 read-only and fully governed in their own task files. `daily-lead-attention`
+> and `plp-folder-build` are pre-existing tasks whose definitions live in Drive, not
+> this repo — apply the same `## Governance` block (and the morning-pull read-if-present
+> edit for the lead brief) when you next touch their files. They inherit this standard.
