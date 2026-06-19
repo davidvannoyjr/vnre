@@ -1,6 +1,6 @@
 {
   "_comment": "Copy to config.json (gitignored). Holds key path + commission assumptions.",
-  "_clv_note": "DVN's sold-history JSON has NO sale price (confirmed 2026-06-13). So per-closing commission falls back to avgGci.default below, i.e. CLV ≈ (number of closings) × default GCI — a loyalty/transaction-count value, great for prioritizing repeat clients. Sale price DOES live on FUB Deals, so feed the fub_pull people dump as --people to enrich the most-recent purchase where present. Set avgGci.default to your true average GCI per side.",
+  "_clv_note": "DVN's sold-history JSON has NO sale price (confirmed 2026-06-13). So per-closing commission falls back to avgGci.default below, i.e. CLV ≈ (number of closings) × default GCI — a loyalty/transaction-count value, great for prioritizing repeat clients. Sale price DOES live on FUB Deals, so feed the fub_pull people dump as --people to enrich the most-recent purchase where present. avgGci values below are DVN's actual gross GCI per closed side from the 2025 + 2026 deal sheets (163 closed sides): all=$11,058, listing/seller=$10,511, buyer=$12,391. Refresh annually from the deal sheet.",
   "apiKeyFile": "~/Library/CloudStorage/GoogleDrive-david@vannoyre.com/.../02 Reference/fub-api-key.local.md",
   "xSystem": "VNRE-Claude",
   "xSystemKey": "REPLACE_WITH_YOUR_X_SYSTEM_KEY",
@@ -8,5 +8,5 @@
   "listingRate": 0.025,
   "buyerRate": 0.025,
   "defaultRate": 0.025,
-  "avgGci": {"listing": 12000, "buyer": 5500, "default": 8500}
+  "avgGci": {"listing": 10500, "buyer": 12400, "default": 11000}
 }
