@@ -30,8 +30,8 @@ maturity, keep) — read it before merging to see exactly what's VNRE vs. coachi
 | `content-engine-skill` | 02 Attraction | Listing → multichannel launch package (captions, schedule, FUB blast, graphics spec) | ✅ built | photo selection per listing |
 | `compliance-auditor-skill` | 06 Compliance | Transaction-file completeness vs per-stage checklist (missing / verify-sig / deadlines) | ✅ built | confirm form set w/ broker |
 | `ceo-dashboard-skill` | 07 Finance | Weekly QuickBooks actuals vs 2026 plan + 50% margin guard + A/R flag | ✅ built | nothing (QBO connected) |
-| `database-coi-skill` | 08 Database/COI | 2-lane brief: Customer Care + Opportunity & Database Mgmt (8 moments) | ✅ built | 3 FUB facts |
-| `clv-sync-skill` | (cross) | Client Lifetime Value from closings → FUB; QBO partner-value brief | ✅ built | `Lifetime Value` field |
+| `database-coi-skill` | 08 Database/COI | 2-lane brief: Customer Care + Opportunity & Database Mgmt (8 moments) | ✅ built | live `config.json` (key + segments confirmed) |
+| `clv-sync-skill` | (cross) | Client Lifetime Value from closings → FUB; QBO partner-value brief | ✅ built | create `Lifetime Value` field |
 | `call-coach-skill` | 09 Scale | Granola transcript → script-adherence self-coaching (phases, objections, talk ratio, drills) | ✅ built | Granola transcripts |
 | `scheduled-tasks` | — | Standing Cowork task definitions for the above | ✅ defined | create in Cowork |
 
@@ -77,11 +77,17 @@ database & COI + active-hunter refill the funnel; the CEO dashboard watches the 
 - Schedules created from `scheduled-tasks/`.
 
 ## Open items before full live operation
-1. **3 FUB facts** (database & COI + CLV): segment labels, where close-date/price live, whether the
-   sold JSON carries price/commission.
+> The "3 FUB facts" were **confirmed with DVN 2026-06-13** (see `database-coi-skill/PULL_SPEC.md §3`):
+> segments = Past Client / COI / DVN COI / Agent COI; close-date + sale price live on FUB **Deals**;
+> sold-history JSON carries **no** price (CLV falls back to closings-count × `avgGci.default`). Those
+> are settled — they're baked into the `config.example.json` files. What remains is activation, below.
+
+1. **Live `config.json` per skill** — copy each `config.example.json` → `config.json` (gitignored)
+   and fill real `xSystemKey` + `avgGci.default`. Desktop-only: needs the FUB key in Drive
+   (`fub-api-key.local.md`).
 2. **`Lifetime Value` custom field** — run `clv-sync-skill/scripts/fub_field_setup.py --create`
    to create/verify it (and the other suite fields); falls back to admin-UI steps if the API
-   doesn't permit field creation.
+   doesn't permit field creation. Then set `clv-sync` `customFieldName` = "Lifetime Value".
 3. **Compliance checklist** (Stage 01 voice): DNC/TCPA/two-party consent (KS one-party, MO all-party).
 4. **Voice vendor** decision (Vapi/Twilio) for autonomous dialing + Upfirst inbound integration.
 
