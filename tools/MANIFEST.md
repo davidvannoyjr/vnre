@@ -30,6 +30,8 @@ tools/
 | `clv-sync-skill` | vnre | 🏢 VNRE | (cross) | ✅ production | **keep** |
 | `scheduled-tasks` | vnre | 🏢 VNRE | — | ✅ definitions | **keep** |
 | `call-coach-skill` | shared | 🔁 VNRE + Coaching | 09 Scale | ✅ self mode · 🧪 client/agent modes | **keep** |
+| `board-of-advisors-skill` | shared | 🔁 VNRE + Coaching + personal | (cross) | ✅ framework · self mode (client mode ready) | **keep** |
+| `improve-system-skill` | shared | 🔁 OS-wide (all areas) | (OS) | ✅ framework | **keep** |
 
 **Nothing here is throwaway.** The only non-production items are the Stage 01 **SCOPE** (a
 planning doc) and the voice overlay it describes (scoped, gated on a compliance + vendor decision).

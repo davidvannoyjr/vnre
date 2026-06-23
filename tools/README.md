@@ -33,6 +33,8 @@ maturity, keep) — read it before merging to see exactly what's VNRE vs. coachi
 | `database-coi-skill` | 08 Database/COI | 2-lane brief: Customer Care + Opportunity & Database Mgmt (8 moments) | ✅ built | 3 FUB facts |
 | `clv-sync-skill` | (cross) | Client Lifetime Value from closings → FUB; QBO partner-value brief | ✅ built | `Lifetime Value` field |
 | `call-coach-skill` | 09 Scale | Granola transcript → script-adherence self-coaching (phases, objections, talk ratio, drills) | ✅ built | Granola transcripts |
+| `board-of-advisors-skill` | (cross) | Cloned-counsel decision panel: decision → per-advisor reads + conflict map + synthesis | ✅ framework | fill `advisors.json` from real sources |
+| `improve-system-skill` | (OS) | Feedback loop: capture a task learning → approval-gated edit to Knowledge/Skills | ✅ framework | nothing (logs immediately) |
 | `scheduled-tasks` | — | Standing Cowork task definitions for the above | ✅ defined | create in Cowork |
 
 Pre-existing skills (in Drive `04 Tools/`, referenced by the master manual): `plp-build`,

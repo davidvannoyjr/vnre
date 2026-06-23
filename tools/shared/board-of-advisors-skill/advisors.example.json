@@ -1,0 +1,52 @@
+{
+  "board_name": "DVN Strategic Board",
+  "owner": "David Van Noy Jr.",
+  "notes": "Seed slots. Fill each advisor from real, accessible material before going live. 3-7 advisors. Delete the instruction strings once filled. Copy to advisors.json (gitignored if it ever holds anything private).",
+  "advisors": [
+    {
+      "id": "operator-1",
+      "name": "<Advisor full name>",
+      "domain": "Real estate / sales systems",
+      "why_on_board": "<the specific kind of decision this person sharpens>",
+      "decision_lens": "<the one question this person always asks first>",
+      "heuristics": [
+        "<rule of thumb 1, in their words>",
+        "<rule of thumb 2>",
+        "<rule of thumb 3>"
+      ],
+      "signature_moves": ["<what they reliably do>", "<their default play>"],
+      "will_flag": ["<the risk they always catch>", "<the trap they warn about>"],
+      "voice": "<2-3 words: how they talk, e.g. 'blunt, numbers-first'>",
+      "weight": 1.0,
+      "sources": [
+        "<book / talk / framework — title + where it's accessible>"
+      ]
+    },
+    {
+      "id": "operator-2",
+      "name": "<Advisor full name>",
+      "domain": "Business / capital / scaling",
+      "why_on_board": "<...>",
+      "decision_lens": "<...>",
+      "heuristics": ["<...>", "<...>"],
+      "signature_moves": ["<...>"],
+      "will_flag": ["<...>"],
+      "voice": "<...>",
+      "weight": 1.0,
+      "sources": ["<...>"]
+    },
+    {
+      "id": "operator-3",
+      "name": "<Advisor full name>",
+      "domain": "Marketing / brand / attention",
+      "why_on_board": "<...>",
+      "decision_lens": "<...>",
+      "heuristics": ["<...>", "<...>"],
+      "signature_moves": ["<...>"],
+      "will_flag": ["<...>"],
+      "voice": "<...>",
+      "weight": 1.0,
+      "sources": ["<...>"]
+    }
+  ]
+}

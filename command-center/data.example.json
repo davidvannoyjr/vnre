@@ -1,0 +1,18 @@
+{
+  "_note": "Live data shape for the command center. Each array is produced by a skill and dropped here (or any path passed via ?data=). The center displays it; it computes nothing.",
+  "date": "2026-06-23",
+  "hunt": [
+    {"name": "<target name / address>", "segment": "Expired|FSBO|COI|Aged|Geo|Past", "why": "<one line: why now>", "tag": "hot|''"}
+  ],
+  "attention": [
+    {"name": "<lead / deal>", "score": "HIGH|MED|LOW", "note": "<stall / deadline / regression>", "tag": "high|warnt|''"}
+  ],
+  "pace": [
+    {"label": "Appts (mo)", "value": 0, "goal": "target ~10", "off": false},
+    {"label": "Listings (mo)", "value": 0, "goal": "target ~6", "off": false},
+    {"label": "Contacts today", "value": 0, "goal": "goal 30", "off": false}
+  ],
+  "pipeline": [
+    {"addr": "<address>", "when": "<day time>", "stage": "PLP built|Pre-qual pending|...", "tag": "warnt|''"}
+  ]
+}

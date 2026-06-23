@@ -131,6 +131,8 @@ Reject anything theoretical, complex without payoff, or dependent on motivation 
 | `vnre-content-engine` | "build the social plan for {address}", "launch content for this listing" | `04 Tools/content-engine-skill/SKILL.md` (aiDrVN Stage 02; listing → multichannel launch package; source in repo `tools/vnre/content-engine-skill/`) |
 | `vnre-compliance-auditor` | "compliance check {client}", "audit the file", "what's missing on {transaction}" | `04 Tools/compliance-auditor-skill/SKILL.md` (aiDrVN Stage 06; transaction-file completeness vs checklist; source in repo `tools/vnre/compliance-auditor-skill/`) |
 | `vnre-call-coach` | "coach my call", "review this call", "score my FSBO call" | `04 Tools/call-coach-skill/SKILL.md` (aiDrVN Stage 09; Granola transcript → script-adherence self-coaching; source in repo `tools/shared/call-coach-skill/`) |
+| `board-of-advisors` | "ask the board", "what would the board do", "run this past my advisors" | `04 Tools/board-of-advisors-skill/SKILL.md` (cloned-counsel decision panel; source in repo `tools/shared/board-of-advisors-skill/`) |
+| `improve-system` | "improve the system", "capture that", "what did we learn" (run end of any non-trivial task) | `04 Tools/improve-system-skill/SKILL.md` (OS feedback loop → approval-gated edit to Knowledge/Skills; source in repo `tools/shared/improve-system-skill/`) |
 | `vnre-html-branding` | branded HTML deliverables | `02 Reference/SOPs/vnre-html-branding.skill` |
 | `dvn-voice` | all outbound copy | brand voice skill (see `02 Reference/Brand/`) |
 
@@ -140,6 +142,13 @@ Reject anything theoretical, complex without payoff, or dependent on motivation 
 ---
 
 ## 9. Projects (briefs)
+
+> **Project briefs now live in [`01-projects/`](01-projects/)** — one folder + `CLAUDE.md`
+> per project (the Projects leg of the Internal Operating System; see
+> [`01-projects/README.md`](01-projects/README.md)). The four-project build added 2026-06-23:
+> **Board of Advisors** · **Niched Command Center** · **AI-Optimized Website** ·
+> **Internal Operating System**. The pre-existing briefs below stay here until each is next
+> touched, then migrate into a folder under `01-projects/`.
 
 ### PLP Build
 Standing pre-listing prep system: turn every `LA:` appointment into a prepared listing appointment with zero manual folder work — auto folder build, pre-qual summary, comp research, print-ready presentation. **Decisions (do not relitigate):** 4 subfolders at PLP stage; ink-saving presentation only; static copy (bio/testimonials/plan of action) approved — change only on David's direction; David's loaded comps always primary; SOLD Near You = exact-city first, then most-recent same-state (KS/MO), family + address only. Refresh sold master list quarterly. Status: live since 2026-06-06.
