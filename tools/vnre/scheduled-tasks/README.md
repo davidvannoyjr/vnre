@@ -21,6 +21,7 @@ In Claude desktop / Cowork → Scheduled Tasks → New:
 | 6:00 AM | Mon | **`database-coi`** (Database & COI brief) | new → [database-coi.task.md](database-coi.task.md) |
 | 6:30 AM | Mon | **`ceo-dashboard`** (run my numbers) | new → [ceo-dashboard.task.md](ceo-dashboard.task.md) |
 | 7:00 AM | daily | `plp-folder-build` (PLP prep) | existing |
+| 7:15 AM | Mon | **`ideas-vault-weekly`** (digest + HTML push) | new → [ideas-vault.task.md](ideas-vault.task.md) |
 | 8:48 AM | daily | Team huddle | existing |
 
 Order matters on the **first Monday of the month**: `clv-sync` (5:45) refreshes Lifetime
