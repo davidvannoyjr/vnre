@@ -1,0 +1,23 @@
+[
+  {
+    "id": 101, "type": "Lease", "stage": "Active", "price": 2800,
+    "created": "2026-06-25T15:00:00Z", "updated": "2026-06-25T15:00:00Z",
+    "address": {"street": "7700 Roe Ave", "city": "Prairie Village", "state": "KS"},
+    "people": [{"name": "Jennifer Park"}],
+    "description": "3BR/2BA corner unit, new appliances, 2-car garage"
+  },
+  {
+    "id": 102, "type": "Lease", "stage": "Active", "price": 2200,
+    "created": "2026-06-23T10:00:00Z", "updated": "2026-06-23T10:00:00Z",
+    "address": {"street": "4400 Oak St", "city": "Overland Park", "state": "KS"},
+    "people": [{"name": "Sarah Kim"}],
+    "description": "2BR/2BA, updated kitchen, washer/dryer included"
+  },
+  {
+    "id": 103, "type": "Lease Listing", "stage": "Coming Soon", "price": 1850,
+    "created": "2026-06-24T08:00:00Z", "updated": "2026-06-24T08:00:00Z",
+    "address": {"street": "210 Main Ave", "city": "Olathe", "state": "KS"},
+    "people": [{"name": "Marcus Webb"}],
+    "description": ""
+  }
+]

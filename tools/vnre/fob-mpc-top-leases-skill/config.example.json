@@ -1,0 +1,8 @@
+{
+  "apiKeyFile": "~/path/to/fub-api-key.local.md",
+  "xSystem": "VNRE-Claude",
+  "xSystemKey": "",
+  "leaseTypes": ["Lease", "Rental", "Lease Listing"],
+  "activeStages": ["Active", "Active KO", "Coming Soon", "New"],
+  "topN": 3
+}

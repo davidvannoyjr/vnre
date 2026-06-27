@@ -28,6 +28,7 @@ tools/
 | `ceo-dashboard-skill` | vnre | 🏢 VNRE | 07 Finance | ✅ production | **keep** |
 | `database-coi-skill` | vnre | 🏢 VNRE | 08 Database/COI | ✅ production | **keep** |
 | `clv-sync-skill` | vnre | 🏢 VNRE | (cross) | ✅ production | **keep** |
+| `fob-mpc-top-leases-skill` | vnre | 🏢 VNRE | 01 Prospect | ✅ production | **keep** |
 | `scheduled-tasks` | vnre | 🏢 VNRE | — | ✅ definitions | **keep** |
 | `call-coach-skill` | shared | 🔁 VNRE + Coaching | 09 Scale | ✅ self mode · 🧪 client/agent modes | **keep** |
 
