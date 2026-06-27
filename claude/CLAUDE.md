@@ -131,6 +131,7 @@ Reject anything theoretical, complex without payoff, or dependent on motivation 
 | `vnre-content-engine` | "build the social plan for {address}", "launch content for this listing" | `04 Tools/content-engine-skill/SKILL.md` (aiDrVN Stage 02; listing → multichannel launch package; source in repo `tools/vnre/content-engine-skill/`) |
 | `vnre-compliance-auditor` | "compliance check {client}", "audit the file", "what's missing on {transaction}" | `04 Tools/compliance-auditor-skill/SKILL.md` (aiDrVN Stage 06; transaction-file completeness vs checklist; source in repo `tools/vnre/compliance-auditor-skill/`) |
 | `vnre-call-coach` | "coach my call", "review this call", "score my FSBO call" | `04 Tools/call-coach-skill/SKILL.md` (aiDrVN Stage 09; Granola transcript → script-adherence self-coaching; source in repo `tools/shared/call-coach-skill/`) |
+| `ideas-vault` | "capture this idea", "log an idea", "new idea:", "add to the vault", "mark IDEA-NNN as shipped" | `tools/shared/ideas-vault/SKILL.md` (cross-device idea capture → `ideas.json` + `ideas-master.html` at repo root; push to GitHub = instant sync all devices) |
 | `vnre-html-branding` | branded HTML deliverables | `02 Reference/SOPs/vnre-html-branding.skill` |
 | `dvn-voice` | all outbound copy | brand voice skill (see `02 Reference/Brand/`) |
 
