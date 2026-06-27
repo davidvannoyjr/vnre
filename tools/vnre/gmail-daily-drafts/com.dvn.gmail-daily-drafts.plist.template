@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+
+    <!-- Job identity -->
+    <key>Label</key>
+    <string>com.dvn.gmail-daily-drafts</string>
+
+    <!-- What to run: venv Python → the script -->
+    <key>ProgramArguments</key>
+    <array>
+        <string>__DEPLOY_DIR__/venv/bin/python3</string>
+        <string>__DEPLOY_DIR__/daily_draft_prep.py</string>
+    </array>
+
+    <!-- Fire at 6:30 AM every day.
+         StartCalendarInterval catches up when the Mac wakes from sleep. -->
+    <key>StartCalendarInterval</key>
+    <dict>
+        <key>Hour</key>
+        <integer>6</integer>
+        <key>Minute</key>
+        <integer>30</integer>
+    </dict>
+
+    <!-- Capture stdout + stderr to rotating log files -->
+    <key>StandardOutPath</key>
+    <string>__DEPLOY_DIR__/logs/launchd-out.log</string>
+    <key>StandardErrorPath</key>
+    <string>__DEPLOY_DIR__/logs/launchd-err.log</string>
+
+    <!-- Environment: HOME and PATH so the venv and .env resolve correctly -->
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>HOME</key>
+        <string>__HOME__</string>
+        <key>PATH</key>
+        <string>/usr/local/bin:/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
+    </dict>
+
+    <!-- Do NOT run immediately on launchctl load -->
+    <key>RunAtLoad</key>
+    <false/>
+
+    <!-- Background priority — does not need interactive session -->
+    <key>ProcessType</key>
+    <string>Background</string>
+
+</dict>
+</plist>

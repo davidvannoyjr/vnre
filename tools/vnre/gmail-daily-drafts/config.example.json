@@ -1,0 +1,89 @@
+{
+  "_note": "Edit this file freely — it is re-read on every run, no restart needed. All string matching is case-insensitive. Patterns in no_reply_patterns are Python regexes.",
+
+  "lookback_hours": 24,
+  "draft_cap": 15,
+
+  "no_reply_patterns": [
+    "no.?reply",
+    "noreply",
+    "do.?not.?reply",
+    "donotreply",
+    "notifications?@",
+    "alerts?@",
+    "updates?@",
+    "newsletter@",
+    "mailer-daemon@",
+    "bounce@",
+    "postmaster@",
+    "automated@",
+    "system@",
+    "support-noreply@",
+    "info@(?!.*(?:client|lead|transaction))",
+    "news@",
+    "digest@",
+    "robot@"
+  ],
+
+  "subject_block_keywords": [
+    "unsubscribe",
+    "newsletter",
+    "order confirmation",
+    "payment received",
+    "payment confirmation",
+    "your invoice",
+    "invoice #",
+    "receipt for",
+    "subscription renewal",
+    "subscription confirmed",
+    "weekly digest",
+    "daily digest",
+    "account update",
+    "password reset",
+    "verify your email",
+    "confirm your email",
+    "marketing email",
+    "[automated]",
+    "[notification]",
+    "you have a new voicemail",
+    "security alert",
+    "sign-in attempt"
+  ],
+
+  "sender_blocklist": [
+    "notifications@zillow.com",
+    "noreply@realtor.com",
+    "noreply@homes.com",
+    "alerts@redfin.com",
+    "noreply@docuseal.co",
+    "noreply@dotloop.com",
+    "noreply@followupboss.com",
+    "noreply@skyslope.com",
+    "noreply@brokerbay.com",
+    "mailer@mojo.com",
+    "noreply@asana.com",
+    "noreply@google.com",
+    "calendar-notification@google.com",
+    "no-reply@accounts.google.com"
+  ],
+
+  "sender_allowlist": [],
+
+  "active_clients": [
+  ],
+
+  "leads": [
+  ],
+
+  "coaching_clients": [
+  ],
+
+  "vendors_partners": [
+    "title",
+    "escrow",
+    "lender",
+    "mortgage",
+    "attorney",
+    "inspector"
+  ]
+}
