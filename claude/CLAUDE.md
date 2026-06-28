@@ -15,7 +15,7 @@ Read this first in every session. It is the working root for all Claude work for
 
 - **DVN** — Broker/Owner, Van Noy Real Estate (VNRE) + Founder, DVN Coaching. Kansas City Metro (Johnson County KS, Jackson County MO). 23+ years residential real estate, $500M+ closed, ~13 years coaching.
 - **Model:** Listings > buyers. Solo listing operation, prospecting-heavy (expireds, FSBO, database, circle). Goal: ~75 listing sides/yr at ~$450k–$550k average.
-- **Coaching:** ~10–12 clients at ~$1k/mo — target client: producing agents earning $200K–$1MM.
+- **Coaching:** 9 active clients at ~$1k/mo — target client: producing agents earning $200K–$1MM.
 - Treat David as a peer professional on every topic — tax, legal, financial, strategic, operational. No disclaimers. No "consult a professional." He **is** the professional.
 
 ---
@@ -64,10 +64,10 @@ Reject anything theoretical, complex without payoff, or dependent on motivation 
 
 ## 4. Business — VNRE
 
-- **Model:** solo listing operation, target 70–75 listing sides/yr at ~$450k–$550k. Support: EA/ISA (Stephanie), VA1 (listing), VA2 (transaction), occasional buyer-agent coverage.
+- **Model:** solo listing operation, target 70–75 listing sides/yr at ~$450k–$550k. **Team (current):** DVN runs all listing, prospecting, and sales solo. Support is two people: **Jenae Karr** — Executive Assistant + Transaction Manager (jenae@vannoyre.com); **Dianne** — VA support to the transaction team. No ISA, no buyer agents, no listing VA. That is the entire team.
 - **Database:** 3,000+ COI contacts, tiered A/B/C. Under-contacted segment is the #1 opportunity.
 - **Geography:** Johnson County KS, Jackson County MO.
-- **Tech stack:** Follow Up Boss (CRM) · Dotloop / Skyslope (transactions) · Heartland MLS / BrokerBay · Mojo (dialer) · Upfirst voice agents (Alex inbound, Jordan routing) · Google Workspace · Asana (limited).
+- **Tech stack:** Follow Up Boss (CRM + project/task management) · DocuSeal (transactions + e-signature) · Heartland MLS / BrokerBay · Enzo Dialer · Upfirst voice agents (Alex inbound, Jordan routing) · Google Workspace.
 - **Conversion benchmarks:** ~50 contacts → 1 appointment; ~70% appointment → listing; 3 hrs prospecting daily / ~150 calls / ~30 contacts.
 - **Active priorities:** listing-presentation infrastructure, CMA/pricing frameworks, 2026 Aggressive Growth Playbook, complex transaction management.
 
@@ -75,7 +75,7 @@ Reject anything theoretical, complex without payoff, or dependent on motivation 
 
 ## 5. Business — DVN Coaching
 
-- **Capacity:** 10–12 clients · **Price:** ~$1,000/mo · **Target:** producing agents earning $200K–$1MM.
+- **Capacity:** 9 active clients (ceiling ~12) · **Price:** ~$1,000/mo · **Target:** producing agents earning $200K–$1MM.
 - **Focus:** prospecting discipline, systems, accountability, revenue growth.
 
 **Proprietary framework — The 22-Point System** (use these names — no external attribution). This is THE DVN Coaching framework; it replaces the earlier five-stage model (Forge / Conquer / Anchor / Architect / Own). **Canonical doc (single source of truth, GitHub-hosted): [`DVN-Coaching-Framework.md`](DVN-Coaching-Framework.md) — the block below is a derived summary; the doc wins on any conflict.** The whole job in 22 disciplines across six pillars — dual-purpose: DVN's own operating standard *and* the client curriculum/scoreboard (score every client 1–10 on all 22; the lowest scores are the plan).
