@@ -1,0 +1,11 @@
+{
+  "_comment": "Copy to config.json and fill in. config.json is gitignored. These feed build_briefing.py at run time.",
+  "recipient": "david@vannoyre.com",
+  "projectHome": "/Users/davidvannoy/Claude/Projects/Monday Briefing",
+  "campaignStart": "2026-05-20",
+  "campaignDays": 100,
+  "targetAppointments": 40,
+  "lookbackDays": 7,
+  "retainDays": 14,
+  "_notes": "campaignStart is day 0 of the 100-day / 40-appointment listing push; update it when a new campaign starts. appts-to-date is read from the FUB pull at run time, not stored here."
+}

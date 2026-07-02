@@ -15,6 +15,7 @@ In Claude desktop / Cowork → Scheduled Tasks → New:
 
 | Time | Day | Task | Status |
 |---|---|---|---|
+| 5:00 AM | Mon | **`monday-briefing`** (exec briefing) | new → [monday-briefing.task.md](monday-briefing.task.md) |
 | 5:00 AM | daily | `daily-lead-attention` (lead brief) | existing |
 | 5:15 AM | daily | **`active-hunter`** (call list) | new → [active-hunter.task.md](active-hunter.task.md) |
 | 5:45 AM | 1st Mon/month | **`clv-sync`** (refresh Lifetime Value) | new → [clv-sync.task.md](clv-sync.task.md) |
@@ -26,6 +27,11 @@ In Claude desktop / Cowork → Scheduled Tasks → New:
 Order matters on the **first Monday of the month**: `clv-sync` (5:45) refreshes Lifetime
 Value *before* `database-coi` (6:00) so Database & COI scoring is profit-weighted. Other
 Mondays, the brief uses the last CLV sync.
+
+On **Mondays**, `monday-briefing` (5:00) and `daily-lead-attention` (5:00) share the slot —
+both read FUB, neither writes, so there is no contention. The Monday briefing is the
+week-ahead chief-of-staff view (Calendar/Gmail/Drive/Granola/FUB → Gmail draft); the lead
+brief is the daily who-to-call list. They are complementary, not redundant.
 
 ## Shared prerequisites (one-time, per device)
 - `followupboss` MCP server connected (lead brief / database & COI / clv-sync).

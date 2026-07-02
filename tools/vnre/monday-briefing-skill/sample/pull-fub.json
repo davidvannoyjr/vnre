@@ -1,0 +1,8 @@
+{
+  "leads": [
+    {"name": "Sandra Pyle", "segment": "Hot", "status": "stalling — no contact 9 days", "lastContact": "2026-06-15", "nextAction": "Call re: listing timeline"},
+    {"name": "Tom & Rita Glassman", "segment": "Watch", "status": "regressing — opened then went cold", "lastContact": "2026-06-12", "nextAction": "Send equity update + CMA"},
+    {"name": "Dave Renner", "segment": "Hot", "status": "active — toured Saturday", "lastContact": "2026-06-23", "nextAction": "Write offer"},
+    {"name": "Cold Nurture Lead", "segment": "Nurture", "status": "stalling", "lastContact": "2026-01-01", "nextAction": "drip"}
+  ]
+}

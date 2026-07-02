@@ -1,0 +1,10 @@
+{
+  "threads": [
+    {"subject": "Invoice #2041 past due — June coaching", "from": "marcus@example.com", "snippet": "Wanted to confirm the wire went out for the June coaching invoice.", "threadId": "t1", "unread": true},
+    {"subject": "Re: Offer on 142 Oak — counter terms", "from": "buyeragent@kw.com", "snippet": "My clients can come up 5k but need a 45-day close.", "threadId": "t2", "unread": true},
+    {"subject": "Considering a move to your brokerage", "from": "agent.jane@remax.com", "snippet": "Heard you take on a few producing agents — open to a conversation?", "threadId": "t3", "unread": true},
+    {"subject": "Your weekly market newsletter", "from": "newsletter@inman.com", "snippet": "Top stories in real estate this week. View in browser.", "threadId": "t4"},
+    {"subject": "Flash sale — 40% off CRM seats", "from": "marketing@followupboss.com", "snippet": "Sale ends Friday. Upgrade now.", "threadId": "t5"},
+    {"subject": "Inspection repair requests — Caldwell", "from": "caldwell.client@gmail.com", "snippet": "We're a little concerned about the roof line item, can we talk?", "threadId": "t6", "unread": true}
+  ]
+}
